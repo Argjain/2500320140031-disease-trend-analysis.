@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from src.data_loader import load_data
 from src.cleaning import clean_data
-from src.ui import inject_tailwind, render_header, render_kpi_card_iframe, render_insight_box
+from src.ui import inject_tailwind, render_header, render_kpi_card_iframe, render_insight_box, safe_render_dataframe
 
 st.set_page_config(page_title="Data Quality | Disease Trend Analysis", page_icon="🧹", layout="wide")
 inject_tailwind()
@@ -33,13 +33,13 @@ st.markdown("---")
 # Row 2: Audit Detail Ledger
 st.subheader("🔍 Data Sanitization Interventions Log")
 audit_log = [
-    {"Intervention Type": "Deduplication (DQ-02)", "Condition Detected": "Identical business key duplicate transactions", "Resolution Method": "df.drop_duplicates()", "Records Affected": quality_report["duplicates_removed"]},
-    {"Intervention Type": "Null Imputation - Cases (DQ-01)", "Condition Detected": "2% missing values in cases_reported", "Resolution Method": "Disease-specific median imputation", "Records Affected": quality_report["null_cases_filled"]},
-    {"Intervention Type": "Null Imputation - Deaths (DQ-04)", "Condition Detected": "1% missing values in deaths column", "Resolution Method": "Conservative zero (0) imputation", "Records Affected": quality_report["null_deaths_filled"]},
-    {"Intervention Type": "Outlier Capping (DQ-03)", "Condition Detected": "5 typographic entry spikes (10x normal)", "Resolution Method": "Winsorized upper-bound capping (Q3 + 3*IQR)", "Records Affected": quality_report["outliers_capped"]},
+    {"Intervention Type": "Deduplication (DQ-02)", "Condition Detected": "Identical business key duplicate transactions", "Resolution Method": "df.drop_duplicates()", "Records Affected": str(quality_report["duplicates_removed"])},
+    {"Intervention Type": "Null Imputation - Cases (DQ-01)", "Condition Detected": "2% missing values in cases_reported", "Resolution Method": "Disease-specific median imputation", "Records Affected": str(quality_report["null_cases_filled"])},
+    {"Intervention Type": "Null Imputation - Deaths (DQ-04)", "Condition Detected": "1% missing values in deaths column", "Resolution Method": "Conservative zero (0) imputation", "Records Affected": str(quality_report["null_deaths_filled"])},
+    {"Intervention Type": "Outlier Capping (DQ-03)", "Condition Detected": "5 typographic entry spikes (10x normal)", "Resolution Method": "Winsorized upper-bound capping (Q3 + 3*IQR)", "Records Affected": str(quality_report["outliers_capped"])},
     {"Intervention Type": "Referential Integrity Audit", "Condition Detected": "Foreign key reference validation across 5 tables", "Resolution Method": "SQLite FK constraint enforcement (PRAGMA foreign_keys = ON)", "Records Affected": "0 Violations"},
 ]
-st.table(pd.DataFrame(audit_log))
+safe_render_dataframe(pd.DataFrame(audit_log), use_container_width=True)
 
 st.markdown("---")
 

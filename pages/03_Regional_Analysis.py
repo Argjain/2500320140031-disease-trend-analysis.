@@ -41,6 +41,7 @@ col_a, col_b = st.columns(2)
 
 with col_a:
     st.subheader("📍 State Case Burden Ranking (OQ-02)")
+    max_tot = reg_summary["total_cases"].max() if not reg_summary.empty else 1000
     fig_cases = px.bar(
         reg_summary,
         x="total_cases",
@@ -52,13 +53,17 @@ with col_a:
         labels={"total_cases": "Total Cases", "region_name": "State"},
         text_auto=",.0f"
     )
-    fig_cases.update_layout(height=420, yaxis=dict(autorange="reversed", automargin=True), margin=dict(l=110, r=30, t=40, b=30))
+    fig_cases.update_traces(textposition="outside", cliponaxis=False, textfont=dict(size=10, color="#1e293b"))
+    fig_cases.update_layout(height=420, yaxis=dict(autorange="reversed", automargin=True), margin=dict(l=110, r=50, t=40, b=30))
+    fig_cases.update_xaxes(range=[0, max_tot * 1.18], automargin=True)
     st.plotly_chart(fig_cases, use_container_width=True)
 
 with col_b:
     st.subheader("⚠️ Case Fatality Rate (CFR %) Ranking (OQ-05)")
+    sorted_cfr = reg_summary.sort_values(by="cfr_pct", ascending=False)
+    max_cfr = sorted_cfr["cfr_pct"].max() if not sorted_cfr.empty else 5.0
     fig_cfr = px.bar(
-        reg_summary.sort_values(by="cfr_pct", ascending=False),
+        sorted_cfr,
         x="cfr_pct",
         y="region_name",
         orientation="h",
@@ -68,7 +73,9 @@ with col_b:
         labels={"cfr_pct": "CFR (%)", "region_name": "State"},
         text_auto=".2f"
     )
-    fig_cfr.update_layout(height=420, yaxis=dict(autorange="reversed", automargin=True), margin=dict(l=110, r=30, t=40, b=30))
+    fig_cfr.update_traces(textposition="outside", cliponaxis=False, textfont=dict(size=10, color="#1e293b"))
+    fig_cfr.update_layout(height=420, yaxis=dict(autorange="reversed", automargin=True), margin=dict(l=110, r=50, t=40, b=30))
+    fig_cfr.update_xaxes(range=[0, max_cfr * 1.2], automargin=True)
     st.plotly_chart(fig_cfr, use_container_width=True)
 
 st.markdown("---")
@@ -93,9 +100,12 @@ fig_grouped = px.bar(
     labels={"region_name": "State", "Percentage": "Rate (%)"},
     color_discrete_map={"Recovery Rate (%)": "#1E8B4C", "Case Fatality Rate (%)": "#C0392B"}
 )
-fig_grouped.update_layout(height=420, margin=dict(l=60, r=20, t=40, b=30))
-fig_grouped.update_xaxes(automargin=True)
-fig_grouped.update_yaxes(automargin=True)
+fig_grouped.update_layout(
+    height=430,
+    margin=dict(l=60, r=20, t=40, b=50),
+    xaxis=dict(tickangle=-30, automargin=True),
+    yaxis=dict(automargin=True)
+)
 st.plotly_chart(fig_grouped, use_container_width=True)
 
 render_insight_box(

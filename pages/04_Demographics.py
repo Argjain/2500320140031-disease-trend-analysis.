@@ -29,6 +29,7 @@ if not demo_df.empty:
     
     with col_x:
         age_agg = demo_df.groupby("age_group")["cases_in_group"].sum().reset_index()
+        max_age_c = age_agg["cases_in_group"].max() if not age_agg.empty else 1000
         fig_age = px.bar(
             age_agg,
             x="age_group",
@@ -39,9 +40,10 @@ if not demo_df.empty:
             color_discrete_sequence=px.colors.qualitative.Pastel,
             text_auto=",.0f"
         )
-        fig_age.update_layout(height=400, showlegend=False, margin=dict(l=60, r=20, t=40, b=30))
+        fig_age.update_traces(textposition="outside", cliponaxis=False, textfont=dict(size=11, color="#1e293b"))
+        fig_age.update_layout(height=400, showlegend=False, margin=dict(l=60, r=20, t=40, b=40))
+        fig_age.update_yaxes(range=[0, max_age_c * 1.15], automargin=True)
         fig_age.update_xaxes(automargin=True)
-        fig_age.update_yaxes(automargin=True)
         st.plotly_chart(fig_age, use_container_width=True)
 
     with col_y:
@@ -53,6 +55,12 @@ if not demo_df.empty:
             title="Gender Identity Proportional Split",
             hole=0.45,
             color_discrete_sequence=["#1A5376", "#2E86AB", "#A3E4D7"]
+        )
+        fig_gen.update_traces(
+            textposition='inside',
+            textinfo='percent+label',
+            insidetextorientation='horizontal',
+            textfont=dict(size=12, color="#ffffff")
         )
         fig_gen.update_layout(height=400, margin=dict(l=20, r=20, t=40, b=30))
         st.plotly_chart(fig_gen, use_container_width=True)
@@ -68,6 +76,7 @@ if not demo_df.empty:
     ).reset_index()
     demo_mort["Cohort CFR (%)"] = (demo_mort["Fatalities"] / demo_mort["Total_Cases"].replace(0, 1) * 100.0).round(2)
     demo_mort["Cohort Recovery (%)"] = (demo_mort["Recoveries"] / demo_mort["Total_Cases"].replace(0, 1) * 100.0).round(2)
+    demo_mort = demo_mort.rename(columns={"age_group": "Age Bracket"})
 
     try:
         styled_demo = (

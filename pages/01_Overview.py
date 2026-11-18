@@ -59,6 +59,8 @@ st.subheader("📍 State-Level Morbidity Burden (OQ-02, BR-02)")
 reg_group = filtered.groupby("region_name")["cases_reported"].sum().reset_index()
 reg_group = reg_group.sort_values(by="cases_reported", ascending=True)
 
+max_c = reg_group["cases_reported"].max() if not reg_group.empty else 1000
+
 fig_bar = px.bar(
     reg_group,
     x="cases_reported",
@@ -70,7 +72,16 @@ fig_bar = px.bar(
     color_continuous_scale="Blues",
     text_auto=",.0f"
 )
-fig_bar.update_layout(height=420, margin=dict(l=110, r=30, t=40, b=30))
+fig_bar.update_traces(
+    textposition="outside",
+    cliponaxis=False,
+    textfont=dict(size=11, color="#1e293b")
+)
+fig_bar.update_layout(
+    height=430,
+    margin=dict(l=120, r=60, t=40, b=30)
+)
+fig_bar.update_xaxes(range=[0, max_c * 1.16], automargin=True)
 fig_bar.update_yaxes(automargin=True)
 st.plotly_chart(fig_bar, use_container_width=True)
 
@@ -89,6 +100,8 @@ summary_tbl["CFR (%)"] = (summary_tbl["Deaths"] / summary_tbl["Total_Cases"].rep
 summary_tbl["Recovery (%)"] = (summary_tbl["Recoveries"] / summary_tbl["Total_Cases"].replace(0, 1) * 100.0).round(2)
 summary_tbl["Incidence/Lakh"] = (summary_tbl["Total_Cases"] / summary_tbl["Population"] * 100000.0).round(2)
 summary_tbl = summary_tbl.sort_values(by="Total_Cases", ascending=False)
+
+summary_tbl = summary_tbl.rename(columns={"region_name": "State"})
 
 try:
     styled_summary = (
