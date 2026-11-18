@@ -27,7 +27,7 @@ filtered = filtered[
 
 render_header(
     title="Regional Burden & Clinical Recovery Efficacy (UI-03)",
-    subtitle=f"Cross-State Comparative Analysis | Target: {sel_disease} | States: {len(sel_states)}"
+    subtitle=f"Cross-State Comparative Analysis | Target: {sel_disease} | States: {len(sel_states)} | Timeline: {sel_years[0]}–{sel_years[1]}"
 )
 
 if filtered.empty:
@@ -52,7 +52,7 @@ with col_a:
         labels={"total_cases": "Total Cases", "region_name": "State"},
         text_auto=",.0f"
     )
-    fig_cases.update_layout(height=400, yaxis=dict(autorange="reversed"), margin=dict(l=20, r=20, t=40, b=20))
+    fig_cases.update_layout(height=420, yaxis=dict(autorange="reversed", automargin=True), margin=dict(l=110, r=30, t=40, b=30))
     st.plotly_chart(fig_cases, use_container_width=True)
 
 with col_b:
@@ -68,8 +68,10 @@ with col_b:
         labels={"cfr_pct": "CFR (%)", "region_name": "State"},
         text_auto=".2f"
     )
-    fig_cfr.update_layout(height=400, yaxis=dict(autorange="reversed"), margin=dict(l=20, r=20, t=40, b=20))
+    fig_cfr.update_layout(height=420, yaxis=dict(autorange="reversed", automargin=True), margin=dict(l=110, r=30, t=40, b=30))
     st.plotly_chart(fig_cfr, use_container_width=True)
+
+st.markdown("---")
 
 # 2. Recovery vs CFR Side-by-Side Comparison (OQ-07, BR-07)
 st.subheader("🩺 Clinical Recovery vs Mortality Benchmarking (OQ-07)")
@@ -91,7 +93,9 @@ fig_grouped = px.bar(
     labels={"region_name": "State", "Percentage": "Rate (%)"},
     color_discrete_map={"Recovery Rate (%)": "#1E8B4C", "Case Fatality Rate (%)": "#C0392B"}
 )
-fig_grouped.update_layout(height=420, margin=dict(l=20, r=20, t=40, b=20))
+fig_grouped.update_layout(height=420, margin=dict(l=60, r=20, t=40, b=30))
+fig_grouped.update_xaxes(automargin=True)
+fig_grouped.update_yaxes(automargin=True)
 st.plotly_chart(fig_grouped, use_container_width=True)
 
 render_insight_box(

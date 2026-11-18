@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from src.data_loader import load_data, load_demographic_breakdown
 from src.cleaning import clean_data
-from src.ui import inject_tailwind, render_header, render_insight_box
+from src.ui import inject_tailwind, render_header, render_insight_box, safe_render_dataframe
 
 st.set_page_config(page_title="Demographics | Disease Trend Analysis", page_icon="👥", layout="wide")
 inject_tailwind()
@@ -39,7 +39,9 @@ if not demo_df.empty:
             color_discrete_sequence=px.colors.qualitative.Pastel,
             text_auto=",.0f"
         )
-        fig_age.update_layout(height=380, showlegend=False, margin=dict(l=20, r=20, t=40, b=20))
+        fig_age.update_layout(height=400, showlegend=False, margin=dict(l=60, r=20, t=40, b=30))
+        fig_age.update_xaxes(automargin=True)
+        fig_age.update_yaxes(automargin=True)
         st.plotly_chart(fig_age, use_container_width=True)
 
     with col_y:
@@ -52,8 +54,10 @@ if not demo_df.empty:
             hole=0.45,
             color_discrete_sequence=["#1A5376", "#2E86AB", "#A3E4D7"]
         )
-        fig_gen.update_layout(height=380, margin=dict(l=20, r=20, t=40, b=20))
+        fig_gen.update_layout(height=400, margin=dict(l=20, r=20, t=40, b=30))
         st.plotly_chart(fig_gen, use_container_width=True)
+
+    st.markdown("---")
 
     # Demographic Mortality Severity
     st.subheader("⚠️ Mortality Concentration by Age Bracket (PATTERN-4)")
@@ -62,14 +66,23 @@ if not demo_df.empty:
         Fatalities=("deaths_in_group", "sum"),
         Recoveries=("recovered_in_group", "sum")
     ).reset_index()
-    demo_mort["Cohort CFR (%)"] = (demo_mort["Fatalities"] / demo_mort["Total_Cases"] * 100.0).round(2)
-    demo_mort["Cohort Recovery (%)"] = (demo_mort["Recoveries"] / demo_mort["Total_Cases"] * 100.0).round(2)
+    demo_mort["Cohort CFR (%)"] = (demo_mort["Fatalities"] / demo_mort["Total_Cases"].replace(0, 1) * 100.0).round(2)
+    demo_mort["Cohort Recovery (%)"] = (demo_mort["Recoveries"] / demo_mort["Total_Cases"].replace(0, 1) * 100.0).round(2)
 
-    st.dataframe(
-        demo_mort.style.background_gradient(subset=["Cohort CFR (%)"], cmap="Reds")
-                       .format({"Total_Cases": "{:,}", "Fatalities": "{:,}", "Recoveries": "{:,}", "Cohort CFR (%)": "{:.2f}%", "Cohort Recovery (%)": "{:.2f}%"}),
-        use_container_width=True
-    )
+    try:
+        styled_demo = (
+            demo_mort.style.background_gradient(subset=["Cohort CFR (%)"], cmap="Reds")
+                           .format({
+                               "Total_Cases": "{:,}",
+                               "Fatalities": "{:,}",
+                               "Recoveries": "{:,}",
+                               "Cohort CFR (%)": "{:.2f}%",
+                               "Cohort Recovery (%)": "{:.2f}%"
+                           }, na_rep="—")
+        )
+        safe_render_dataframe(styled_demo, use_container_width=True)
+    except Exception:
+        safe_render_dataframe(demo_mort, use_container_width=True)
 
 render_insight_box(
     title="Demographic Vulnerability Insight",

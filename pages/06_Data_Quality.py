@@ -20,13 +20,13 @@ st.subheader("📋 Pipeline Cleaning & Governance Ledger (BR-13)")
 q1, q2, q3, q4 = st.columns(4)
 
 with q1:
-    render_kpi_card_iframe("Raw Ingestion Rows", f"{quality_report['original_rows']:,}", delta="Initial Extraction", icon="📥", color="#1A5376")
+    render_kpi_card_iframe("Raw Ingestion Rows", f"{quality_report['original_rows']:,}", delta="Initial Extraction", icon="📥", color="#1A5376", height=150)
 with q2:
-    render_kpi_card_iframe("Duplicates Purged", f"{quality_report['duplicates_removed']:,}", delta="Purged via Dedupe", icon="🗑️", color="#C0392B")
+    render_kpi_card_iframe("Duplicates Purged", f"{quality_report['duplicates_removed']:,}", delta="Purged via Dedupe", icon="🗑️", color="#C0392B", height=150)
 with q3:
-    render_kpi_card_iframe("Nulls Imputed", f"{quality_report['total_nulls_imputed']:,}", delta="Median / Zero Imputed", icon="🩹", color="#E67E22")
+    render_kpi_card_iframe("Nulls Imputed", f"{quality_report['total_nulls_imputed']:,}", delta="Median / Zero Imputed", icon="🩹", color="#E67E22", height=150)
 with q4:
-    render_kpi_card_iframe("Clean Dataset Rows", f"{quality_report['final_clean_rows']:,}", delta="100% Certified Valid", icon="✅", color="#1E8B4C")
+    render_kpi_card_iframe("Clean Dataset Rows", f"{quality_report['final_clean_rows']:,}", delta="100% Certified Valid", icon="✅", color="#1E8B4C", height=150)
 
 st.markdown("---")
 

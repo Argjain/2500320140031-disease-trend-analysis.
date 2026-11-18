@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inject Tailwind CSS via iframe
+# Inject Tailwind CSS & Layout Styles
 inject_tailwind()
 
 # Load & Clean Data
@@ -101,16 +101,16 @@ active_caseload = int(filtered_df["active_cases"].sum())
 cfr_pct = round((total_deaths / total_cases * 100.0), 2) if total_cases > 0 else 0.0
 recovery_pct = round((total_recovered / total_cases * 100.0), 2) if total_cases > 0 else 0.0
 
-# Render 4 Tailwind KPI Cards
+# Render 4 Tailwind KPI Cards with comfortable height
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    render_kpi_card_iframe("Total Morbidity", f"{total_cases:,}", delta="+12.4% vs Baseline", icon="🦠", color="#1A5376")
+    render_kpi_card_iframe("Total Morbidity", f"{total_cases:,}", delta="+12.4% vs Baseline", icon="🦠", color="#1A5376", height=150)
 with col2:
-    render_kpi_card_iframe("Confirmed Deaths", f"{total_deaths:,}", delta=f"CFR: {cfr_pct}%", icon="⚠️", color="#C0392B")
+    render_kpi_card_iframe("Confirmed Deaths", f"{total_deaths:,}", delta=f"CFR: {cfr_pct}%", icon="⚠️", color="#C0392B", height=150)
 with col3:
-    render_kpi_card_iframe("Total Recoveries", f"{total_recovered:,}", delta=f"{recovery_pct}% Recovery Rate", icon="🩺", color="#1E8B4C")
+    render_kpi_card_iframe("Total Recoveries", f"{total_recovered:,}", delta=f"{recovery_pct}% Recovery Rate", icon="🩺", color="#1E8B4C", height=150)
 with col4:
-    render_kpi_card_iframe("Active Caseload", f"{active_caseload:,}", delta="Current In-Treatment", icon="🏥", color="#E67E22")
+    render_kpi_card_iframe("Active Caseload", f"{active_caseload:,}", delta="Current In-Treatment", icon="🏥", color="#E67E22", height=150)
 
 st.markdown("---")
 
@@ -132,6 +132,6 @@ with c_m3:
 # Summary Insight
 render_insight_box(
     title="Executive Surveillance Insight",
-    text=f"Currently inspecting {len(filtered_df):,} temporal observation points. Data represents verified synthetic records calibrated to authentic Indian public health dynamics.",
+    text=f"Currently inspecting {len(filtered_df):,} temporal observation points across {len(st.session_state.selected_states)} states. Data represents verified synthetic records calibrated to authentic Indian public health dynamics.",
     alert_type="info"
 )

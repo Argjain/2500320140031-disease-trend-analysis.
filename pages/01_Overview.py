@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from src.data_loader import load_data
 from src.cleaning import clean_data
-from src.ui import inject_tailwind, render_header, render_kpi_card_iframe, render_insight_box
+from src.ui import inject_tailwind, render_header, render_kpi_card_iframe, render_insight_box, safe_render_dataframe
 
 st.set_page_config(page_title="Overview | Disease Trend Analysis", page_icon="📊", layout="wide")
 inject_tailwind()
@@ -29,7 +29,7 @@ filtered = filtered[
 
 render_header(
     title="Executive Overview & KPI Cockpit (UI-01)",
-    subtitle=f"Target: {sel_disease} | Timeline: {sel_years[0]}–{sel_years[1]} | Filtered Records: {len(filtered):,}"
+    subtitle=f"Target: {sel_disease} | Timeline: {sel_years[0]}–{sel_years[1]} | Filtered Records: {len(filtered):,} | States: {len(sel_states)}"
 )
 
 if filtered.empty:
@@ -44,13 +44,13 @@ cfr = round((tot_deaths / tot_cases * 100.0), 2) if tot_cases > 0 else 0.0
 
 c1, c2, c3, c4 = st.columns(4)
 with c1:
-    render_kpi_card_iframe("Total Cases", f"{tot_cases:,}", delta="Active Filter Slice", icon="🦠", color="#1A5376")
+    render_kpi_card_iframe("Total Cases", f"{tot_cases:,}", delta="Active Filter Slice", icon="🦠", color="#1A5376", height=150)
 with c2:
-    render_kpi_card_iframe("Total Fatalities", f"{tot_deaths:,}", delta=f"CFR: {cfr}%", icon="⚠️", color="#C0392B")
+    render_kpi_card_iframe("Total Fatalities", f"{tot_deaths:,}", delta=f"CFR: {cfr}%", icon="⚠️", color="#C0392B", height=150)
 with c3:
-    render_kpi_card_iframe("Recovered Cases", f"{tot_rec:,}", delta=f"{round(tot_rec/tot_cases*100, 1) if tot_cases else 0}% Recov", icon="🩺", color="#1E8B4C")
+    render_kpi_card_iframe("Recovered Cases", f"{tot_rec:,}", delta=f"{round(tot_rec/tot_cases*100, 1) if tot_cases else 0}% Recov", icon="🩺", color="#1E8B4C", height=150)
 with c4:
-    render_kpi_card_iframe("Active Cases", f"{int(filtered['active_cases'].sum()):,}", delta="Ongoing In-Care", icon="🏥", color="#E67E22")
+    render_kpi_card_iframe("Active Cases", f"{int(filtered['active_cases'].sum()):,}", delta="Ongoing In-Care", icon="🏥", color="#E67E22", height=150)
 
 st.markdown("---")
 
@@ -70,8 +70,11 @@ fig_bar = px.bar(
     color_continuous_scale="Blues",
     text_auto=",.0f"
 )
-fig_bar.update_layout(height=420, margin=dict(l=20, r=20, t=40, b=20))
+fig_bar.update_layout(height=420, margin=dict(l=110, r=30, t=40, b=30))
+fig_bar.update_yaxes(automargin=True)
 st.plotly_chart(fig_bar, use_container_width=True)
+
+st.markdown("---")
 
 # Row 3: Cross-State CFR Benchmark Table (OQ-05, BR-03)
 st.subheader("📋 State-Level Epidemiological Performance Summary")
@@ -87,15 +90,26 @@ summary_tbl["Recovery (%)"] = (summary_tbl["Recoveries"] / summary_tbl["Total_Ca
 summary_tbl["Incidence/Lakh"] = (summary_tbl["Total_Cases"] / summary_tbl["Population"] * 100000.0).round(2)
 summary_tbl = summary_tbl.sort_values(by="Total_Cases", ascending=False)
 
-st.dataframe(
-    summary_tbl.style.background_gradient(subset=["CFR (%)"], cmap="Reds")
-                     .background_gradient(subset=["Recovery (%)"], cmap="Greens")
-                     .format({"Total_Cases": "{:,}", "Deaths": "{:,}", "Recoveries": "{:,}", "Population": "{:,}", "CFR (%)": "{:.2f}%", "Recovery (%)": "{:.2f}%", "Incidence/Lakh": "{:.2f}"}),
-    use_container_width=True
-)
+try:
+    styled_summary = (
+        summary_tbl.style.background_gradient(subset=["CFR (%)"], cmap="Reds")
+                         .background_gradient(subset=["Recovery (%)"], cmap="Greens")
+                         .format({
+                             "Total_Cases": "{:,}",
+                             "Deaths": "{:,}",
+                             "Recoveries": "{:,}",
+                             "Population": "{:,}",
+                             "CFR (%)": "{:.2f}%",
+                             "Recovery (%)": "{:.2f}%",
+                             "Incidence/Lakh": "{:.2f}"
+                         }, na_rep="—")
+    )
+    safe_render_dataframe(styled_summary, use_container_width=True)
+except Exception:
+    safe_render_dataframe(summary_tbl, use_container_width=True)
 
 render_insight_box(
     title="Key Surveillance Finding",
-    text=f"Higher case volumes are concentrated in dense urban zones (Maharashtra and Delhi), while Case Fatality Rates reflect hospital management capacity.",
+    text="Higher case volumes are concentrated in dense urban zones (Maharashtra and Delhi), while Case Fatality Rates reflect hospital management capacity.",
     alert_type="info"
 )
