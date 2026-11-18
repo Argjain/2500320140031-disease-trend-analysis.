@@ -1,0 +1,16 @@
+demo_id,age_group,gender,age_min,age_max
+1,0-14,Male,0,14
+2,0-14,Female,0,14
+3,0-14,Other,0,14
+4,15-29,Male,15,29
+5,15-29,Female,15,29
+6,15-29,Other,15,29
+7,30-44,Male,30,44
+8,30-44,Female,30,44
+9,30-44,Other,30,44
+10,45-59,Male,45,59
+11,45-59,Female,45,59
+12,45-59,Other,45,59
+13,60+,Male,60,99
+14,60+,Female,60,99
+15,60+,Other,60,99

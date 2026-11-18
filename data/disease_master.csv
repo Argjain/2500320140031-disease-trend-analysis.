@@ -1,0 +1,6 @@
+disease_id,disease_name,disease_category,description,is_contagious,typical_incubation_days
+1,Dengue,Vector-borne,Mosquito-transmitted viral infection causing acute febrile illness,1,7
+2,Malaria,Vector-borne,Plasmodium parasite infection transmitted via Anopheles mosquito,1,14
+3,Tuberculosis,Airborne,Chronic Mycobacterium tuberculosis bacterial infection of lungs,1,42
+4,COVID-19,Airborne,Novel SARS-CoV-2 coronavirus respiratory infection,1,5
+5,Typhoid,Waterborne,Systemic bacterial infection caused by Salmonella enterica serotype Typhi,1,10

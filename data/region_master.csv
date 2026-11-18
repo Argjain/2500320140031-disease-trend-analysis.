@@ -1,0 +1,11 @@
+region_id,region_name,state_code,zone,population,area_sqkm,population_density
+1,Uttar Pradesh,UP,North,231502578,240928.0,960.88
+2,Maharashtra,MH,West,123144223,307713.0,400.19
+3,Delhi,DL,North,32941308,1484.0,22197.65
+4,Rajasthan,RJ,North,81032689,342239.0,236.77
+5,Bihar,BR,East,128500364,94163.0,1364.66
+6,West Bengal,WB,East,100896618,88752.0,1136.84
+7,Tamil Nadu,TN,South,83697770,130058.0,643.54
+8,Karnataka,KA,South,67562686,191791.0,352.27
+9,Gujarat,GJ,West,72429009,196024.0,369.49
+10,Madhya Pradesh,MP,Central,85002417,308252.0,275.76
