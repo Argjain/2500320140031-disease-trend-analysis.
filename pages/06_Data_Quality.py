@@ -1,21 +1,18 @@
 import streamlit as st
 import pandas as pd
-import io
-import sqlite3
-from pathlib import Path
-from src.data_loader import load_data, load_demographic_breakdown
+from src.data_loader import load_data
 from src.cleaning import clean_data
 from src.ui import inject_tailwind, render_header, render_kpi_card_iframe, render_insight_box, safe_render_dataframe
 
-st.set_page_config(page_title="Data Quality & Dataset Explorer | Disease Trend Analysis", page_icon="🧹", layout="wide")
+st.set_page_config(page_title="Data Quality | Disease Trend Analysis", page_icon="🧹", layout="wide")
 inject_tailwind()
 
 raw_df = load_data()
 df, quality_report = clean_data(raw_df)
 
 render_header(
-    title="Data Quality Ledger & Live Dataset Explorer (UI-06)",
-    subtitle="Audit Governance, Interactive Data Preview & Certified Dataset Export"
+    title="Data Quality Ledger & Dataset Export (UI-06)",
+    subtitle="Audit Governance, Pipeline Cleaning Verification & Offline Dataset Export"
 )
 
 # Row 1: Pipeline Accounting Scorecard
@@ -46,106 +43,22 @@ safe_render_dataframe(pd.DataFrame(audit_log), use_container_width=True)
 
 st.markdown("---")
 
-# Row 3: Interactive Live Dataset Preview & Multi-Table Browser (Addresses User Request)
-st.subheader("👁️ Live In-App Dataset Preview & Table Browser")
+# Row 3: Filtered CSV Dataset Download (BR-12, US-16)
+st.subheader("💾 Export Filtered Analytical Dataset (BR-12, US-16)")
 st.write(
-    "Inspect, search, and verify dataset records directly inside the web interface before downloading:"
+    "Researchers and external epidemiologists can export the currently filtered analytical slice "
+    "into standard CSV format for specialized offline epidemiological modeling in R, SPSS, or Python:"
 )
 
-tab_clean, tab_raw, tab_masters = st.tabs([
-    "✨ Cleaned Analytical Dataset (30+ Columns)",
-    "📦 Raw Cases Fact Table (disease_cases)",
-    "🗂️ Dimension Master Tables"
-])
+csv_data = df.to_csv(index=False).encode('utf-8')
 
-# TAB 1: Cleaned Analytical Dataset
-with tab_clean:
-    c_f1, c_f2, c_f3 = st.columns([2, 1, 1])
-    with c_f1:
-        search_query = st.text_input("🔍 Search within records (e.g. state name, disease, year):", key="search_clean")
-    with c_f2:
-        num_rows = st.selectbox("Display Rows:", options=[25, 50, 100, 250, "All Records"], index=0, key="rows_clean")
-    with c_f3:
-        st.metric("Total Available Rows", f"{len(df):,}")
-
-    # Filter by search query
-    display_df = df.copy()
-    if search_query:
-        mask = display_df.astype(str).apply(lambda row: row.str.contains(search_query, case=False).any(), axis=1)
-        display_df = display_df[mask]
-
-    # Limit rows
-    if num_rows != "All Records":
-        display_df = display_df.head(int(num_rows))
-
-    st.caption(f"Showing **{len(display_df):,}** records across **{len(display_df.columns)}** columns:")
-    safe_render_dataframe(display_df, use_container_width=True)
-
-    # Export Action Bar
-    st.markdown("##### 💾 Download Cleaned Analytical Dataset")
-    col_d1, col_d2 = st.columns(2)
-    with col_d1:
-        csv_clean = df.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="📥 Download Certified Dataset (CSV)",
-            data=csv_clean,
-            file_name="certified_disease_trend_analysis_data.csv",
-            mime="text/csv",
-            help="Download all cleaned analytical records in CSV format."
-        )
-    with col_d2:
-        # Excel in-memory generation
-        excel_buf = io.BytesIO()
-        with pd.ExcelWriter(excel_buf, engine='openpyxl') as writer:
-            df.to_excel(writer, index=False, sheet_name='Cleaned_Analysis_View')
-        st.download_button(
-            label="📊 Download Certified Dataset (Excel .xlsx)",
-            data=excel_buf.getvalue(),
-            file_name="certified_disease_trend_analysis_data.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            help="Download all cleaned analytical records in Microsoft Excel format."
-        )
-
-# TAB 2: Raw Cases Fact Table
-with tab_raw:
-    st.write("Raw transaction records directly from SQLite table `disease_cases` (including quality-test anomalies before cleaning):")
-    st.caption(f"Total Database Rows: **{len(raw_df):,}**")
-    safe_render_dataframe(raw_df.head(100), use_container_width=True)
-
-    csv_raw = raw_df.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        label="📥 Download Raw disease_cases.csv",
-        data=csv_raw,
-        file_name="raw_disease_cases.csv",
-        mime="text/csv"
-    )
-
-# TAB 3: Reference Master Dimension Tables
-with tab_masters:
-    db_path = Path(__file__).resolve().parent.parent / "data" / "app.db"
-    if db_path.exists():
-        conn = sqlite3.connect(str(db_path))
-        
-        m_choice = st.radio(
-            "Select Dimension Table to Inspect:",
-            options=["region_master (10 States)", "disease_master (5 Diseases)", "demographic_group (15 Cohorts)", "demographic_breakdown (300 Rows)"],
-            horizontal=True
-        )
-        
-        tbl_name = m_choice.split(" ")[0]
-        tbl_df = pd.read_sql_query(f"SELECT * FROM {tbl_name};", conn)
-        conn.close()
-        
-        st.caption(f"Previewing table **`{tbl_name}`** ({len(tbl_df)} rows, {len(tbl_df.columns)} columns):")
-        safe_render_dataframe(tbl_df, use_container_width=True)
-        
-        csv_master = tbl_df.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label=f"📥 Download {tbl_name}.csv",
-            data=csv_master,
-            file_name=f"{tbl_name}.csv",
-            mime="text/csv"
-        )
+st.download_button(
+    label="📥 Download Certified Dataset (CSV)",
+    data=csv_data,
+    file_name="certified_disease_trend_analysis_data.csv",
+    mime="text/csv",
+    help="Click to download the cleaned, verified analytical dataset in standard CSV format."
+)
 
 render_insight_box(
     title="Data Governance Certification",
