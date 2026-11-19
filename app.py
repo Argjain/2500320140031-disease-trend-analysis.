@@ -121,13 +121,15 @@ st.write(
     "or explore key takeaways below:"
 )
 
-c_m1, c_m2, c_m3 = st.columns(3)
+c_m1, c_m2, c_m3, c_m4 = st.columns(4)
 with c_m1:
-    st.info("**📈 01_Overview & 02_Trends**\n\nExecutive KPI summaries, regional morbidity rankings, 60-month time-series lines, and 12-month cyclical transmission heatmaps.")
+    st.info("**📈 01_Overview & 02_Trends**\n\nExecutive KPI summaries, regional morbidity rankings, 60-month time-series, and 12-month cyclical transmission heatmaps.")
 with c_m2:
-    st.info("**🗺️ 03_Regional & 04_Demographics**\n\nCross-state Case Fatality Rate benchmarking, clinical recovery ratios, and 5-cohort demographic age/gender distribution.")
+    st.info("**🗺️ 03_Regional & 04_Demographics**\n\nCross-state Case Fatality Rate benchmarking, recovery ratios, and 5-cohort demographic age/gender distribution.")
 with c_m3:
-    st.info("**🔬 05_EDA & 06_Data_Quality**\n\nUrban crowding scatter regression (Pearson r), concurrent multi-disease outbreak alerts, cleaning ledgers, and CSV export.")
+    st.info("**🔬 05_EDA & 06_Data_Quality**\n\nUrban crowding scatter regression (Pearson r), multi-disease outbreak alerts, cleaning ledger, and live dataset preview.")
+with c_m4:
+    st.info("**📄 07_Project_Documents**\n\nInteractive in-app document previewer & download center for all 18 project steps (Word .docx, Excel .xlsx, and ER Diagram).")
 
 # Summary Insight
 render_insight_box(

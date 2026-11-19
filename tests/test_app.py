@@ -20,7 +20,8 @@ def test_application_entry_points_exist(): # TC-T-16
         "03_Regional_Analysis.py",
         "04_Demographics.py",
         "05_EDA_Statistics.py",
-        "06_Data_Quality.py"
+        "06_Data_Quality.py",
+        "07_Project_Documents.py"
     ]
     for p in expected_pages:
         p_path = pages_dir / p
