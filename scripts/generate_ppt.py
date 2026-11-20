@@ -23,7 +23,16 @@ BORDER_COLOR = RGBColor(226, 232, 240) # Card Border #E2E8F0
 EMERALD = RGBColor(5, 150, 105)     # Success Green #059669
 WHITE = RGBColor(255, 255, 255)
 
-SCREENSHOTS_DIR = Path("docs/screenshots")
+BASE_DIR = Path(__file__).resolve().parent.parent
+SCREENSHOTS_DIR = BASE_DIR / "docs" / "screenshots"
+
+def resolve_path(p):
+    path = Path(p)
+    if path.is_absolute() and path.exists():
+        return path
+    if (BASE_DIR / p).exists():
+        return BASE_DIR / p
+    return path
 
 def add_header(slide, title_text, subtitle_text):
     """Draws a clean executive header bar at the top of the slide."""
@@ -57,7 +66,8 @@ def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text,
     img_width = Inches(6.4)
     img_height = Inches(5.3)
     
-    if image_path and Path(image_path).exists():
+    resolved_img = resolve_path(image_path) if image_path else None
+    if resolved_img and resolved_img.exists():
         # Add background frame for the image
         frame = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, img_left - Inches(0.05), img_top - Inches(0.05), img_width + Inches(0.1), img_height + Inches(0.1))
         frame.fill.solid()
@@ -65,7 +75,7 @@ def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text,
         frame.line.color.rgb = BORDER_COLOR
         frame.line.width = Pt(1.5)
         
-        slide.shapes.add_picture(str(image_path), img_left, img_top, width=img_width, height=img_height)
+        slide.shapes.add_picture(str(resolved_img), img_left, img_top, width=img_width, height=img_height)
     
     # Right Column: Explanation & Key Points
     right_left = Inches(7.3)
