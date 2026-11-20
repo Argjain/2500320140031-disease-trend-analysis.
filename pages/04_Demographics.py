@@ -1,9 +1,10 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from src.data_loader import load_data, load_demographic_breakdown
 from src.cleaning import clean_data
-from src.ui import inject_tailwind, render_header, render_insight_box, safe_render_dataframe
+from src.ui import inject_tailwind, render_header, render_insight_box, safe_render_dataframe, render_sidebar_filters
 
 st.set_page_config(page_title="Demographics | Disease Trend Analysis", page_icon="👥", layout="wide")
 inject_tailwind()
@@ -12,22 +13,33 @@ raw_df = load_data()
 df, _ = clean_data(raw_df)
 demo_df = load_demographic_breakdown()
 
+# Global Sidebar Filters
+filtered = render_sidebar_filters(df)
+
 sel_disease = st.session_state.get("selected_disease", "All Diseases")
-sel_states = st.session_state.get("selected_states", sorted(df["region_name"].unique().tolist()))
-sel_years = st.session_state.get("selected_year_range", (int(df["report_year"].min()), int(df["report_year"].max())))
+sel_category = st.session_state.get("selected_category", "All Categories")
+sel_zone = st.session_state.get("selected_zone", "All Zones")
 
 render_header(
     title="Demographic Vulnerability & Cohort Profiles (UI-04)",
-    subtitle=f"Morbidity Segmentation across 5 Age Brackets & 3 Genders | Target: {sel_disease}"
+    subtitle=f"Morbidity Segmentation across 5 Age Brackets & 3 Genders | Scope: {sel_disease} ({sel_category}) | Zone: {sel_zone}"
 )
 
-# If demographic breakdown table has records, use it
-if not demo_df.empty:
-    st.subheader("👥 Morbidity Disaggregation by Age Cohort (OQ-04, BR-04)")
-    
+if demo_df.empty:
+    st.info("No demographic breakdown data available.")
+    st.stop()
+
+tab_demo1, tab_demo2, tab_demo3 = st.tabs([
+    "👥 Population Pyramid & Gender Split",
+    "⚠️ Mortality Vulnerability & Geriatric Risk",
+    "📋 Cohort Benchmark Ledger"
+])
+
+with tab_demo1:
     col_x, col_y = st.columns([3, 2])
     
     with col_x:
+        st.subheader("👥 Age Group Distribution (OQ-04, BR-04)")
         age_agg = demo_df.groupby("age_group")["cases_in_group"].sum().reset_index()
         max_age_c = age_agg["cases_in_group"].max() if not age_agg.empty else 1000
         fig_age = px.bar(
@@ -47,6 +59,7 @@ if not demo_df.empty:
         st.plotly_chart(fig_age, use_container_width=True)
 
     with col_y:
+        st.subheader("⚧️ Gender Identity Proportions")
         gender_agg = demo_df.groupby("gender")["cases_in_group"].sum().reset_index()
         fig_gen = px.pie(
             gender_agg,
@@ -56,18 +69,49 @@ if not demo_df.empty:
             hole=0.45,
             color_discrete_sequence=["#1A5376", "#2E86AB", "#A3E4D7"]
         )
-        fig_gen.update_traces(
-            textposition='inside',
-            textinfo='percent+label',
-            insidetextorientation='horizontal',
-            textfont=dict(size=12, color="#ffffff")
-        )
+        fig_gen.update_traces(textposition='inside', textinfo='percent+label', insidetextorientation='horizontal', textfont=dict(size=12, color="#ffffff"))
         fig_gen.update_layout(height=400, margin=dict(l=20, r=20, t=40, b=30))
         st.plotly_chart(fig_gen, use_container_width=True)
 
-    st.markdown("---")
+    # Back-to-Back Tornado Pyramid
+    st.subheader("🌪️ Male vs Female Case Comparison by Age Bracket (Tornado Chart)")
+    pyramid_df = demo_df[demo_df["gender"].isin(["Male", "Female"])].groupby(["age_group", "gender"])["cases_in_group"].sum().reset_index()
+    males = pyramid_df[pyramid_df["gender"] == "Male"].sort_values(by="age_group")
+    females = pyramid_df[pyramid_df["gender"] == "Female"].sort_values(by="age_group")
+    
+    fig_pyr = go.Figure()
+    fig_pyr.add_trace(go.Bar(
+        y=males["age_group"],
+        x=-males["cases_in_group"],
+        name="Male",
+        orientation="h",
+        marker=dict(color="#1A5376"),
+        customdata=males["cases_in_group"],
+        hovertemplate="Male: %{customdata:,} cases<extra></extra>"
+    ))
+    fig_pyr.add_trace(go.Bar(
+        y=females["age_group"],
+        x=females["cases_in_group"],
+        name="Female",
+        orientation="h",
+        marker=dict(color="#0284C7"),
+        hovertemplate="Female: %{x:,} cases<extra></extra>"
+    ))
+    fig_pyr.update_layout(
+        title="Gender Symmetry across Age Brackets (Left = Male, Right = Female)",
+        barmode="overlay",
+        bargap=0.15,
+        height=360,
+        margin=dict(l=60, r=40, t=40, b=40),
+        xaxis=dict(
+            title="Morbidity Volume",
+            tickvals=[-15000, -10000, -5000, 0, 5000, 10000, 15000],
+            ticktext=["15k", "10k", "5k", "0", "5k", "10k", "15k"]
+        )
+    )
+    st.plotly_chart(fig_pyr, use_container_width=True)
 
-    # Demographic Mortality Severity
+with tab_demo2:
     st.subheader("⚠️ Mortality Concentration by Age Bracket (PATTERN-4)")
     demo_mort = demo_df.groupby("age_group").agg(
         Total_Cases=("cases_in_group", "sum"),
@@ -76,11 +120,52 @@ if not demo_df.empty:
     ).reset_index()
     demo_mort["Cohort CFR (%)"] = (demo_mort["Fatalities"] / demo_mort["Total_Cases"].replace(0, 1) * 100.0).round(2)
     demo_mort["Cohort Recovery (%)"] = (demo_mort["Recoveries"] / demo_mort["Total_Cases"].replace(0, 1) * 100.0).round(2)
-    demo_mort = demo_mort.rename(columns={"age_group": "Age Bracket"})
+    
+    col_m1, col_m2 = st.columns([2, 1])
+    with col_m1:
+        fig_demo_cfr = px.bar(
+            demo_mort,
+            x="age_group",
+            y="Cohort CFR (%)",
+            color="Cohort CFR (%)",
+            color_continuous_scale="Reds",
+            title="Case Fatality Rate (%) across Age Brackets",
+            text_auto=".2f",
+            labels={"Cohort CFR (%)": "CFR (%)", "age_group": "Age Bracket"}
+        )
+        fig_demo_cfr.update_traces(textposition="outside", cliponaxis=False)
+        fig_demo_cfr.update_layout(height=380, margin=dict(l=50, r=20, t=40, b=30))
+        st.plotly_chart(fig_demo_cfr, use_container_width=True)
+        
+    with col_m2:
+        elderly_cfr = float(demo_mort[demo_mort["age_group"] == "60+"]["Cohort CFR (%)"].values[0]) if not demo_mort[demo_mort["age_group"] == "60+"].empty else 5.5
+        young_cfr = float(demo_mort[demo_mort["age_group"] == "0-14"]["Cohort CFR (%)"].values[0]) if not demo_mort[demo_mort["age_group"] == "0-14"].empty else 1.5
+        risk_ratio = round(elderly_cfr / young_cfr, 2) if young_cfr > 0 else 3.5
+        
+        st.markdown(
+            f"""
+            <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 18px; height: 380px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <div style="font-size: 2.2rem; margin-bottom: 6px;">⚠️</div>
+                <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #b91c1c;">Geriatric Mortality Risk Ratio</div>
+                <div style="font-size: 2.5rem; font-weight: 900; color: #991b1b; margin: 8px 0;">{risk_ratio}x</div>
+                <div style="font-size: 0.82rem; color: #7f1d1d; line-height: 1.4;">
+                    Patients aged <b>60+</b> face a Case Fatality Rate of <b>{elderly_cfr:.2f}%</b>, compared to <b>{young_cfr:.2f}%</b> in pediatric groups (0-14).
+                </div>
+                <div style="margin-top: 14px; background: #ffffff; border-radius: 6px; padding: 6px; font-size: 0.75rem; color: #991b1b; font-weight: 600;">
+                    Recommendation: Mandatory geriatric triage protocols.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
+with tab_demo3:
+    st.subheader("📋 Demographic Performance Audit Table")
+    demo_table = demo_mort.rename(columns={"age_group": "Age Bracket"})
     try:
         styled_demo = (
-            demo_mort.style.background_gradient(subset=["Cohort CFR (%)"], cmap="Reds")
+            demo_table.style.background_gradient(subset=["Cohort CFR (%)"], cmap="Reds")
+                           .background_gradient(subset=["Cohort Recovery (%)"], cmap="Greens")
                            .format({
                                "Total_Cases": "{:,}",
                                "Fatalities": "{:,}",
@@ -91,7 +176,7 @@ if not demo_df.empty:
         )
         safe_render_dataframe(styled_demo, use_container_width=True)
     except Exception:
-        safe_render_dataframe(demo_mort, use_container_width=True)
+        safe_render_dataframe(demo_table, use_container_width=True)
 
 render_insight_box(
     title="Demographic Vulnerability Insight",
