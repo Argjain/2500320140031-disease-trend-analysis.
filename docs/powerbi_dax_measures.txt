@@ -1,0 +1,137 @@
+// ==============================================================================
+// DISEASE TREND ANALYSIS - POWER BI DAX MEASURES SPECIFICATION
+// Project: P-01 | Student: Arg Jain | ABES Engineering College
+// Dataset: disease_analysis_merged.csv & demographics_merged.csv
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// SECTION 1: CORE CLINICAL & SURVEILLANCE MEASURES
+// ------------------------------------------------------------------------------
+
+Total Cases = 
+SUM('disease_analysis_merged'[cases_reported])
+
+Total Deaths = 
+SUM('disease_analysis_merged'[deaths])
+
+Total Recovered = 
+SUM('disease_analysis_merged'[recovered])
+
+Active Cases = 
+SUM('disease_analysis_merged'[active_cases])
+
+Total Hospitalized = 
+SUM('disease_analysis_merged'[hospitalized])
+
+// ------------------------------------------------------------------------------
+// SECTION 2: EPIDEMIOLOGICAL PERFORMANCE RATIOS
+// ------------------------------------------------------------------------------
+
+Case Fatality Rate (CFR %) = 
+DIVIDE([Total Deaths], [Total Cases], 0) * 100
+
+Recovery Rate (%) = 
+DIVIDE([Total Recovered], [Total Cases], 0) * 100
+
+Hospitalization Rate (%) = 
+DIVIDE([Total Hospitalized], [Total Cases], 0) * 100
+
+Incidence per 100k = 
+VAR TotalCases = [Total Cases]
+VAR TotalPop = MAX('disease_analysis_merged'[population])
+RETURN
+DIVIDE(TotalCases, TotalPop, 0) * 100000
+
+Mortality per 100k = 
+VAR Deaths = [Total Deaths]
+VAR TotalPop = MAX('disease_analysis_merged'[population])
+RETURN
+DIVIDE(Deaths, TotalPop, 0) * 100000
+
+// ------------------------------------------------------------------------------
+// SECTION 3: TIME INTELLIGENCE & LONGITUDINAL TRENDS
+// ------------------------------------------------------------------------------
+
+Cases Previous Month = 
+CALCULATE(
+    [Total Cases],
+    DATEADD('disease_analysis_merged'[report_date], -1, MONTH)
+)
+
+Month-over-Month (MoM) Growth % = 
+VAR CurrentCases = [Total Cases]
+VAR PrevCases = [Cases Previous Month]
+RETURN
+IF(
+    ISBLANK(PrevCases) || PrevCases = 0,
+    BLANK(),
+    DIVIDE(CurrentCases - PrevCases, PrevCases, 0) * 100
+)
+
+Cases Same Period Last Year (SPLY) = 
+CALCULATE(
+    [Total Cases],
+    SAMEPERIODLASTYEAR('disease_analysis_merged'[report_date])
+)
+
+Year-over-Year (YoY) Growth % = 
+VAR CurrentCases = [Total Cases]
+VAR LastYearCases = [Cases Same Period Last Year (SPLY)]
+RETURN
+IF(
+    ISBLANK(LastYearCases) || LastYearCases = 0,
+    BLANK(),
+    DIVIDE(CurrentCases - LastYearCases, LastYearCases, 0) * 100
+)
+
+3-Month Rolling Average Cases = 
+CALCULATE(
+    AVERAGEX(
+        DATESINPERIOD(
+            'disease_analysis_merged'[report_date],
+            LASTDATE('disease_analysis_merged'[report_date]),
+            -3,
+            MONTH
+        ),
+        [Total Cases]
+    )
+)
+
+// ------------------------------------------------------------------------------
+// SECTION 4: OUTBREAK SURVEILLANCE & EARLY WARNING ALERTS
+// ------------------------------------------------------------------------------
+
+Historical Baseline Monthly Average = 
+CALCULATE(
+    AVERAGE('disease_analysis_merged'[cases_reported]),
+    ALLEXCEPT('disease_analysis_merged', 'disease_analysis_merged'[disease_name], 'disease_analysis_merged'[region_name])
+)
+
+Outbreak Surge Threshold (1.5x) = 
+[Historical Baseline Monthly Average] * 1.5
+
+Is Surge Detected = 
+IF(
+    [Total Cases] > [Outbreak Surge Threshold (1.5x)],
+    1,
+    0
+)
+
+Count of Outbreak Months = 
+CALCULATE(
+    COUNTROWS('disease_analysis_merged'),
+    'disease_analysis_merged'[is_outbreak] = 1
+)
+
+// ------------------------------------------------------------------------------
+// SECTION 5: DEMOGRAPHIC DRILL-DOWN MEASURES
+// ------------------------------------------------------------------------------
+
+Demographic Total Cases = 
+SUM('demographics_merged'[cases_in_group])
+
+Demographic Total Deaths = 
+SUM('demographics_merged'[deaths_in_group])
+
+Demographic CFR % = 
+DIVIDE([Demographic Total Deaths], [Demographic Total Cases], 0) * 100

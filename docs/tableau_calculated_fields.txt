@@ -1,0 +1,74 @@
+// ==============================================================================
+// DISEASE TREND ANALYSIS - TABLEAU CALCULATED FIELDS SPECIFICATION
+// Project: P-01 | Student: Arg Jain | ABES Engineering College
+// Dataset: disease_analysis_merged.csv & demographics_merged.csv
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// SECTION 1: CORE MEASURES & RATIOS
+// ------------------------------------------------------------------------------
+
+// Field Name: [Total Cases]
+SUM([cases_reported])
+
+// Field Name: [Total Deaths]
+SUM([deaths])
+
+// Field Name: [Total Recovered]
+SUM([recovered])
+
+// Field Name: [Active Caseload]
+SUM([active_cases])
+
+// Field Name: [Case Fatality Rate (CFR %)]
+ZN(SUM([deaths])) / ZN(SUM([cases_reported])) * 100
+
+// Field Name: [Recovery Rate (%)]
+ZN(SUM([recovered])) / ZN(SUM([cases_reported])) * 100
+
+// Field Name: [Incidence per 100k]
+(SUM([cases_reported]) / MAX([population])) * 100000
+
+// Field Name: [Mortality per 100k]
+(SUM([deaths]) / MAX([population])) * 100000
+
+// ------------------------------------------------------------------------------
+// SECTION 2: TABLE CALCULATIONS & TIME INTELLIGENCE
+// ------------------------------------------------------------------------------
+
+// Field Name: [MoM Case Growth %]
+// Compute using: Table (across) or [report_date] (Month)
+(ZN(SUM([cases_reported])) - LOOKUP(ZN(SUM([cases_reported])), -1)) / ABS(LOOKUP(ZN(SUM([cases_reported])), -1)) * 100
+
+// Field Name: [YoY Case Growth %]
+// Compute using: Specific Dimensions -> Year / Month
+(ZN(SUM([cases_reported])) - LOOKUP(ZN(SUM([cases_reported])), -12)) / ABS(LOOKUP(ZN(SUM([cases_reported])), -12)) * 100
+
+// Field Name: [3-Month Moving Average]
+// Window average over current and 2 preceding months
+WINDOW_AVG(SUM([cases_reported]), -2, 0)
+
+// ------------------------------------------------------------------------------
+// SECTION 3: CONDITIONAL KPI FORMATTING & ALERT TIERS
+// ------------------------------------------------------------------------------
+
+// Field Name: [CFR Risk Level]
+IF [Case Fatality Rate (CFR %)] >= 3.0 THEN "Critical (>3.0%)"
+ELSEIF [Case Fatality Rate (CFR %)] >= 1.5 THEN "Elevated (1.5% - 3.0%)"
+ELSE "Nominal (<1.5%)"
+END
+
+// Field Name: [Season Grouping]
+IF MONTH([report_date]) >= 7 AND MONTH([report_date]) <= 10 THEN "Monsoon Surge (Jul-Oct)"
+ELSEIF MONTH([report_date]) >= 11 OR MONTH([report_date]) <= 2 THEN "Winter Respiratory Spike (Nov-Feb)"
+ELSE "Pre-Monsoon / Summer (Mar-Jun)"
+END
+
+// Field Name: [Historical Disease-State Baseline]
+// LOD Calculation for fixed baseline
+{ FIXED [disease_name], [region_name] : AVG([cases_reported]) }
+
+// Field Name: [Outbreak Surge Alert Flag]
+IF SUM([cases_reported]) > (AVG([Historical Disease-State Baseline]) * 1.5) THEN "SURGE ALERT (>1.5x Baseline)"
+ELSE "Normal Activity"
+END
