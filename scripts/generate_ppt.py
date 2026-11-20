@@ -12,7 +12,7 @@ prs.slide_width = Inches(13.333)
 prs.slide_height = Inches(7.5)
 blank_layout = prs.slide_layouts[6]
 
-# Color Palette Definitions (Executive Healthcare Theme)
+# Color Palette Definitions (Executive Healthcare Academic Theme)
 NAVY = RGBColor(15, 43, 72)           # Primary Dark Navy #0F2B48
 TEAL = RGBColor(26, 83, 118)          # Brand Teal #1A5376
 SKY = RGBColor(2, 132, 199)           # Bright Sky Blue #0284C7
@@ -58,8 +58,8 @@ def add_header(slide, title_text, subtitle_text):
         p_sub.font.color.rgb = SKY
         p_sub.space_before = Pt(3)
 
-def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text, notes_text):
-    """Creates a structured two-column presentation slide with image, bullets, and spoken explanation."""
+def add_content_slide(slide, title, subtitle, image_path, bullets, insight_text, notes_text):
+    """Creates a structured two-column presentation slide for official academic submission."""
     add_header(slide, title, subtitle)
     
     # Left Column: Screenshot Image Card
@@ -78,7 +78,7 @@ def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text,
         
         slide.shapes.add_picture(str(resolved_img), img_left, img_top, width=img_width, height=img_height)
     
-    # Right Column: Highlights & Explanation
+    # Right Column: Highlights & Decision Value
     right_left = Inches(7.3)
     right_top = Inches(1.45)
     right_width = Inches(5.4)
@@ -104,7 +104,7 @@ def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text,
         bp.font.color.rgb = SLATE_DARK
         bp.space_before = Pt(4)
         
-    # 2. Easy Spoken Explanation Card (Normal Language Paragraph)
+    # 2. Formal Epidemiological Decision Value Card
     card_top = Inches(4.0)
     card_height = Inches(2.9)
     card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, right_left, card_top, right_width, card_height)
@@ -118,14 +118,14 @@ def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text,
     ctf.margin_left = ctf.margin_right = ctf.margin_top = ctf.margin_bottom = Inches(0.2)
     
     cp1 = ctf.paragraphs[0]
-    cp1.text = "🗣️ How to Explain this to Teachers & Students:"
+    cp1.text = "🎯 Surveillance Intelligence & Decision Impact:"
     cp1.font.name = "Segoe UI"
     cp1.font.size = Pt(12)
     cp1.font.bold = True
     cp1.font.color.rgb = TEAL
     
     cp2 = ctf.add_paragraph()
-    cp2.text = explain_text
+    cp2.text = insight_text
     cp2.font.name = "Segoe UI"
     cp2.font.size = Pt(10.2)
     cp2.font.color.rgb = SLATE_DARK
@@ -136,7 +136,7 @@ def add_content_slide(slide, title, subtitle, image_path, bullets, explain_text,
     notes_slide.notes_text_frame.text = notes_text
 
 # ==========================================
-# SLIDE 1: Title Slide (Grand Cover)
+# SLIDE 1: Title Slide (Grand Official Submission Cover)
 # ==========================================
 slide1 = prs.slides.add_slide(blank_layout)
 
@@ -145,33 +145,33 @@ bg.fill.solid()
 bg.fill.fore_color.rgb = NAVY
 bg.line.fill.background()
 
-tb = slide1.shapes.add_textbox(Inches(0.8), Inches(0.8), Inches(11.7), Inches(3.0))
+tb = slide1.shapes.add_textbox(Inches(0.8), Inches(0.7), Inches(11.7), Inches(3.2))
 tf = tb.text_frame
 tf.word_wrap = True
 
 p1 = tf.paragraphs[0]
 p1.text = "🏥 Disease Trend Analysis Intelligence Cockpit"
 p1.font.name = "Segoe UI"
-p1.font.size = Pt(32)
+p1.font.size = Pt(31)
 p1.font.bold = True
 p1.font.color.rgb = WHITE
 
 p2 = tf.add_paragraph()
-p2.text = "An Interactive Healthcare Surveillance & Epidemiological Data Analytics Platform for India"
+p2.text = "An Interactive Healthcare Surveillance & Epidemiological Analytics Platform for India"
 p2.font.name = "Segoe UI"
 p2.font.size = Pt(16)
 p2.font.color.rgb = RGBColor(186, 230, 253)
 p2.space_before = Pt(10)
 
 p3 = tf.add_paragraph()
-p3.text = "Project ID: P-01 | Healthcare Data Analytics | Technology Stack: Python, Streamlit, SQLite, Plotly, Tailwind CSS"
+p3.text = "Project ID: P-01 | Healthcare Data Analytics Specialization | Academic Session: 2025–2026\nSubmitted in partial fulfillment of the requirements for Master of Computer Applications (MCA)"
 p3.font.name = "Segoe UI"
-p3.font.size = Pt(12)
+p3.font.size = Pt(11.5)
 p3.font.color.rgb = RGBColor(224, 242, 254)
-p3.space_before = Pt(14)
+p3.space_before = Pt(12)
 
 # Candidate & Mentor Details Card
-card1 = slide1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(4.9), Inches(11.7), Inches(2.0))
+card1 = slide1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(4.85), Inches(11.7), Inches(2.1))
 card1.fill.solid()
 card1.fill.fore_color.rgb = WHITE
 card1.line.color.rgb = BORDER_COLOR
@@ -183,21 +183,21 @@ ctf1.margin_left = Inches(0.3)
 ctf1.margin_top = Inches(0.25)
 
 p_cand = ctf1.paragraphs[0]
-p_cand.text = "Student / Developer: Arg Jain (University Roll No. 2500320140031)"
+p_cand.text = "Candidate: Arg Jain (University Roll No. 2500320140031)"
 p_cand.font.name = "Segoe UI"
 p_cand.font.size = Pt(14)
 p_cand.font.bold = True
 p_cand.font.color.rgb = NAVY
 
 p_dept = ctf1.add_paragraph()
-p_dept.text = "MCA 2nd Year — Data Analytics Specialization | ABES Engineering College, Ghaziabad (AKTU Code 032)"
+p_dept.text = "Department of Master of Computer Applications (MCA) — Data Analytics Specialization\nABES Engineering College, Ghaziabad (Affiliated to Dr. A.P.J. Abdul Kalam Technical University, AKTU Code 032)"
 p_dept.font.name = "Segoe UI"
-p_dept.font.size = Pt(12)
+p_dept.font.size = Pt(11.5)
 p_dept.font.color.rgb = SLATE_DARK
 p_dept.space_before = Pt(4)
 
 p_ment = ctf1.add_paragraph()
-p_ment.text = "Faculty Project Mentor: Ms. Kalpana Dwivedi | Target Academic Release: November 2026"
+p_ment.text = "Faculty Project Mentor: Ms. Kalpana Dwivedi | Department of Master of Computer Applications"
 p_ment.font.name = "Segoe UI"
 p_ment.font.size = Pt(12)
 p_ment.font.bold = True
@@ -205,17 +205,17 @@ p_ment.font.color.rgb = TEAL
 p_ment.space_before = Pt(4)
 
 slide1.notes_slide.notes_text_frame.text = (
-    "Good morning respected external examiner and faculty mentor Ms. Kalpana Dwivedi. My name is Arg Jain, "
+    "Good morning respected external examiners and faculty mentor Ms. Kalpana Dwivedi. My name is Arg Jain, "
     "Roll Number 2500320140031, from MCA 2nd Year Data Analytics at ABES Engineering College. "
-    "Today, I am proud to present Project P-01: 'Disease Trend Analysis Intelligence Cockpit', an end-to-end "
-    "healthcare analytics platform developed across 18 rigorous engineering steps."
+    "Today, I present Project P-01: 'Disease Trend Analysis Intelligence Cockpit', an end-to-end "
+    "healthcare analytics platform developed across 18 formal engineering steps."
 )
 
 # ==========================================
 # SLIDE 2: Business Problem & HMW Statements
 # ==========================================
 slide2 = prs.slides.add_slide(blank_layout)
-add_header(slide2, "1. Healthcare Surveillance Problem & Design Thinking (HMW)", "Transforming Fragmented Indian Public Health Data into Actionable Epidemiological Intelligence")
+add_header(slide2, "1. Epidemiological Surveillance Challenge & Design Thinking Framework", "Addressing Public Health Information Fragmentation & Emergency Intervention Delays Across India")
 
 col_w = Inches(5.8)
 col_h = Inches(5.3)
@@ -232,17 +232,17 @@ ptf.word_wrap = True
 ptf.margin_left = ptf.margin_right = ptf.margin_top = Inches(0.25)
 
 pp1 = ptf.paragraphs[0]
-pp1.text = "⚠️ The Real-World Healthcare Problem"
+pp1.text = "⚠️ Critical Public Health Challenges"
 pp1.font.name = "Segoe UI"
 pp1.font.size = Pt(14)
 pp1.font.bold = True
 pp1.font.color.rgb = RED
 
 prob_points = [
-    "Fragmented Surveillance: Public health data in India is dispersed across static monthly PDF bulletins, hospital registers, and isolated databases.",
-    "Delayed Outbreak Warnings: Health officers take weeks to recognize emerging contagion waves, losing the critical 14-day containment window.",
+    "Fragmented Surveillance: Public health data in India is dispersed across static monthly PDF bulletins, hospital registers, and isolated state repositories.",
+    "Delayed Outbreak Warnings: Health officers take weeks to recognize emerging contagion waves, losing the critical early 14-day containment window.",
     "Resource Misallocation: Hospitals face sudden shortages of ICU beds, oxygen, and emergency therapeutic supplies during seasonal surges.",
-    "Unclear Fatality Metrics: Decision-makers struggle to benchmark Case Fatality Rates (CFR) across states to justify emergency financial grants."
+    "Unclear Fatality Metrics: Decision-makers lack normalized Case Fatality Rate (CFR) benchmarks across states to justify emergency financial grants."
 ]
 for p in prob_points:
     pp = ptf.add_paragraph()
@@ -264,7 +264,7 @@ htf2.word_wrap = True
 htf2.margin_left = htf2.margin_right = htf2.margin_top = Inches(0.25)
 
 hp1 = htf2.paragraphs[0]
-hp1.text = "💡 Design Thinking: How Might We (HMW) Statements"
+hp1.text = "💡 Operational Design Thinking: How Might We (HMW)"
 hp1.font.name = "Segoe UI"
 hp1.font.size = Pt(14)
 hp1.font.bold = True
@@ -285,9 +285,9 @@ for h in hmw_points:
     hp.space_before = Pt(8)
 
 slide2.notes_slide.notes_text_frame.text = (
-    "In our research, we found that hospital staff and health officers in India lose critical weeks trying to combine "
-    "disjointed data sources. We formulated 10 HMW questions to design our platform around real human needs: "
-    "instant surge spotting, single-glance fatality comparison, and predictive ICU planning."
+    "Our research identified that public health authorities lose critical weeks attempting to correlate fragmented "
+    "surveillance reports. Applying design-thinking principles, we formulated 10 actionable HMW statements targeting "
+    "rapid outbreak detection, mortality severity benchmarking, and healthcare bed capacity preservation."
 )
 
 # ==========================================
@@ -296,26 +296,23 @@ slide2.notes_slide.notes_text_frame.text = (
 slide3 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide3,
-    title="2. Executive Surveillance Cockpit & Key Health Metrics",
-    subtitle="Overview Dashboard | Live Morbidity, Fatalities, Recoveries & Active Caseload Across India",
+    title="2. Executive Surveillance Cockpit & High-Level Health Metrics",
+    subtitle="Centralized Macro Monitoring Across 10 States, 5 Pathogens & 60 Monthly Longitudinal Intervals",
     image_path="docs/screenshots/01_cockpit_home.png",
     bullets=[
         "Monitors 5 major diseases: Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid.",
         "Tracks 10 representative Indian states over a 5-year timeline (2020 to 2024, 60 monthly periods).",
-        "4 live KPI stat cards calculate Morbidity (1.67M), Deaths (43.5k), Recoveries (1.51M), and Active Cases (116k).",
-        "Interactive sidebar provides clean dropdowns for Category, Disease, Zone, State, and a 5-year timeline slider."
+        "4 Executive Tailwind KPI Cards: Total Morbidity (1.67M), Fatalities (43.5k), Clinical Recoveries (1.51M), and Active Caseload (116k).",
+        "Interactive multi-dimensional sidebar: clean cascading filters for Category, Disease, Zone, State, Years, and Source."
     ],
-    explain_text=(
-        "Teachers and students, what you are looking at is the command center of our application. "
-        "Imagine you are a Public Health Officer managing disease spread across India. Instead of opening 10 different "
-        "spreadsheets, this cockpit immediately tells you the total picture: 1.67 million recorded cases, 43,500 deaths, "
-        "and our national 90.4% clinical recovery rate. Using the clean sidebar on the left, you can select any disease like Dengue "
-        "or any state like Maharashtra, and all 4 KPI cards recalculate instantly."
+    insight_text=(
+        "Decision Impact: Consolidates multi-source surveillance streams into a centralized real-time command dashboard. "
+        "Public health directors can assess national morbidity trends, track national Case Fatality Rate (2.6%), and benchmark "
+        "active hospitalization pressure across 10 Indian states in sub-second queries, eliminating fragmented paper reporting."
     ),
     notes_text=(
-        "When explaining this slide: Point to the 4 KPI cards at the top. Mention that these cards recalculate in sub-second "
-        "speeds using cached SQLite queries. Point out the sidebar filters and explain that the Quick Presets were removed "
-        "for a cleaner user experience."
+        "The Executive Cockpit provides high-level situational awareness. The KPI cards dynamically re-aggregate based on the "
+        "active sidebar filters, allowing health administrators to inspect macro-level epidemiological metrics instantly."
     )
 )
 
@@ -325,25 +322,24 @@ add_content_slide(
 slide4 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide4,
-    title="3. State-Level Morbidity Burden & Metric Ranking",
-    subtitle="Interactive Regional Case Ranking & Cross-State Epidemiological Performance Benchmarking",
+    title="3. State-Level Morbidity Burden & Cross-State Benchmarking",
+    subtitle="Regional Caseload Rankings & Cross-State Epidemiological Clinical Performance Analysis",
     image_path="docs/screenshots/02_overview_state_burden.png",
     bullets=[
-        "Dynamic re-ranking bar chart with dropdown: sort states by Total Cases, Deaths, Recoveries, Active, or Hospitalized.",
-        "Maharashtra (244k) and Delhi (230k) carry the highest caseload due to urban density and travel connectivity.",
-        "Cross-state benchmark table features background heat gradients for Case Fatality Rate (CFR %) and Recovery (%).",
-        "1-Click CSV export allows health officials to download the active state benchmark table for offline reporting."
+        "Dynamic re-ranking bar chart with dropdown: sort states by Total Cases, Deaths, Recoveries, Active, or Hospitalized load.",
+        "Metropolitan states lead absolute caseload: Maharashtra (244k) and Delhi (230k) carry the highest national burdens.",
+        "Benchmark table incorporates conditional heat gradients for Case Fatality Rate (CFR %) and Clinical Recovery (%).",
+        "1-Click CSV export enables state health officers to extract active benchmark datasets for offline reporting."
     ],
-    explain_text=(
-        "On this second screen, we answer a vital operational question: Which states are carrying the heaviest disease load? "
-        "Our horizontal bar chart ranks all 10 states. Notice that Maharashtra and Delhi lead the caseload. "
-        "Right below it, our styled benchmark table compares Case Fatality Rate (CFR %) side-by-side with recovery rates. "
-        "This tells health ministers not just where cases are high, but which states are having trouble keeping patients alive, "
-        "so emergency oxygen, ventilators, and medical doctors can be dispatched immediately."
+    insight_text=(
+        "Decision Impact: Cross-evaluates absolute case volume against clinical severity. "
+        "While metropolitan centers carry the largest gross infection volume, conditional gradients identify states with "
+        "disproportionately elevated mortality rates, ensuring critical medical supplies, oxygen reserves, and clinical specialists "
+        "are dispatched to high-fatality zones."
     ),
     notes_text=(
-        "When explaining this slide: Emphasize that total cases alone don't show clinical severity. "
-        "Case Fatality Rate (CFR %) is what tells doctors which health systems are overwhelmed. Mention the CSV export button."
+        "This view resolves Operational Questions OQ-02 and OQ-05. Gross case volume alone is insufficient; "
+        "Case Fatality Rate benchmarking reveals healthcare management capacity and directs emergency aid where it saves lives."
     )
 )
 
@@ -353,25 +349,24 @@ add_content_slide(
 slide5 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide5,
-    title="4. 60-Month Trajectory & 12-Month Seasonal Heatmap",
-    subtitle="Tracking Longitudinal Waves (2020–2024), Moving Average Smoothing & Annual Monsoon Surges",
+    title="4. 60-Month Trajectories & 12-Month Seasonal Surge Heatmap",
+    subtitle="Longitudinal Transmission Waves (2020–2024), Moving Average Smoothing & Cyclical Patterns",
     image_path="docs/screenshots/03_trends_seasonality.png",
     bullets=[
-        "Continuous 60-month time-series line chart tracks transmission dynamics for each pathogen.",
-        "Interactive curve smoothing toggle: switch between Raw Monthly, 3-Month Rolling Average, and 6-Month Trendline.",
-        "Year-over-Year (YoY %) delta matrix tracks percentage growth or decline across calendar years.",
-        "12-Month Seasonal Intensity Heatmap proves that Dengue and Malaria peak every year in July–October post-monsoon."
+        "Continuous 60-month time-series line chart tracks transmission waves for each pathogen over a 5-year observation horizon.",
+        "Interactive smoothing window selector: toggle between Raw Monthly Data, 3-Month Rolling Average, and 6-Month Trendline.",
+        "Year-over-Year (YoY %) delta matrix quantifies annual growth or reduction across epidemiological cycles.",
+        "12-Month Seasonal Heatmap proves that Dengue and Malaria peak every year in July–October post-monsoon."
     ],
-    explain_text=(
-        "This is one of our most important discoveries. Diseases in India do not strike randomly—they follow cyclical seasons. "
-        "Our line chart tracks 5 years of monthly numbers. But look at the seasonal heatmap on the right: "
-        "it clearly proves that mosquito-borne diseases like Dengue and Malaria peak every single year between July and October "
-        "right after the monsoon rains. Respiratory illnesses like COVID-19 and Tuberculosis spike in winter (December–February). "
-        "By knowing this 60 days in advance, hospitals can stock test kits and intravenous fluids before the rush starts."
+    insight_text=(
+        "Decision Impact: Proves that disease transmission in India follows predictable cyclical seasonality. "
+        "Mosquito-borne vector diseases (Dengue and Malaria) strictly surge between July and October post-monsoon, whereas "
+        "respiratory pathogens peak during winter (December–February). This enables health ministries to execute prophylactic "
+        "resource prepositioning 60 days before caseload spikes."
     ),
     notes_text=(
-        "When explaining this slide: Emphasize the concept of 'Predictive Prepositioning'. "
-        "Explain that monsoons create stagnant water pools where mosquitoes breed, while cold winter air accelerates airborne transmission."
+        "This answers OQ-01 and OQ-03. Proving repeatable annual cycles allows state departments to shift from reactive "
+        "firefighting to proactive advance procurement of test kits, mosquito larvicides, and IV fluids."
     )
 )
 
@@ -382,24 +377,22 @@ slide6 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide6,
     title="5. Regional Burden & Health System Resilience Quadrant",
-    subtitle="Cross-State Health System Capacity, Infection Rate vs Mortality & Hospital Bed Pressure",
+    subtitle="Evaluating Healthcare Resilience, Infection Rates vs Mortality & Inpatient Bed Pressure",
     image_path="docs/screenshots/04_regional_cfr_recovery.png",
     bullets=[
-        "Clinical Resilience Quadrant scatter plot maps Incidence Rate per 100k (x-axis) vs Case Fatality Rate % (y-axis).",
-        "High-Resilience Quadrant (High Cases, Low CFR): Efficient healthcare containment prevents patient deaths (Tamil Nadu, Karnataka).",
-        "High-Vulnerability Quadrant (High Cases, High CFR): Critical infrastructure deficit demanding emergency federal intervention.",
-        "Hospital Bed Triage Pressure index tracks inpatient bed utilization vs outpatient care capacity."
+        "Clinical Resilience Quadrant maps Incidence per 100k (x-axis) against Case Fatality Rate (CFR %, y-axis).",
+        "High-Resilience Quadrant (High Cases, Low CFR): Highlights healthcare systems with superior clinical containment (Tamil Nadu, Karnataka).",
+        "High-Vulnerability Quadrant (High Cases, High CFR): Pinpoints regional health deficits requiring urgent federal intervention.",
+        "Hospital Bed Triage Pressure index tracks inpatient bed utilization vs outpatient care capacity across states."
     ],
-    explain_text=(
-        "In this screen, we evaluate how well each state's healthcare system handles disease outbreaks. "
-        "We plot Incidence per 100,000 residents against Case Fatality Rate (CFR %). "
-        "States in the bottom-right quadrant have high infection rates but very low mortality—meaning their doctors, hospitals, "
-        "and treatment protocols are working exceptionally well. On the other hand, states in the top-right quadrant have high cases "
-        "and high deaths, indicating an urgent need for hospital infrastructure investment."
+    insight_text=(
+        "Decision Impact: Distinguishes between high transmission and clinical management efficacy. "
+        "A high infection rate does not result in high mortality if clinical protocols, ICU beds, and medications are administered "
+        "effectively. The Resilience Quadrant enables policy makers to direct infrastructure grants to vulnerable healthcare networks."
     ),
     notes_text=(
-        "When explaining this slide: Use the term 'Resilience Quadrant'. "
-        "Explain that high cases do not have to mean high deaths if clinical management is effective."
+        "This screen supports hospital directors and budget committees. By charting resilience, states can identify best clinical "
+        "practices from high-resilience territories and deploy them in high-vulnerability regions."
     )
 )
 
@@ -409,25 +402,24 @@ add_content_slide(
 slide7 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide7,
-    title="6. Demographic Segmentation & Geriatric Risk Multiplier",
-    subtitle="Morbidity Across 5 Age Brackets, Gender Proportions & Senior Citizen Mortality Vulnerability",
+    title="6. Demographic Segmentation & Geriatric Vulnerability Index",
+    subtitle="Morbidity Distribution Across 5 Age Brackets, Gender Proportions & Senior Mortality Risk",
     image_path="docs/screenshots/05_demographics_cohorts.png",
     bullets=[
-        "Morbidity disaggregation across 5 distinct age cohorts: 0-14, 15-29, 30-44, 45-59, and 60+ seniors.",
-        "Bidirectional Male vs Female Tornado Pyramid chart highlights gender symmetry and workforce vulnerability.",
-        "Geriatric Risk Multiplier Card: Senior citizens (60+) face a 3.6x to 4.3x higher Case Fatality Rate (4.8% vs 1.1%).",
-        "Fully synchronized with sidebar filters: selecting Malaria or Dengue immediately updates the demographic breakdown."
+        "Morbidity segmentation across 5 standard cohorts: 0–14, 15–29, 30–44, 45–59, and 60+ senior citizens.",
+        "Bidirectional Male vs Female Tornado Pyramid chart highlights gender symmetry and workforce cohort exposure.",
+        "Geriatric Risk Multiplier Card: Senior citizens (60+) experience a 4.3x higher Case Fatality Rate (4.8% vs 1.1%).",
+        "Dynamic filter synchronization: selecting specific pathogens or regions instantly recalculates demographic vulnerability."
     ],
-    explain_text=(
-        "Here we analyzed WHO gets sick and WHO is most at risk of dying. "
-        "While young working adults aged 15 to 44 catch the highest number of infections because they travel and work, "
-        "look at the Geriatric Mortality Risk Card on the right: senior citizens aged 60 and older face a Case Fatality Rate "
-        "over 4 times higher than young people. This proves that while public health campaigns should target youth for infection prevention, "
-        "hospital ICU beds and antiviral therapies must be reserved immediately for senior citizens."
+    insight_text=(
+        "Decision Impact: Identifies the critical divergence between infection risk and mortality risk. "
+        "Young working-age populations (15–44) experience high infection volumes due to daily mobility, but senior citizens (60+) "
+        "face four-fold higher fatality rates, justifying mandatory clinical triage protocols and targeted booster vaccination "
+        "drives for geriatric cohorts."
     ),
     notes_text=(
-        "When explaining this slide: Point to the Tornado chart showing male and female side-by-side. "
-        "Highlight that 60+ seniors have the lowest infection count but the highest death rate, which is a key clinical insight."
+        "Resolves OQ-04. The population pyramid demonstrates that while young adults drive disease spread, the elderly bear "
+        "the clinical brunt of mortality. Triage protocols must prioritize elderly patients upon hospital admission."
     )
 )
 
@@ -437,25 +429,23 @@ add_content_slide(
 slide8 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide8,
-    title="7. Urban Crowding Scatter Regression & Statistical Proof",
-    subtitle="Statistically Verified Pearson Correlation (r = 0.9606) Between Density & Contagion Velocity",
+    title="7. Urban Density Scatter Regression & Contagion Velocity",
+    subtitle="Statistically Verified Pearson Correlation (r = 0.9606) Between Density & Disease Incidence",
     image_path="docs/screenshots/06_eda_urban_density.png",
     bullets=[
-        "Scatter plot correlates Population Density (persons/km²) with Cumulative Incidence per 100,000 residents.",
-        "Statistical Proof: Pearson r = 0.9606, p-value = 0.0001 proves that urban crowding directly drives contagion speed.",
-        "Non-colliding directional pointer callouts: smart badges label every state clearly with zero overlapping text.",
-        "Interactive dual-scale toggle: switch between Raw Linear scale (showing Delhi outlier) and Logarithmic scale."
+        "Scatter regression correlates Population Density (persons/km²) with Cumulative Incidence per 100,000 residents.",
+        "Statistical Proof: Pearson r = 0.9606, p-value = 0.0001 confirms a near-perfect positive linear relationship.",
+        "Non-colliding smart directional badges label every state without text overlapping or visual occlusion.",
+        "Dual-scale toggle: switch between Raw Linear scale (highlighting Delhi's extreme density) and Logarithmic scale."
     ],
-    explain_text=(
-        "This slide presents our deepest statistical evidence. We wanted to mathematically prove: Does urban crowding accelerate disease spread? "
-        "We calculated the Pearson correlation coefficient between population density and disease incidence. "
-        "The result was r = 0.96, which is an exceptionally strong, statistically significant relationship (p = 0.0001). "
-        "Notice Delhi at the top-right: with over 11,000 people per square kilometer, it experiences the highest incidence. "
-        "We also built smart callout badges with directional arrows so that state labels never collide or overlap."
+    insight_text=(
+        "Decision Impact: Provides empirical mathematical evidence that urban crowding accelerates transmission velocity. "
+        "High-density metropolitan districts suffer rapid viral contagion compared to dispersed rural areas, delivering "
+        "statistical justification for localized micro-containment and targeted sanitation investments during early outbreak phases."
     ),
     notes_text=(
-        "When explaining this slide: Explain what Pearson r = 0.96 means: near-perfect positive linear relationship. "
-        "Mention that p = 0.0001 means the probability of this happening by chance is less than 1 in 10,000."
+        "Answers OQ-06. The Pearson correlation coefficient r = 0.9606 (p < 0.001) proves statistically that population density "
+        "is a primary determinant of infection velocity across Indian administrative states."
     )
 )
 
@@ -466,24 +456,22 @@ slide9 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide9,
     title="8. Multi-Disease Concurrent Outbreak Surveillance Engine",
-    subtitle="Automated Anomaly Detection with Sensitivity Multiplier Slider (1.1x to 2.5x Baseline)",
+    subtitle="Automated Surge Detection Algorithm with Dynamic Anomaly Sensitivity Multiplier (1.1x–2.5x)",
     image_path="docs/screenshots/06_eda_urban_density.png",
     bullets=[
-        "Automated algorithm scans 3,000 state-month records to detect concurrent multi-pathogen outbreak events.",
-        "Trigger Condition: Flags state-months where 2 or more distinct diseases simultaneously exceed baseline threshold.",
-        "Interactive Sensitivity Slider: Allows health directors to adjust anomaly trigger threshold from 1.1x to 2.5x baseline.",
-        "Early Warning Defense: Prevents dual-surge hospital gridlock when post-monsoon Dengue coincides with typhoid spikes."
+        "Surveillance algorithm monitors 3,000 temporal records to detect simultaneous multi-pathogen surge events.",
+        "Trigger Condition: Automatically flags state-months where 2 or more distinct diseases exceed baseline thresholds.",
+        "Dynamic Sensitivity Slider: Allows health directors to calibrate anomaly sensitivity between 1.1x and 2.5x baseline.",
+        "Dual-Surge Early Warning: Prevents hospital system collapse when post-monsoon Dengue coincides with Typhoid surges."
     ],
-    explain_text=(
-        "What happens when two different diseases hit the same state at the same time? Hospitals face sudden collapse. "
-        "To solve this, we engineered an automated concurrent outbreak surveillance algorithm. "
-        "It establishes a 5-year monthly baseline for every state and disease. If two or more diseases simultaneously exceed "
-        "1.5 times their normal baseline, our system immediately triggers a high-priority red alert. "
-        "Directors can even adjust the sensitivity slider between 1.1x and 2.5x to fine-tune alert thresholds for their specific district."
+    insight_text=(
+        "Decision Impact: Protects healthcare infrastructure against concurrent syndromic gridlock. "
+        "By benchmarking historical monthly baselines across every state and pathogen, the surveillance engine automatically warns "
+        "administrators when multiple co-infections surge simultaneously, preventing diagnostic lab backlogs and blood bank depletion."
     ),
     notes_text=(
-        "When explaining this slide: Tell the teachers this addresses Operational Question OQ-08. "
-        "Explain that simultaneous outbreaks (like Dengue + Typhoid in August) overwhelm diagnostic labs and hospital blood banks."
+        "Answers OQ-08. Simultaneous epidemics overwhelm hospital capacity much faster than isolated diseases. "
+        "Automated multi-disease anomaly alerts enable proactive multi-department coordination."
     )
 )
 
@@ -493,25 +481,23 @@ add_content_slide(
 slide10 = prs.slides.add_slide(blank_layout)
 add_content_slide(
     slide10,
-    title="9. Data Cleaning Pipeline, Audit Ledger & 3NF Database",
-    subtitle="Automated Sanitization (Duplicates, Imputation, Capping) & Relational SQLite Architecture",
+    title="9. Data Quality Governance, In-Pipeline Cleaning & 3NF Schema",
+    subtitle="Automated Pipeline Sanitization (Duplicates, Imputation, Capping) & Relational SQLite Architecture",
     image_path="docs/screenshots/07_data_quality_ledger.png",
     bullets=[
-        "Deterministic Python Cleaning Pipeline: Purged 149 duplicate entries, imputed 42 missing values, and capped 7 extreme outliers.",
-        "Data Quality Ledger: Transparent scorecard accounts for every raw ingestion row (3,000 in ➔ 2,854 clean certified rows).",
-        "Third Normal Form (3NF) Relational SQLite Schema: 5 base tables (region_master, disease_master, demographic_group, etc.).",
-        "Analytical View v_disease_analysis: Materializes joined dimensions with precomputed metrics for sub-second query latency."
+        "Automated cleaning pipeline: purged 149 duplicate entries, median-imputed 42 nulls, and capped 7 extreme outliers.",
+        "Data Quality Ledger: Complete audit transparency accounting for every ingested record (3,000 in ➔ 2,854 clean rows).",
+        "Third Normal Form (3NF) Relational SQLite Schema: 5 base tables with primary keys, foreign keys, and CHECK constraints.",
+        "Precomputed Analytical View (v_disease_analysis): Materializes joined facts and dimensions for sub-second query latency."
     ],
-    explain_text=(
-        "In healthcare analytics, raw data is often messy—hospital clerks make typing mistakes, servers drop duplicate rows, "
-        "and fields are left empty. We built a deterministic data cleaning pipeline in Python that automatically detected and purged "
-        "149 duplicate rows, filled missing values using disease medians, and capped extreme typing errors using the IQR method. "
-        "The certified clean data is stored in a normalized Third Normal Form SQLite database, ensuring zero orphan records "
-        "and total referential integrity."
+    insight_text=(
+        "Decision Impact: Enforces enterprise data governance before analytical consumption. "
+        "Eliminating duplicate transactions, imputing missing values, and Winsorizing extreme typographical errors guarantees "
+        "clinical reporting reliability, while a Third Normal Form relational architecture eliminates redundant data storage and maintains relational integrity."
     ),
     notes_text=(
-        "When explaining this slide: Emphasize that 'Garbage in, Garbage out' is the #1 danger in medical AI and analytics. "
-        "Showcase that our Data Quality Ledger provides 100% audit transparency for every record modified."
+        "Demonstrates data engineering rigor. The pipeline automatically enforces business rules and sanitizes raw hospital data "
+        "into verified analytical records certified for clinical policy modeling."
     )
 )
 
@@ -519,7 +505,7 @@ add_content_slide(
 # SLIDE 11: 100% Automated Testing Suite (QA)
 # ==========================================
 slide11 = prs.slides.add_slide(blank_layout)
-add_header(slide11, "10. Quality Assurance & 100% Automated Test Suite", "17 Comprehensive Verification Unit Tests Across Database Schema, Clinical Math & App Routes")
+add_header(slide11, "10. Software Quality Assurance & 100% Automated Testing Suite", "Unit Verification Across Schema Constraints, Clinical Formulations & Application Entry Points")
 
 tcol_w = Inches(3.8)
 tcol_h = Inches(5.3)
@@ -606,7 +592,7 @@ tf3.word_wrap = True
 tf3.margin_left = tf3.margin_right = tf3.margin_top = Inches(0.2)
 
 tp3 = tf3.paragraphs[0]
-tp3.text = "🚀 App Smoke & Rigor\n(3 Tests — test_app.py)"
+tp3.text = "🚀 App Smoke & Routing\n(3 Tests — test_app.py)"
 tp3.font.name = "Segoe UI"
 tp3.font.size = Pt(12)
 tp3.font.bold = True
@@ -629,16 +615,15 @@ for p in t3_points:
     tp.space_before = Pt(5)
 
 slide11.notes_slide.notes_text_frame.text = (
-    "To ensure that our project meets professional software engineering standards, we built an automated test runner. "
-    "By running 'python run_tests.py', all 17 unit tests execute in just 60 milliseconds with a 100% success rate, "
-    "validating database referential integrity, clinical math formulas, and web page entry points."
+    "Our quality assurance suite guarantees software reliability. Executing 'python run_tests.py' verifies all 17 unit tests "
+    "in 60 milliseconds with zero dependencies, proving relational schema integrity, formula accuracy, and UI module readiness."
 )
 
 # ==========================================
 # SLIDE 12: BI Integration (Tableau & Power BI)
 # ==========================================
 slide12 = prs.slides.add_slide(blank_layout)
-add_header(slide12, "11. Business Intelligence Integration: Tableau & Power BI", "Enterprise BI Architecture, DAX Measures, Calculated Fields & Merged Analytical Data Marts")
+add_header(slide12, "11. Enterprise Business Intelligence: Tableau & Power BI Integration", "Enterprise Star-Schema Data Marts, Production DAX Measures & Tableau Calculated Fields")
 
 bi_w = Inches(5.8)
 bi_h = Inches(5.3)
@@ -714,114 +699,179 @@ for b in tab_bullets:
     bp.space_before = Pt(6)
 
 slide12.notes_slide.notes_text_frame.text = (
-    "Beyond Python and Streamlit, we created complete enterprise BI specifications for Tableau and Power BI. "
+    "Beyond Streamlit, we created complete enterprise BI specifications for Tableau and Power BI. "
     "We wrote production-ready DAX formulas, Tableau calculated fields, and exported clean CSV data marts so that "
     "any enterprise analytics team can deploy these exact dashboards in Power BI Service or Tableau Server."
 )
 
 # ==========================================
-# SLIDE 13: 2-Minute Viva Pitch Cheat-Sheet
+# SLIDE 13: Future Scope & Strategic Recommendations (REPLACES CHEAT SHEET)
 # ==========================================
 slide13 = prs.slides.add_slide(blank_layout)
-add_header(slide13, "12. How to Explain this Project in 2 Minutes (Viva Cheat-Sheet)", "A Simple 4-Step Conversational Talking Framework for Teachers, Examiners, and Fellow Students")
+add_header(slide13, "12. Future Scope, System Scalability & Strategic Recommendations", "Next-Phase Architectural Enhancements, Predictive AI Modeling & Public Health Policy Roadmap")
 
-card_w = Inches(5.8)
-card_h = Inches(2.55)
+scope_w = Inches(5.8)
+scope_h = Inches(5.3)
 
-coords = [
-    (Inches(0.6), Inches(1.45), "Step 1: The Healthcare Problem", "Healthcare departments in India often track diseases in disconnected paper registers or separate portals. This delays spotting outbreaks, wastes hospital resources, and costs lives. Our goal was to create one unified, interactive visual cockpit.", NAVY),
-    (Inches(6.8), Inches(1.45), "Step 2: The Solution We Built", "We engineered a full-stack Python application using Streamlit, Plotly, and SQLite. It models 5 major diseases across 10 states over 5 years (3,000 monthly reports) with interactive filters, allowing sub-second visual exploration.", TEAL),
-    (Inches(0.6), Inches(4.3), "Step 3: What the Data Revealed", "1. Dengue & Malaria peak strictly in July–October post-monsoon.\n2. Dense cities (Delhi, Maharashtra) suffer 4x higher infection speed (r = 0.96).\n3. Senior citizens (60+) face a 4x higher Case Fatality Rate (4.8% vs 1.1%).", EMERALD),
-    (Inches(6.8), Inches(4.3), "Step 4: The Technical Rigor", "Built across 18 professional software engineering steps: formal BRD, TRD, 3NF database schema, user stories, automated unit test suite (17/17 passing), and deployed on Streamlit Community Cloud with full traceability.", SKY)
+# Left Column: Technical Roadmap
+card_tech = slide13.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.6), Inches(1.5), scope_w, scope_h)
+card_tech.fill.solid()
+card_tech.fill.fore_color.rgb = WHITE
+card_tech.line.color.rgb = TEAL
+card_tech.line.width = Pt(1.5)
+
+ttfc = card_tech.text_frame
+ttfc.word_wrap = True
+ttfc.margin_left = ttfc.margin_right = ttfc.margin_top = Inches(0.25)
+
+tc_title = ttfc.paragraphs[0]
+tc_title.text = "🚀 Technical Architecture & AI Roadmap"
+tc_title.font.name = "Segoe UI"
+tc_title.font.size = Pt(14)
+tc_title.font.bold = True
+tc_title.font.color.rgb = TEAL
+
+tech_points = [
+    "Automated Hospital EHR Ingestion: Direct API connectors integrating with district hospital electronic records via HL7 / FHIR standards.",
+    "Predictive Machine Learning Forecasting: Integration of deep learning LSTM and Prophet time-series models for 30-day advance outbreak wave projection.",
+    "Mobile Progressive Web App: Lightweight offline-first mobile client for frontline ASHA and ANM community health workers in rural blocks.",
+    "Geospatial Micro-Clustering: Sub-district and PIN code level GIS spatial autocorrelation (Moran's I) for precision epidemic containment."
 ]
+for tp in tech_points:
+    tpp = ttfc.add_paragraph()
+    tpp.text = f"• {tp}"
+    tpp.font.name = "Segoe UI"
+    tpp.font.size = Pt(10.5)
+    tpp.font.color.rgb = SLATE_DARK
+    tpp.space_before = Pt(8)
 
-for left, top, ctitle, ctext, ccol in coords:
-    scard = slide13.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, card_w, card_h)
-    scard.fill.solid()
-    scard.fill.fore_color.rgb = WHITE
-    scard.line.color.rgb = ccol
-    scard.line.width = Pt(1.5)
-    
-    sctf = scard.text_frame
-    sctf.word_wrap = True
-    sctf.margin_left = sctf.margin_right = sctf.margin_top = sctf.margin_bottom = Inches(0.2)
-    
-    tp1 = sctf.paragraphs[0]
-    tp1.text = ctitle
-    tp1.font.name = "Segoe UI"
-    tp1.font.size = Pt(13)
-    tp1.font.bold = True
-    tp1.font.color.rgb = ccol
-    
-    tp2 = sctf.add_paragraph()
-    tp2.text = ctext
-    tp2.font.name = "Segoe UI"
-    tp2.font.size = Pt(10.2)
-    tp2.font.color.rgb = SLATE_DARK
-    tp2.space_before = Pt(6)
+# Right Column: Policy Recommendations
+card_pol = slide13.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.8), Inches(1.5), scope_w, scope_h)
+card_pol.fill.solid()
+card_pol.fill.fore_color.rgb = WHITE
+card_pol.line.color.rgb = EMERALD
+card_pol.line.width = Pt(1.5)
+
+ptfp = card_pol.text_frame
+ptfp.word_wrap = True
+ptfp.margin_left = ptfp.margin_right = ptfp.margin_top = Inches(0.25)
+
+pol_title = ptfp.paragraphs[0]
+pol_title.text = "📋 Public Health & Policy Recommendations"
+pol_title.font.name = "Segoe UI"
+pol_title.font.size = Pt(14)
+pol_title.font.bold = True
+pol_title.font.color.rgb = EMERALD
+
+pol_points = [
+    "Proactive Medical Logistics Prepositioning: Mandate 60-day advance procurement and dispatch of mosquito larvicides and IV fluids ahead of July monsoon surges.",
+    "Prioritized Geriatric Clinical Pathways: Formalize immediate admission and clinical triage protocols for senior citizens (60+) to reduce avoidable mortality.",
+    "Automated Density-Triggered Containment: Enforce phased municipal containment and sanitation protocols automatically when density-adjusted incidence exceeds 1.5x baseline.",
+    "Integrated Multi-Disease Vector Control: Coordinate joint vector abatement programs in urban corridors where Dengue and Malaria transmission windows overlap."
+]
+for pp in pol_points:
+    ppp = ptfp.add_paragraph()
+    ppp.text = f"• {pp}"
+    ppp.font.name = "Segoe UI"
+    ppp.font.size = Pt(10.5)
+    ppp.font.color.rgb = SLATE_DARK
+    ppp.space_before = Pt(8)
 
 slide13.notes_slide.notes_text_frame.text = (
-    "This slide is your 2-minute elevator pitch! Memorize the 4 steps: "
-    "1. The Problem (delayed outbreak detection), "
-    "2. The Tool (Python Streamlit cockpit), "
-    "3. The Findings (monsoon vector peaks, urban crowding, senior vulnerability), "
-    "4. The Technical Rigor (3NF database, 17/17 unit tests)."
+    "Looking forward, the platform is designed for enterprise scale. Future iterations can integrate live hospital APIs, "
+    "machine-learning forecasting models, and mobile reporting apps for field health workers, translating data analytics "
+    "into life-saving national public health policies."
 )
 
 # ==========================================
-# SLIDE 14: Academic Deliverables & Submission
+# SLIDE 14: Formal Project Conclusion & Attribution (REPLACES VIVA LAST PAGE)
 # ==========================================
 slide14 = prs.slides.add_slide(blank_layout)
-add_header(slide14, "13. Academic Deliverables & Official Submission Package", "All 18 Steps Executed, Documented, and Verified for ABES MCA Final Submission")
+add_header(slide14, "13. Project Conclusion & Formal Academic Sign-Off", "Final Academic Evaluation Summary for Master of Computer Applications (MCA 2nd Year)")
 
-deliv_card = slide14.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.6), Inches(1.45), Inches(12.133), Inches(5.45))
-deliv_card.fill.solid()
-deliv_card.fill.fore_color.rgb = WHITE
-deliv_card.line.color.rgb = BORDER_COLOR
-deliv_card.line.width = Pt(1.5)
+conc_w = Inches(5.8)
+conc_h = Inches(5.3)
 
-dtf = deliv_card.text_frame
-dtf.word_wrap = True
-dtf.margin_left = dtf.margin_right = dtf.margin_top = dtf.margin_bottom = Inches(0.3)
+# Left Column: Project Conclusion Summary
+card_conc = slide14.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.6), Inches(1.5), conc_w, conc_h)
+card_conc.fill.solid()
+card_conc.fill.fore_color.rgb = WHITE
+card_conc.line.color.rgb = NAVY
+card_conc.line.width = Pt(1.5)
 
-dp1 = dtf.paragraphs[0]
-dp1.text = "📦 Full Deliverable Package (Conforming to ABES Project Guidelines):"
-dp1.font.name = "Segoe UI"
-dp1.font.size = Pt(14)
-dp1.font.bold = True
-dp1.font.color.rgb = NAVY
+ctfc = card_conc.text_frame
+ctfc.word_wrap = True
+ctfc.margin_left = ctfc.margin_right = ctfc.margin_top = Inches(0.25)
 
-items = [
-    ("Requirements & Elicitation Specs (Steps 1–3, 5):", "01_Project_Understanding.docx/.pdf, 02_HMW_Statements.docx/.pdf, 03_Needs_Analysis.docx/.pdf, 05_BRD.docx/.pdf"),
-    ("Bidirectional Traceability Matrix (Step 4):", "04_Traceability_Matrix.xlsx & 04_RTM.md (Maps 10 OQs to 15 BRs, DB columns, User Stories, UI Screens, and Test Cases)"),
-    ("Technical Architecture & Schema (Steps 7–9):", "07_TRD.docx/.pdf, 08_Database_Design.xlsx (11 sheets), 09_ER_Diagram.docx/.pdf + High-Res PNG"),
-    ("Agile Specifications & Wireframes (Steps 11–12):", "11_User_Stories.docx/.pdf (17 stories, 46 pts), 12_UI_Framework.docx/.pdf (Component wireframes, Tailwind styling)"),
-    ("Quality Assurance & Deployment (Steps 13–16):", "13_Test_Cases.docx/.pdf (20 TC-F, 18 TC-T), 14_Build_Plan.docx/.pdf, 16_Deployment_Guide.docx/.pdf (Streamlit Cloud)"),
-    ("Final Academic Report & Viva Deck (Steps 17–18):", "17_Project_Document.docx/.pdf (Full ABES Synthesis), 18_Presentation.docx/.pdf, 18_Presentation.pptx (This Slide Deck)"),
-    ("Data Science & BI Deliverables (Step 19):", "EDA_Lesson_Notebook.ipynb (69 cells, fully executed), Tableau & Power BI Specs + DAX & Calculated Fields")
+cc_title = ctfc.paragraphs[0]
+cc_title.text = "🏆 Key Project Achievements"
+cc_title.font.name = "Segoe UI"
+cc_title.font.size = Pt(14)
+cc_title.font.bold = True
+cc_title.font.color.rgb = NAVY
+
+achieve_points = [
+    "Comprehensive 5-Year Surveillance: Engineered an interactive analytics cockpit tracking 3,000 monthly reports across 10 states and 5 high-burden diseases.",
+    "Full-Stack Relational Architecture: Delivered a Third Normal Form SQLite database, sub-second cached queries, and Tailwind CSS injected components.",
+    "Empirical Epidemiological Proof: Validated strong density correlation (r = 0.9606, p = 0.0001), monsoon vector cycles, and 4.3x senior mortality risk.",
+    "Rigorous Quality Assurance: 100% automated test pass rate across 17 unit tests, verified data quality governance, and comprehensive BI models."
 ]
+for ap in achieve_points:
+    app = ctfc.add_paragraph()
+    app.text = f"• {ap}"
+    app.font.name = "Segoe UI"
+    app.font.size = Pt(10.5)
+    app.font.color.rgb = SLATE_DARK
+    app.space_before = Pt(8)
 
-for label, desc in items:
-    dip = dtf.add_paragraph()
-    dip.text = f"• {label} "
-    dip.font.name = "Segoe UI"
-    dip.font.size = Pt(10.5)
-    dip.font.bold = True
-    dip.font.color.rgb = TEAL
-    dip.space_before = Pt(5)
-    
-    run = dip.add_run()
-    run.text = desc
-    run.font.bold = False
-    run.font.color.rgb = SLATE_DARK
+# Right Column: Academic Sign-Off & Acknowledgments
+card_ack = slide14.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.8), Inches(1.5), conc_w, conc_h)
+card_ack.fill.solid()
+card_ack.fill.fore_color.rgb = WHITE
+card_ack.line.color.rgb = TEAL
+card_ack.line.width = Pt(1.5)
+
+atf = card_ack.text_frame
+atf.word_wrap = True
+atf.margin_left = atf.margin_right = atf.margin_top = Inches(0.25)
+
+ack_title = atf.paragraphs[0]
+ack_title.text = "🎓 Academic Project Sign-Off & Attribution"
+ack_title.font.name = "Segoe UI"
+ack_title.font.size = Pt(14)
+ack_title.font.bold = True
+ack_title.font.color.rgb = TEAL
+
+p_c = atf.add_paragraph()
+p_c.text = "Candidate Name: Arg Jain\nUniversity Roll No.: 2500320140031\nProgram: MCA 2nd Year (Data Analytics Specialization)\nInstitution: ABES Engineering College, Ghaziabad (AKTU Code 032)"
+p_c.font.name = "Segoe UI"
+p_c.font.size = Pt(10.5)
+p_c.font.color.rgb = SLATE_DARK
+p_c.space_before = Pt(6)
+
+p_m = atf.add_paragraph()
+p_m.text = "Faculty Project Mentor: Ms. Kalpana Dwivedi\nDepartment: Department of Master of Computer Applications\nProject Identifier: Project P-01 | Healthcare Data Analytics"
+p_m.font.name = "Segoe UI"
+p_m.font.size = Pt(10.5)
+p_m.font.color.rgb = NAVY
+p_m.font.bold = True
+p_m.space_before = Pt(10)
+
+p_thanks = atf.add_paragraph()
+p_thanks.text = "Acknowledgments: Sincere gratitude to faculty mentor Ms. Kalpana Dwivedi, the Department of MCA, and the Examination Committee of ABES Engineering College for academic guidance, technical mentorship, and evaluation."
+p_thanks.font.name = "Segoe UI"
+p_thanks.font.size = Pt(10)
+p_thanks.font.color.rgb = SLATE_MUTED
+p_thanks.font.italic = True
+p_thanks.space_before = Pt(12)
 
 slide14.notes_slide.notes_text_frame.text = (
-    "To conclude: We completed every single one of the 18 steps from the kickoff instructions. "
-    "We have formal Word documents, PDF versions, Excel workbooks, SQLite database files, clean modular Python source code, "
-    "an executable Jupyter EDA notebook, and a complete test suite. Everything is archived and ready for academic submission. Thank you!"
+    "In conclusion, Project P-01 successfully addresses fragmented public health reporting through an end-to-end "
+    "data analytics platform. I express my sincere gratitude to my mentor Ms. Kalpana Dwivedi and the examination "
+    "board for their continuous guidance. Thank you, and I am now ready for your questions."
 )
 
 # Save the presentation
 output_pptx = Path("c:/Users/Hp/Downloads/hcl/docs/18_ArgJain_DiseaseTrendAnalysis_Presentation.pptx")
 prs.save(str(output_pptx))
-print(f"POWERPOINT PRESENTATION GENERATED SUCCESSFULLY: {output_pptx} ({output_pptx.stat().st_size // 1024} KB)")
+print(f"POWERPOINT PRESENTATION COMPILED SUCCESSFULLY: {output_pptx} ({output_pptx.stat().st_size // 1024} KB)")
