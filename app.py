@@ -1,7 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import sys
 from pathlib import Path
+
+# Add project root to sys.path for robust Streamlit Cloud execution
+ROOT_DIR = Path(__file__).resolve().parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 from src.data_loader import load_data
 from src.cleaning import clean_data
 from src.ui import inject_tailwind, render_header, render_kpi_card_iframe, render_insight_box, render_sidebar_filters

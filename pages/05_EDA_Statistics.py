@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 from src.data_loader import load_data
 from src.cleaning import clean_data
 from src.analysis import detect_concurrent_outbreaks, compute_pearson_correlation

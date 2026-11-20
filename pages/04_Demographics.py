@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 from src.data_loader import load_data, load_demographic_breakdown
 from src.cleaning import clean_data
 from src.ui import inject_tailwind, render_header, render_insight_box, safe_render_dataframe, render_sidebar_filters
