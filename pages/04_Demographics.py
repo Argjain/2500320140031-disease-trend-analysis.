@@ -19,14 +19,24 @@ filtered = render_sidebar_filters(df)
 sel_disease = st.session_state.get("selected_disease", "All Diseases")
 sel_category = st.session_state.get("selected_category", "All Categories")
 sel_zone = st.session_state.get("selected_zone", "All Zones")
+sel_years = st.session_state.get("selected_year_range", (int(df["report_year"].min()), int(df["report_year"].max())))
+sel_states = st.session_state.get("selected_states", sorted(df["region_name"].unique().tolist()))
 
 render_header(
     title="Demographic Vulnerability & Cohort Profiles (UI-04)",
-    subtitle=f"Morbidity Segmentation across 5 Age Brackets & 3 Genders | Scope: {sel_disease} ({sel_category}) | Zone: {sel_zone}"
+    subtitle=f"Morbidity Segmentation across 5 Age Brackets & 3 Genders | Scope: {sel_disease} ({sel_category}) | Zone: {sel_zone} | Timeline: {sel_years[0]}–{sel_years[1]} | States: {len(sel_states)}"
 )
 
-if demo_df.empty:
-    st.info("No demographic breakdown data available.")
+if filtered.empty or demo_df.empty:
+    st.warning("⚠️ No records match active filters.")
+    st.stop()
+
+# Synchronize demographic breakdown with the active filter slice
+filtered_case_ids = set(filtered["case_id"])
+demo_filtered = demo_df[demo_df["case_id"].isin(filtered_case_ids)]
+
+if demo_filtered.empty:
+    st.warning("⚠️ No demographic records match active filters.")
     st.stop()
 
 tab_demo1, tab_demo2, tab_demo3 = st.tabs([
@@ -40,7 +50,7 @@ with tab_demo1:
     
     with col_x:
         st.subheader("👥 Age Group Distribution (OQ-04, BR-04)")
-        age_agg = demo_df.groupby("age_group")["cases_in_group"].sum().reset_index()
+        age_agg = demo_filtered.groupby("age_group")["cases_in_group"].sum().reset_index()
         max_age_c = age_agg["cases_in_group"].max() if not age_agg.empty else 1000
         fig_age = px.bar(
             age_agg,
@@ -60,7 +70,7 @@ with tab_demo1:
 
     with col_y:
         st.subheader("⚧️ Gender Identity Proportions")
-        gender_agg = demo_df.groupby("gender")["cases_in_group"].sum().reset_index()
+        gender_agg = demo_filtered.groupby("gender")["cases_in_group"].sum().reset_index()
         fig_gen = px.pie(
             gender_agg,
             values="cases_in_group",
@@ -75,7 +85,7 @@ with tab_demo1:
 
     # Back-to-Back Tornado Pyramid
     st.subheader("🌪️ Male vs Female Case Comparison by Age Bracket (Tornado Chart)")
-    pyramid_df = demo_df[demo_df["gender"].isin(["Male", "Female"])].groupby(["age_group", "gender"])["cases_in_group"].sum().reset_index()
+    pyramid_df = demo_filtered[demo_filtered["gender"].isin(["Male", "Female"])].groupby(["age_group", "gender"])["cases_in_group"].sum().reset_index()
     males = pyramid_df[pyramid_df["gender"] == "Male"].sort_values(by="age_group")
     females = pyramid_df[pyramid_df["gender"] == "Female"].sort_values(by="age_group")
     
@@ -113,7 +123,7 @@ with tab_demo1:
 
 with tab_demo2:
     st.subheader("⚠️ Mortality Concentration by Age Bracket (PATTERN-4)")
-    demo_mort = demo_df.groupby("age_group").agg(
+    demo_mort = demo_filtered.groupby("age_group").agg(
         Total_Cases=("cases_in_group", "sum"),
         Fatalities=("deaths_in_group", "sum"),
         Recoveries=("recovered_in_group", "sum")

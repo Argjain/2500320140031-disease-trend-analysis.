@@ -78,12 +78,13 @@ with tab_eda1:
         unsafe_allow_html=True
     )
 
+    has_trend = len(state_density) >= 3
     fig_scatter = px.scatter(
         state_density,
         x="population_density",
         y="incidence_per_lakh",
         size="total_cases",
-        trendline="ols",
+        trendline="ols" if has_trend else None,
         log_x=use_log,
         hover_name="region_name",
         hover_data={
@@ -160,6 +161,9 @@ with tab_eda1:
 with tab_eda2:
     st.subheader("🚨 Multi-Disease Concurrent Outbreak Surveillance (OQ-08, BR-05)")
     
+    if filtered["disease_name"].nunique() < 2:
+        st.info("ℹ️ **Notice:** Multi-disease concurrent outbreak detection monitors situations where **2 or more pathogens surge simultaneously** in the same state. Currently, only **1 disease entity** is in the active filter slice. To monitor concurrent co-infections, select 'All Diseases' or a multi-disease transmission category in the sidebar.")
+
     col_thresh1, col_thresh2 = st.columns([2, 1])
     with col_thresh1:
         st.write("Surveillance engine detects state-months where **2 or more diseases simultaneously exceed** their baseline threshold.")

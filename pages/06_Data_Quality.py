@@ -38,6 +38,16 @@ with tab_dq1:
     with q4:
         render_kpi_card_iframe("Clean Certified Rows", f"{quality_report['final_clean_rows']:,}", delta="100% Certified Valid", icon="✅", color="#1E8B4C", height=150)
 
+    st.markdown(
+        f"""
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #166534; display: flex; justify-content: space-between; align-items: center;">
+            <span>📋 <b>ETL Pipeline Accounting:</b> Cards above record the ingestion & sanitation from raw CSV into SQLite (3,000 ➔ 2,854 rows).</span>
+            <span>🎯 <b>Active Filter Cohort:</b> <b>{len(filtered):,} records</b> currently active in memory ({len(filtered)/len(df)*100:.1f}%).</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     st.markdown("---")
 
     # Row 2: Audit Detail Ledger

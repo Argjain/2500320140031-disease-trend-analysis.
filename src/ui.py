@@ -199,13 +199,13 @@ def safe_render_dataframe(df_or_styler, use_container_width: bool = True):
 
 def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Renders advanced analytical sidebar filters (Transmission Category, Specific Disease, 
-    Geographic Zone, States, Years, Surveillance Authority) with quick scenario presets, 
-    persistent session state, and returns the filtered DataFrame slice.
+    Renders analytical sidebar filters (Transmission Category, Specific Disease, 
+    Geographic Zone, States, Years, Surveillance Authority) with robust state synchronization
+    and returns the filtered DataFrame slice.
     """
     st.sidebar.markdown(
         """
-        <div style="background: linear-gradient(135deg, #0F2B48, #1A5376); padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; color: white;">
+        <div style="background: linear-gradient(135deg, #0F2B48, #1A5376); padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; color: white;">
             <div style="font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; gap: 6px;">
                 <span>🎛️</span><span>Analytical Filters</span>
             </div>
@@ -214,60 +214,17 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         """,
         unsafe_allow_html=True
     )
-    
-    # ── Quick Scenario Presets ──────────────────────────────────────────
-    st.sidebar.markdown("**⚡ Quick Scenario Presets:**")
-    cp1, cp2 = st.sidebar.columns(2)
-    with cp1:
-        if st.sidebar.button("🇮🇳 All India", use_container_width=True, key="preset_all"):
-            st.session_state.selected_disease = "All Diseases"
-            st.session_state.selected_category = "All Categories"
-            st.session_state.selected_zone = "All Zones"
-            st.session_state.selected_states = sorted(df["region_name"].dropna().unique().tolist())
-            st.session_state.selected_year_range = (int(df["report_year"].min()), int(df["report_year"].max()))
-            st.session_state.selected_source = "All Data Sources"
-            st.rerun()
-            
-    with cp2:
-        if st.sidebar.button("🌧️ Monsoon Surge", use_container_width=True, key="preset_monsoon"):
-            st.session_state.selected_category = "Vector-borne"
-            st.session_state.selected_disease = "All Diseases"
-            st.session_state.selected_zone = "All Zones"
-            st.session_state.selected_states = sorted(df["region_name"].dropna().unique().tolist())
-            st.session_state.selected_year_range = (int(df["report_year"].min()), int(df["report_year"].max()))
-            st.rerun()
-
-    cp3, cp4 = st.sidebar.columns(2)
-    with cp3:
-        if st.sidebar.button("🏙️ Top Metros", use_container_width=True, key="preset_metros"):
-            st.session_state.selected_disease = "All Diseases"
-            st.session_state.selected_category = "All Categories"
-            st.session_state.selected_zone = "All Zones"
-            st.session_state.selected_states = ["Delhi", "Maharashtra", "West Bengal"]
-            st.rerun()
-            
-    with cp4:
-        if st.sidebar.button("❄️ Winter Airborne", use_container_width=True, key="preset_winter"):
-            st.session_state.selected_category = "Airborne"
-            st.session_state.selected_disease = "All Diseases"
-            st.session_state.selected_zone = "All Zones"
-            st.session_state.selected_states = sorted(df["region_name"].dropna().unique().tolist())
-            st.rerun()
-
-    st.sidebar.markdown("---")
 
     # ── 1. Transmission Category Filter ────────────────────────────────
     categories = ["All Categories"] + sorted(df["disease_category"].dropna().unique().tolist())
-    if "selected_category" not in st.session_state:
-        st.session_state.selected_category = "All Categories"
-        
+    if "sb_category" not in st.session_state or st.session_state["sb_category"] not in categories:
+        st.session_state["sb_category"] = "All Categories"
+
     sel_category = st.sidebar.selectbox(
         "1. Transmission Category:",
         options=categories,
-        index=categories.index(st.session_state.selected_category) if st.session_state.selected_category in categories else 0,
         key="sb_category"
     )
-    st.session_state.selected_category = sel_category
 
     # ── 2. Specific Disease Filter (Filtered by Category) ───────────────
     if sel_category != "All Categories":
@@ -275,30 +232,26 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
     else:
         avail_diseases = sorted(df["disease_name"].dropna().unique().tolist())
     all_diseases = ["All Diseases"] + avail_diseases
-    
-    if "selected_disease" not in st.session_state or st.session_state.selected_disease not in all_diseases:
-        st.session_state.selected_disease = "All Diseases"
+
+    if "sb_disease" not in st.session_state or st.session_state["sb_disease"] not in all_diseases:
+        st.session_state["sb_disease"] = "All Diseases"
 
     sel_disease = st.sidebar.selectbox(
         "2. Specific Disease Target:",
         options=all_diseases,
-        index=all_diseases.index(st.session_state.selected_disease) if st.session_state.selected_disease in all_diseases else 0,
         key="sb_disease"
     )
-    st.session_state.selected_disease = sel_disease
 
     # ── 3. Geographic Zone Filter ───────────────────────────────────────
     all_zones = ["All Zones"] + sorted(df["zone"].dropna().unique().tolist())
-    if "selected_zone" not in st.session_state:
-        st.session_state.selected_zone = "All Zones"
+    if "sb_zone" not in st.session_state or st.session_state["sb_zone"] not in all_zones:
+        st.session_state["sb_zone"] = "All Zones"
 
     sel_zone = st.sidebar.selectbox(
         "3. Geographic Zone:",
         options=all_zones,
-        index=all_zones.index(st.session_state.selected_zone) if st.session_state.selected_zone in all_zones else 0,
         key="sb_zone"
     )
-    st.session_state.selected_zone = sel_zone
 
     # ── 4. Indian States Filter (Filtered by Zone) ─────────────────────
     if sel_zone != "All Zones":
@@ -306,75 +259,78 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
     else:
         avail_states = sorted(df["region_name"].dropna().unique().tolist())
 
-    if "selected_states" not in st.session_state:
-        st.session_state.selected_states = avail_states
+    if "sb_states" not in st.session_state:
+        st.session_state["sb_states"] = avail_states
     else:
-        current_valid = [s for s in st.session_state.selected_states if s in avail_states]
-        if not current_valid:
-            current_valid = avail_states
-        st.session_state.selected_states = current_valid
+        # Validate that selected states belong to available options in current zone
+        valid_states = [s for s in st.session_state["sb_states"] if s in avail_states]
+        st.session_state["sb_states"] = valid_states if valid_states else avail_states
 
     sel_states = st.sidebar.multiselect(
         "4. Indian States / UTs:",
         options=avail_states,
-        default=st.session_state.selected_states,
         key="sb_states"
     )
-    st.session_state.selected_states = sel_states if sel_states else avail_states
+    if not sel_states:
+        sel_states = avail_states
 
     # ── 5. Observation Timeline Slider ──────────────────────────────────
     min_yr = int(df["report_year"].min())
     max_yr = int(df["report_year"].max())
-    if "selected_year_range" not in st.session_state:
-        st.session_state.selected_year_range = (min_yr, max_yr)
+    if "sb_years" not in st.session_state:
+        st.session_state["sb_years"] = (min_yr, max_yr)
 
     sel_years = st.sidebar.slider(
         "5. Observation Timeline (Years):",
         min_value=min_yr,
         max_value=max_yr,
-        value=st.session_state.selected_year_range,
         key="sb_years"
     )
-    st.session_state.selected_year_range = sel_years
 
     # ── 6. Surveillance Authority / Source ──────────────────────────────
     sources = ["All Data Sources"] + sorted(df["data_source"].dropna().unique().tolist())
-    if "selected_source" not in st.session_state:
-        st.session_state.selected_source = "All Data Sources"
+    if "sb_source" not in st.session_state or st.session_state["sb_source"] not in sources:
+        st.session_state["sb_source"] = "All Data Sources"
 
     sel_source = st.sidebar.selectbox(
         "6. Surveillance Authority:",
         options=sources,
-        index=sources.index(st.session_state.selected_source) if st.session_state.selected_source in sources else 0,
         key="sb_source"
     )
-    st.session_state.selected_source = sel_source
 
     # ── 7. Reset Action ────────────────────────────────────────────────
     if st.sidebar.button("🔄 Reset All Filters", use_container_width=True, key="reset_all_btn"):
-        st.session_state.selected_disease = "All Diseases"
-        st.session_state.selected_category = "All Categories"
-        st.session_state.selected_zone = "All Zones"
-        st.session_state.selected_states = sorted(df["region_name"].dropna().unique().tolist())
-        st.session_state.selected_year_range = (min_yr, max_yr)
-        st.session_state.selected_source = "All Data Sources"
+        st.session_state["sb_category"] = "All Categories"
+        st.session_state["sb_disease"] = "All Diseases"
+        st.session_state["sb_zone"] = "All Zones"
+        st.session_state["sb_states"] = sorted(df["region_name"].dropna().unique().tolist())
+        st.session_state["sb_years"] = (min_yr, max_yr)
+        st.session_state["sb_source"] = "All Data Sources"
         st.rerun()
+
+    # Synchronize readable session state attributes for page headers
+    st.session_state.selected_category = sel_category
+    st.session_state.selected_disease = sel_disease
+    st.session_state.selected_zone = sel_zone
+    st.session_state.selected_states = sel_states
+    st.session_state.selected_year_range = sel_years
+    st.session_state.selected_source = sel_source
 
     # ── Filter Application ─────────────────────────────────────────────
     filtered = df.copy()
-    if st.session_state.selected_category != "All Categories":
-        filtered = filtered[filtered["disease_category"] == st.session_state.selected_category]
-    if st.session_state.selected_disease != "All Diseases":
-        filtered = filtered[filtered["disease_name"] == st.session_state.selected_disease]
-    if st.session_state.selected_zone != "All Zones":
-        filtered = filtered[filtered["zone"] == st.session_state.selected_zone]
-    if st.session_state.selected_source != "All Data Sources":
-        filtered = filtered[filtered["data_source"] == st.session_state.selected_source]
-        
+    if sel_category != "All Categories":
+        filtered = filtered[filtered["disease_category"] == sel_category]
+    if sel_disease != "All Diseases":
+        filtered = filtered[filtered["disease_name"] == sel_disease]
+    if sel_zone != "All Zones":
+        filtered = filtered[filtered["zone"] == sel_zone]
+    if sel_source != "All Data Sources":
+        filtered = filtered[filtered["data_source"] == sel_source]
+
     filtered = filtered[
-        (filtered["region_name"].isin(st.session_state.selected_states)) &
-        (filtered["report_year"] >= st.session_state.selected_year_range[0]) &
-        (filtered["report_year"] <= st.session_state.selected_year_range[1])
+        (filtered["region_name"].isin(sel_states)) &
+        (filtered["report_year"] >= sel_years[0]) &
+        (filtered["report_year"] <= sel_years[1])
     ]
 
     # ── Live Active Slice Metadata ─────────────────────────────────────
@@ -383,14 +339,14 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-top: 10px; font-size: 0.76rem; color: #475569;">
             <div style="font-weight: 700; color: #0f2b48; margin-bottom: 4px;">📊 Active Filter Slice:</div>
             <div>• Records: <b>{len(filtered):,}</b> / {len(df):,} ({len(filtered)/len(df)*100:.1f}%)</div>
-            <div>• States: <b>{len(st.session_state.selected_states)}</b> selected</div>
-            <div>• Timeline: <b>{st.session_state.selected_year_range[0]}–{st.session_state.selected_year_range[1]}</b></div>
+            <div>• States: <b>{len(sel_states)}</b> selected</div>
+            <div>• Timeline: <b>{sel_years[0]}–{sel_years[1]}</b></div>
             <div>• Caseload: <b>{int(filtered['cases_reported'].sum()):,}</b> cases</div>
         </div>
         """,
         unsafe_allow_html=True
     )
-    
+
     st.sidebar.markdown("---")
     st.sidebar.caption("Project P-01 | ABES MCA 2nd Year Data Analytics")
     st.sidebar.caption("Student: **Arg Jain** (2500320140031)")
