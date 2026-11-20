@@ -105,7 +105,7 @@ In accordance with academic integrity guidelines of ABES Engineering College, th
 | Faculty Project Mentor | Ms. Kalpana Dwivedi |
 | Institutional Body | ABES Engineering College, Ghaziabad (AKTU Code 032) |
 | Academic Year | 2026 – 2027 |
-| GitHub Repository | https://github.com/argjain/2500320140031-disease-trend-analysis |
+| GitHub Repository | https://github.com/Argjain/2500320140031-disease-trend-analysis. |
 | Live Cloud Application | https://2500320140031-dta.streamlit.app |
 | Submission Date | November 2026 |
 

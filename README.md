@@ -36,7 +36,7 @@ The application answers 10 core Operational Questions (OQ-01 through OQ-10) by p
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/argjain/2500320140031-disease-trend-analysis.git
+git clone https://github.com/Argjain/2500320140031-disease-trend-analysis..git
 cd 2500320140031-disease-trend-analysis
 ```
 

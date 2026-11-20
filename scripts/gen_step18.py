@@ -315,7 +315,7 @@ slides = [
         "SLIDE 11: Live Demonstration & Artifact Links",
         [
             "LIVE APPLICATION URL: https://2500320140031-dta.streamlit.app",
-            "GITHUB CODE REPOSITORY: https://github.com/argjain/2500320140031-disease-trend-analysis",
+            "GITHUB CODE REPOSITORY: https://github.com/Argjain/2500320140031-disease-trend-analysis.",
             "FULL PROJECT DOCUMENTATION: Complete 18-step deliverables available in `docs/` folder.",
             "DEMONSTRATION SCOPE: Resolving all 10 Operational Questions live in under 5 minutes.",
             "THANK YOU: Respected faculty and jury members. I am now open for viva voce questions.",

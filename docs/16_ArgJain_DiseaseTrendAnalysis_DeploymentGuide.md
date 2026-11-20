@@ -27,7 +27,7 @@ git commit -m "Release v1.0: Complete Disease Trend Analysis Platform - Arg Jain
 git branch -M main
 
 # 5. Add remote GitHub origin (replace with your personal GitHub username)
-git remote add origin https://github.com/argjain/2500320140031-disease-trend-analysis.git
+git remote add origin https://github.com/Argjain/2500320140031-disease-trend-analysis..git
 
 # 6. Push code to remote repository
 git push -u origin main

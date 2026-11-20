@@ -194,7 +194,7 @@ code_git = (
     "# 4. Set default branch to main\n"
     "git branch -M main\n\n"
     "# 5. Add remote GitHub origin (replace with your personal GitHub username)\n"
-    "git remote add origin https://github.com/argjain/2500320140031-disease-trend-analysis.git\n\n"
+    "git remote add origin https://github.com/Argjain/2500320140031-disease-trend-analysis..git\n\n"
     "# 6. Push code to remote repository\n"
     "git push -u origin main\n"
 )

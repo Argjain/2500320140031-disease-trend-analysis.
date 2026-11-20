@@ -105,7 +105,7 @@ def build_github_report():
         "Academic Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU College Code 032)\n"
         "Faculty Project Mentor: Ms. Kalpana Dwivedi | Target Release: November 2026\n"
-        "Repository Identifier: Disease-Trend-Analysis-Intelligence-Cockpit",
+        "Repository Identifier: 2500320140031-disease-trend-analysis.",
         title="🎓 Academic Attribution & Project Identity",
         border_color="0284C7",
         bg_color="F8FAFC"
@@ -114,7 +114,7 @@ def build_github_report():
     doc.add_heading("1. Repository Metadata & Direct Access Links", level=1)
     meta_p = doc.add_paragraph()
     meta_p.add_run("• Official Repository URL: ").bold = True
-    r_url = meta_p.add_run("https://github.com/argjain/Disease-Trend-Analysis-Intelligence-Cockpit\n")
+    r_url = meta_p.add_run("https://github.com/Argjain/2500320140031-disease-trend-analysis.\n")
     r_url.font.color.rgb = RGBColor(2, 132, 199)
     r_url.underline = True
     
@@ -125,7 +125,7 @@ def build_github_report():
     meta_p.add_run("Clean (0 uncommitted changes, 100% synchronized)\n")
     
     meta_p.add_run("• Clone Command: ").bold = True
-    meta_p.add_run("git clone https://github.com/argjain/Disease-Trend-Analysis-Intelligence-Cockpit.git\n")
+    meta_p.add_run("git clone https://github.com/Argjain/2500320140031-disease-trend-analysis..git\n")
     
     meta_p.add_run("• Local Execution Command: ").bold = True
     meta_p.add_run("python -m streamlit run app.py --server.port 8501\n")
