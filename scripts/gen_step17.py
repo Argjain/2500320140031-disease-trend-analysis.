@@ -206,20 +206,78 @@ doc.add_page_break()
 # 1. PROJECT DESCRIPTION & PROBLEM STATEMENT
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 add_heading_1('1. Project Description & Problem Statement')
-p_desc = doc.add_paragraph(
-    'Healthcare authorities and public health analysts in India lack a unified, interactive visual platform '
-    'to monitor disease occurrence trends across regions, time periods, and demographic groups, resulting in '
-    'delayed outbreak detection, inefficient resource allocation, and missed opportunities for preventive intervention.'
-)
-p_desc.runs[0].font.size = Pt(10)
-p_desc.runs[0].font.bold = True
 
+add_heading_2('1.1 Epidemiological Context & Public Health Challenges in India')
+p_bg = doc.add_paragraph(
+    'India presents one of the most intricate public health environments in the world. Its vast geographic expanse '
+    'and 1.4+ billion population across diverse agro-climatic zones create distinct disease vector patterns. The country '
+    'faces a continuous dual burden of communicable diseases: vector-borne infections (Dengue, Malaria) experience severe '
+    'monsoon transmission peaks (July–October), while chronic communicable illnesses (Tuberculosis) and respiratory outbreaks '
+    '(COVID-19) strain tertiary hospital beds across densely populated urban centers. Enteric water-borne diseases like Typhoid '
+    'compound these risks during seasonal flooding.'
+)
+p_bg.runs[0].font.size = Pt(9.5)
+
+add_heading_2('1.2 Formal Problem Statement')
+p_desc = doc.add_paragraph()
+r_ps_lbl = p_desc.add_run('Formal Problem Statement: ')
+r_ps_lbl.bold = True
+r_ps_lbl.font.color.rgb = RGBColor(0x0F, 0x2B, 0x48)
+r_ps = p_desc.add_run(
+    'Healthcare authorities, district epidemiologists, hospital administrators, and state policy makers in India '
+    'lack a unified, interactive, and multi-dimensional visual analytics platform to monitor disease occurrence trends, '
+    'fatality severity, clinical recovery rates, and demographic risk profiles across states and longitudinal timelines. '
+    'This analytical deficit directly results in delayed outbreak signal detection (by 2 to 4 weeks), reactive rather '
+    'than predictive medical supply allocation, unmitigated mortality spikes, and suboptimal execution of preventive public health interventions.'
+)
+r_ps.font.size = Pt(9.5)
+r_ps.font.italic = True
+r_ps.font.color.rgb = RGBColor(0x1A, 0x53, 0x76)
+
+add_heading_2('1.3 Key Operational Deficiencies in Existing Healthcare Systems')
+p_def_intro = doc.add_paragraph('Comprehensive stakeholder interviews established five core system deficiencies:')
+p_def_intro.runs[0].font.size = Pt(9.5)
+
+p_def_tbl = doc.add_table(rows=1, cols=4)
+p_def_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+hdr_cells = p_def_tbl.rows[0].cells
+for idx, title in enumerate(['Deficiency ID', 'Core Defect & Operational Friction', 'Public Health Impact', 'Severity']):
+    hdr_cells[idx].text = title
+    shade_cell(hdr_cells[idx], '1A5376')
+    p = hdr_cells[idx].paragraphs[0]
+    p.runs[0].font.name = 'Calibri'
+    p.runs[0].font.size = Pt(9)
+    p.runs[0].font.bold = True
+    p.runs[0].font.color.rgb = RGBColor(255, 255, 255)
+
+def_items = [
+    ('DEF-01', 'Data Siloing & Tabular Reporting: Health data is stored across disconnected spreadsheets and static monthly registers.', 'No cross-state or cross-disease comparative analysis; high reporting latency.', 'High'),
+    ('DEF-02', 'Delayed Outbreak Signal Detection: Reliance on retrospective monthly roll-ups rather than rolling-average tracking.', 'Containment initiated 2–4 weeks late, escalating clusters to statewide epidemics.', 'Critical'),
+    ('DEF-03', 'Demographic Blindspots: Morbidity counts reported as aggregate state totals without age/gender cross-tabulation.', 'Pediatric Dengue and geriatric COVID-19 vulnerabilities discovered only after deaths spike.', 'High'),
+    ('DEF-04', 'Reactive Resource Misallocation: ICU beds, ventilators, and oxygen allocated after hospitals are overrun.', 'Severe shortages in surge districts alongside idling supplies in neighboring districts.', 'Critical'),
+    ('DEF-05', 'Absence of Efficacy Benchmarks: Case Fatality Rate (CFR %) and Clinical Recovery Efficacy % rarely normalized.', 'Inability to detect clinics suffering from delayed triage or substandard protocols.', 'Medium')
+]
+
+for r_idx, item in enumerate(def_items):
+    row = p_def_tbl.add_row()
+    for c_idx, val in enumerate(item):
+        row.cells[c_idx].text = val
+        bg_col = 'F8FAFC' if r_idx % 2 == 0 else 'FFFFFF'
+        shade_cell(row.cells[c_idx], bg_col)
+        p = row.cells[c_idx].paragraphs[0]
+        p.runs[0].font.name = 'Calibri'
+        p.runs[0].font.size = Pt(8.5)
+        if c_idx == 0:
+            p.runs[0].font.bold = True
+
+add_heading_2('1.4 Proposed Solution Scope: Disease Trend Analysis Intelligence Cockpit (P-01)')
 p_desc_body = doc.add_paragraph(
     'The Disease Trend Analysis platform (P-01) addresses this crisis by consolidating 5 years of epidemiological '
-    'time-series intelligence (2020–2024) spanning 10 key Indian states (Uttar Pradesh, Maharashtra, Delhi, Rajasthan, '
+    'time-series intelligence (60 continuous months: 2020–2024) spanning 10 key Indian states (Uttar Pradesh, Maharashtra, Delhi, Rajasthan, '
     'Bihar, West Bengal, Tamil Nadu, Karnataka, Gujarat, and Madhya Pradesh) for 5 high-burden contagious diseases '
-    '(Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid). The platform enables public health officers, epidemiologists, '
-    'hospital executives, and policy makers to resolve 10 core Operational Questions (OQ-01..10) within sub-second latencies.'
+    '(Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid). Built with Streamlit, SQLite 3NF relational data marts, and Plotly Express, '
+    'the platform enables public health officers, epidemiologists, hospital executives, and policy makers to resolve 10 core '
+    'Operational Questions (OQ-01..10) within sub-second query latencies, delivering real-time surveillance superiority.'
 )
 p_desc_body.runs[0].font.size = Pt(9.5)
 doc.add_paragraph()

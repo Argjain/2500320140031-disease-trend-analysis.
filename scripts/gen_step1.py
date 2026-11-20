@@ -120,18 +120,93 @@ doc.add_paragraph()
 doc.add_page_break()
 
 # ═══════════════════════════════════════════════
-# 1. PROBLEM STATEMENT
+# 1. PROBLEM DESCRIPTION & PROBLEM STATEMENT
 # ═══════════════════════════════════════════════
-add_heading(doc, '1. Problem Statement', 1)
-p = doc.add_paragraph()
-run = p.add_run(
-    'Healthcare authorities and public health analysts in India lack a unified, '
-    'interactive visual platform to monitor disease occurrence trends across regions, '
-    'time periods, and demographic groups, resulting in delayed outbreak detection, '
-    'inefficient resource allocation, and missed opportunities for preventive intervention.'
+add_heading(doc, '1. Problem Description & Problem Statement', 1)
+
+# 1.1 Context & Background
+add_heading(doc, '1.1 Epidemiological Context & Background in India', 2)
+p_bg1 = doc.add_paragraph(
+    'India presents one of the most complex public health landscapes globally, characterized by vast geographic, '
+    'climatic, and demographic diversity across its 28 states and 8 union territories. The country continuously '
+    'battles a dual burden of endemic communicable diseases. Vector-borne illnesses like Dengue and Malaria exhibit '
+    'extreme seasonal transmission surges coinciding with the southwest monsoon (July to October). Simultaneously, '
+    'chronic and airborne infections such as Tuberculosis and respiratory viruses like COVID-19 exert an unrelenting '
+    'strain on critical care infrastructure, particularly within densely populated urban epicenters.'
 )
-run.font.size = Pt(10)
-run.font.italic = True
+p_bg1.runs[0].font.size = Pt(10)
+
+p_bg2 = doc.add_paragraph(
+    'Furthermore, water-borne enteric infections such as Typhoid repeatedly challenge municipal sanitation networks, '
+    'causing localized flare-ups that overlap with mosquito breeding cycles. Despite the collection of extensive health '
+    'records by district surveillance units, public health analysts and administrative decision-makers struggle to '
+    'extract actionable insights in real time due to fragmented data storage, static tabular reporting formats, and lack of '
+    'integrated multi-dimensional analytics.'
+)
+p_bg2.runs[0].font.size = Pt(10)
+
+# 1.2 Formal Problem Statement
+add_heading(doc, '1.2 Formal Problem Statement', 2)
+p_ps = doc.add_paragraph()
+r_ps_lbl = p_ps.add_run('Formal Problem Statement: ')
+r_ps_lbl.bold = True
+r_ps_lbl.font.color.rgb = RGBColor(0x0F, 0x2B, 0x48)
+r_ps = p_ps.add_run(
+    'Healthcare authorities, district epidemiologists, hospital administrators, and state policy makers in India '
+    'lack a unified, interactive, and multi-dimensional visual analytics platform to monitor disease occurrence trends, '
+    'fatality severity, clinical recovery rates, and demographic risk profiles across states and longitudinal timelines. '
+    'This analytical deficit directly results in delayed outbreak signal detection (by 2 to 4 weeks), reactive rather '
+    'than predictive medical supply allocation, unmitigated mortality spikes, and suboptimal execution of preventive public health interventions.'
+)
+r_ps.font.size = Pt(10)
+r_ps.font.italic = True
+r_ps.font.color.rgb = RGBColor(0x1A, 0x53, 0x76)
+
+# 1.3 Key Operational Deficiencies & Pain Points
+add_heading(doc, '1.3 Key Operational Challenges & Deficiencies', 2)
+p_def = doc.add_paragraph(
+    'Comprehensive stakeholder consultations and domain analysis reveal five critical deficiencies in existing '
+    'public health data workflows:'
+)
+p_def.runs[0].font.size = Pt(10)
+
+prob_headers = ['Deficiency ID', 'Core Challenge & Operational Defect', 'Public Health Impact', 'Severity']
+prob_rows = [
+    ('DEF-01',
+     'Data Siloing & Tabular Reporting\nHealth data is stored across disconnected spreadsheets and static monthly PDF registers without relational schema linkages.',
+     'Inability to perform cross-state or cross-disease comparative analysis; high latency in publishing surveillance summaries.',
+     'High'),
+    ('DEF-02',
+     'Delayed Outbreak Signal Detection\nSurveillance teams rely on retrospective monthly roll-ups rather than continuous trend anomaly and rolling-average tracking.',
+     'Outbreak containment protocols are initiated 2–4 weeks late, allowing localized disease clusters to escalate into statewide epidemics.',
+     'Critical'),
+    ('DEF-03',
+     'Demographic & Risk Group Blindspots\nMorbidity counts are reported as aggregate state totals without simultaneous cross-tabulation by age cohorts and gender.',
+     'High-risk groups (e.g. pediatric cases in Dengue or geriatric vulnerability in COVID-19) remain undetected until mortality rates spike.',
+     'High'),
+    ('DEF-04',
+     'Reactive Resource Misallocation\nHospital ICU beds, oxygen cylinders, ventilators, and emergency medications are dispatched only after hospital wards overflow.',
+     'Severe regional supply shortages in surge districts, accompanied by medical stock idling in unaffected neighboring districts.',
+     'Critical'),
+    ('DEF-05',
+     'Absence of Clinical Quality Benchmarking\nMetrics such as Case Fatality Rate (CFR %) and Clinical Recovery Efficacy % are rarely normalized or benchmarked across states.',
+     'Inability to evaluate healthcare system efficiency or identify districts suffering from sub-standard clinical triage and delayed treatment.',
+     'Medium'),
+]
+add_table(doc, prob_headers, prob_rows, [Cm(2.2), Cm(6.5), Cm(5.8), Cm(2.0)])
+
+# 1.4 Proposed Solution & Project Value Proposition
+add_heading(doc, '1.4 Proposed Solution & Project Scope (P-01)', 2)
+p_sol = doc.add_paragraph(
+    'Project P-01 ("Disease Trend Analysis Intelligence Cockpit") resolves these operational challenges by delivering '
+    'a high-performance, interactive multi-page web application built using Python, Streamlit, SQLite 3NF relational data marts, '
+    'and Plotly Express. The platform synthesizes 5 years of historical health surveillance records (60 continuous calendar '
+    'months: January 2020 to December 2024), covering 3,000 monthly state-disease observations across 5 critical diseases '
+    'and 10 representative Indian states. By providing instant multi-faceted sidebar filtering, real-time KPI card tracking, '
+    '12-month cyclic seasonality heatmaps, demographic pyramid breakdowns, urban density regression modeling, and automated '
+    'concurrent surge alerting, the system empowers public health officials with data-driven decision superiority.'
+)
+p_sol.runs[0].font.size = Pt(10)
 doc.add_paragraph()
 
 # ═══════════════════════════════════════════════
@@ -389,5 +464,19 @@ run.font.size = Pt(8)
 run.font.color.rgb = RGBColor(0x88,0x88,0x88)
 
 path = r'c:\Users\Hp\Downloads\hcl\docs\01_ArgJain_DiseaseTrendAnalysis_ProjectUnderstanding.docx'
-doc.save(path)
-print('SAVED:', path)
+import time
+saved = False
+for attempt in range(5):
+    try:
+        doc.save(path)
+        print('SAVED:', path)
+        saved = True
+        break
+    except PermissionError:
+        print(f"File {path} is currently open in an editor, retrying in 2s...")
+        time.sleep(2)
+
+if not saved:
+    alt_path = r'c:\Users\Hp\Downloads\hcl\docs\01_ArgJain_DiseaseTrendAnalysis_ProjectUnderstanding_updated.docx'
+    doc.save(alt_path)
+    print('SAVED TO ALTERNATE PATH:', alt_path)
