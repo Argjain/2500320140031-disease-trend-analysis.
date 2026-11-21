@@ -54,13 +54,13 @@ Concise architectural justifications for formal academic evaluation:
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Engineering Lead / Student | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | Actionable Build Tasks | 14 Engineering Tasks (BUILD-01 to BUILD-14) |
 | Target Environment | Python 3.12 / Streamlit 1.35 / SQLite / Streamlit Cloud |

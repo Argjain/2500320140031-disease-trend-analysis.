@@ -120,13 +120,13 @@ During architectural peer review, five potential design pitfalls were evaluated.
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Student Architect | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | Schema Model | Extended Star / Snowstorm Relational Model (3NF) |
 | Diagram Assets | Mermaid DDL + Embedded High-Resolution PNG Graphic |

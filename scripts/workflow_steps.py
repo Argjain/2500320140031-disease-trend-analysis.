@@ -6,10 +6,10 @@
 
 PROJECT_CTX = """
 PROJECT CONTEXT (carry forward to ALL steps):
-- Project ID: P-01 | Title: Disease Trend Analysis
+- Project ID: P100 | Title: Disease Trend Analysis
 - Domain: Healthcare Data Analytics
 - Student: Arg Jain | Roll: 2500320140031 | MCA 2nd Yr DA, ABES
-- Mentor: Ms. Kalpana Dwivedi
+- Mentor: Mr. Dinesh
 - Stack: Python 3.12, Streamlit, SQLite, Plotly, pytest, Tailwind CDN
 - Diseases: Dengue, Malaria, Tuberculosis (TB), COVID-19, Typhoid (5)
 - Regions (10 Indian states): Uttar Pradesh, Maharashtra, Delhi,
@@ -20,7 +20,7 @@ PROJECT CONTEXT (carry forward to ALL steps):
 - Gender: Male, Female, Other
 - Stakeholders: SH-01 Public Health Officer (H), SH-02 Hospital Admin (H),
   SH-03 Policy Maker/Ministry (H), SH-04 Epidemiologist/Researcher (M),
-  SH-05 Arg Jain Student Developer (M), SH-06 Ms. Kalpana Dwivedi Mentor (L)
+  SH-05 Arg Jain Student Developer (M), SH-06 Mr. Dinesh Mentor (L)
 - OQs (OQ-01..OQ-10):
   OQ-01: Which diseases have shown highest increase in cases over 5 years?
   OQ-02: Which regions are most affected by each disease?
@@ -134,7 +134,7 @@ Write a Python script using python-docx (v1.2.0) to create a professional Word d
 Save it to: c:\\Users\\Hp\\Downloads\\hcl\\docs\\02_ArgJain_DiseaseTrendAnalysis_HMWStatements.docx
 
 The document must contain:
-1. Cover block: title 'DISEASE TREND ANALYSIS', subtitle 'STEP 2 – How Might We (HMW) Statements', all meta fields (Project ID P-01, Student Arg Jain, Roll 2500320140031, Course MCA 2nd Year Data Analytics, Institute ABES Engineering College, Mentor Ms. Kalpana Dwivedi, Date November 2026)
+1. Cover block: title 'DISEASE TREND ANALYSIS', subtitle 'STEP 2 – How Might We (HMW) Statements', all meta fields (Project ID P100, Student Arg Jain, Roll 2500320140031, Course MCA 2nd Year Data Analytics, Institute ABES Engineering College, Mentor Mr. Dinesh, Date November 2026)
 
 2. Section 1: Stakeholder Pain Points – table with columns: SH ID | Stakeholder | Pain Point 1 | Pain Point 2 | Pain Point 3
    Rows for SH-01 through SH-04 (each with 2-3 specific, realistic pain points for disease trend monitoring)
@@ -211,7 +211,7 @@ The document must contain:
 COVER BLOCK:
 - Title: 'DISEASE TREND ANALYSIS'  
 - Subtitle: 'STEP 3 – Needs Analysis & Business Requirements'
-- Meta table: Project ID P-01, Student Arg Jain, Roll 2500320140031, Course MCA 2nd Year Data Analytics, Institute ABES Engineering College, Mentor Ms. Kalpana Dwivedi, Document Version v1.0, Date November 2026
+- Meta table: Project ID P100, Student Arg Jain, Roll 2500320140031, Course MCA 2nd Year Data Analytics, Institute ABES Engineering College, Mentor Mr. Dinesh, Document Version v1.0, Date November 2026
 
 SECTION 1: Introduction (2-3 sentences explaining needs analysis purpose)
 
@@ -413,7 +413,7 @@ Save to: c:\\Users\\Hp\\Downloads\\hcl\\docs\\05_ArgJain_DiseaseTrendAnalysis_BR
 
 The BRD must contain these 13 sections with professional content:
 
-COVER BLOCK: Title 'DISEASE TREND ANALYSIS', Subtitle 'STEP 5 – Business Requirements Document (BRD)', meta table (Project ID P-01, Version v1.0, Author Arg Jain, Roll 2500320140031, Date November 2026, Mentor Ms. Kalpana Dwivedi, Status Draft, Institute ABES Engineering College Ghaziabad)
+COVER BLOCK: Title 'DISEASE TREND ANALYSIS', Subtitle 'STEP 5 – Business Requirements Document (BRD)', meta table (Project ID P100, Version v1.0, Author Arg Jain, Roll 2500320140031, Date November 2026, Mentor Mr. Dinesh, Status Draft, Institute ABES Engineering College Ghaziabad)
 
 1. DOCUMENT CONTROL
    - Version history table: Version | Date | Author | Changes | Approved by
@@ -480,7 +480,7 @@ COVER BLOCK: Title 'DISEASE TREND ANALYSIS', Subtitle 'STEP 5 – Business Requi
 
 13. SIGN-OFF TABLE
     Columns: Role | Name | Signature | Date
-    Rows: Student Developer (Arg Jain), Mentor (Ms. Kalpana Dwivedi), HOD (blank)
+    Rows: Student Developer (Arg Jain), Mentor (Mr. Dinesh), HOD (blank)
 
 STYLING (professional, consistent with Step 1):
 - Same color scheme: #1A5376 headings, #EBF5FB/#FFFFFF alternating rows
@@ -1508,7 +1508,7 @@ Table: Question | Short Answer (2-3 lines)
 
 BUILD_PLAN.md must be a clean Markdown file with:
 # Disease Trend Analysis – Build Plan
-## Project: P-01 | Student: Arg Jain | Roll: 2500320140031
+## Project: P100 | Student: Arg Jain | Roll: 2500320140031
 Then all 14 BUILD tasks in Markdown format with checkboxes:
 - [ ] BUILD-01: ...
 etc.
@@ -1822,7 +1822,7 @@ SLIDE NUMBER and TITLE
 CONTENT (max 6 bullet points per slide, what appears on screen)
 SPEAKER NOTES (what to say aloud, ~30 seconds worth)
 
-Slide 1 - Title Slide: Disease Trend Analysis | Arg Jain | Roll 2500320140031 | Ms. Kalpana Dwivedi | ABES Engineering College | November 2026 | "P-01 Disease Trend Analysis"
+Slide 1 - Title Slide: Disease Trend Analysis | Arg Jain | Roll 2500320140031 | Mr. Dinesh | ABES Engineering College | November 2026 | "P100 Disease Trend Analysis"
 Slide 2 - Problem + Top 2 HMW: Problem statement 1 line + HMW-01 and HMW-03 (top priority ones)
 Slide 3 - Stakeholders (top 3): SH-01, SH-02, SH-03 with influence and key decision
 Slide 4 - Traceability: 4 RTM rows showing HMW→BR→US→TC→UI chain

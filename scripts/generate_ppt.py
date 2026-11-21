@@ -164,7 +164,7 @@ p2.font.color.rgb = RGBColor(186, 230, 253)
 p2.space_before = Pt(10)
 
 p3 = tf.add_paragraph()
-p3.text = "Project ID: P-01 | Healthcare Data Analytics Specialization | Academic Session: 2025–2026\nSubmitted in partial fulfillment of the requirements for Master of Computer Applications (MCA)"
+p3.text = "Project ID: P100 | Healthcare Data Analytics Specialization | Academic Session: 2025–2026\nSubmitted in partial fulfillment of the requirements for Master of Computer Applications (MCA)"
 p3.font.name = "Segoe UI"
 p3.font.size = Pt(11.5)
 p3.font.color.rgb = RGBColor(224, 242, 254)
@@ -197,7 +197,7 @@ p_dept.font.color.rgb = SLATE_DARK
 p_dept.space_before = Pt(4)
 
 p_ment = ctf1.add_paragraph()
-p_ment.text = "Faculty Project Mentor: Ms. Kalpana Dwivedi | Department of Master of Computer Applications"
+p_ment.text = "Faculty Project Mentor: Mr. Dinesh | Department of Master of Computer Applications"
 p_ment.font.name = "Segoe UI"
 p_ment.font.size = Pt(12)
 p_ment.font.bold = True
@@ -205,9 +205,9 @@ p_ment.font.color.rgb = TEAL
 p_ment.space_before = Pt(4)
 
 slide1.notes_slide.notes_text_frame.text = (
-    "Good morning respected external examiners and faculty mentor Ms. Kalpana Dwivedi. My name is Arg Jain, "
+    "Good morning respected external examiners and faculty mentor Mr. Dinesh. My name is Arg Jain, "
     "Roll Number 2500320140031, from MCA 2nd Year Data Analytics at ABES Engineering College. "
-    "Today, I present Project P-01: 'Disease Trend Analysis Intelligence Cockpit', an end-to-end "
+    "Today, I present Project P100: 'Disease Trend Analysis Intelligence Cockpit', an end-to-end "
     "healthcare analytics platform developed across 18 formal engineering steps."
 )
 
@@ -850,7 +850,7 @@ p_c.font.color.rgb = SLATE_DARK
 p_c.space_before = Pt(6)
 
 p_m = atf.add_paragraph()
-p_m.text = "Faculty Project Mentor: Ms. Kalpana Dwivedi\nDepartment: Department of Master of Computer Applications\nProject Identifier: Project P-01 | Healthcare Data Analytics"
+p_m.text = "Faculty Project Mentor: Mr. Dinesh\nDepartment: Department of Master of Computer Applications\nProject Identifier: Project P100 | Healthcare Data Analytics"
 p_m.font.name = "Segoe UI"
 p_m.font.size = Pt(10.5)
 p_m.font.color.rgb = NAVY
@@ -858,7 +858,7 @@ p_m.font.bold = True
 p_m.space_before = Pt(10)
 
 p_thanks = atf.add_paragraph()
-p_thanks.text = "Acknowledgments: Sincere gratitude to faculty mentor Ms. Kalpana Dwivedi, the Department of MCA, and the Examination Committee of ABES Engineering College for academic guidance, technical mentorship, and evaluation."
+p_thanks.text = "Acknowledgments: Sincere gratitude to faculty mentor Mr. Dinesh, the Department of MCA, and the Examination Committee of ABES Engineering College for academic guidance, technical mentorship, and evaluation."
 p_thanks.font.name = "Segoe UI"
 p_thanks.font.size = Pt(10)
 p_thanks.font.color.rgb = SLATE_MUTED
@@ -866,8 +866,8 @@ p_thanks.font.italic = True
 p_thanks.space_before = Pt(12)
 
 slide14.notes_slide.notes_text_frame.text = (
-    "In conclusion, Project P-01 successfully addresses fragmented public health reporting through an end-to-end "
-    "data analytics platform. I express my sincere gratitude to my mentor Ms. Kalpana Dwivedi and the examination "
+    "In conclusion, Project P100 successfully addresses fragmented public health reporting through an end-to-end "
+    "data analytics platform. I express my sincere gratitude to my mentor Mr. Dinesh and the examination "
     "board for their continuous guidance. Thank you, and I am now ready for your questions."
 )
 

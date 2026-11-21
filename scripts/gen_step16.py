@@ -114,12 +114,12 @@ run_sub.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
 doc.add_paragraph()
 
 meta_data = [
-    ('Project ID & Title', 'P-01 | Disease Trend Analysis'),
+    ('Project ID & Title', 'P100 | Disease Trend Analysis'),
     ('Domain', 'Healthcare Data Analytics'),
     ('Release Engineer / Student', 'Arg Jain (Roll No. 2500320140031)'),
     ('Academic Program', 'MCA 2nd Year (Data Analytics Specialization)'),
     ('Institution', 'ABES Engineering College, Ghaziabad'),
-    ('Faculty Mentor', 'Ms. Kalpana Dwivedi'),
+    ('Faculty Mentor', 'Mr. Dinesh'),
     ('Document Version', 'v1.0'),
     ('Deployment Platform', 'Streamlit Community Cloud (Public HTTPS)'),
     ('Repository Host', 'GitHub (git version 2.x)'),
@@ -190,7 +190,7 @@ code_git = (
     "# 2. Stage all project files, code, tests, docs, and database\n"
     "git add .\n\n"
     "# 3. Create initial formal commit\n"
-    "git commit -m \"Release v1.0: Complete Disease Trend Analysis Platform - Arg Jain P-01\"\n\n"
+    "git commit -m \"Release v1.0: Complete Disease Trend Analysis Platform - Arg Jain P100\"\n\n"
     "# 4. Set default branch to main\n"
     "git branch -M main\n\n"
     "# 5. Add remote GitHub origin (replace with your personal GitHub username)\n"

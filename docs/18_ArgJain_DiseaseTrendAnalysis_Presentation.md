@@ -17,15 +17,15 @@ The 11-slide presentation is engineered for strict adherence to a 5-minute acade
 
 ON-SCREEN SLIDE CONTENT (Max 6 Lines):
 
-* PROJECT TITLE: Disease Trend Analysis (Project ID: P-01)
+* PROJECT TITLE: Disease Trend Analysis (Project ID: P100)
 * DOMAIN: Healthcare Data Analytics / Public Health Surveillance
 * CANDIDATE: Arg Jain | University Roll No. 2500320140031
 * ACADEMIC PROGRAM: MCA 2nd Year (Data Analytics Specialization)
 * INSTITUTION: ABES Engineering College, Ghaziabad (AKTU Code 032)
-* FACULTY MENTOR: Ms. Kalpana Dwivedi | Date: November 2026
+* FACULTY MENTOR: Mr. Dinesh | Date: November 2026
 VERBATIM SPEAKER SCRIPT (~30 Seconds):
 
-"Good morning, respected external examiner and faculty mentor Ms. Kalpana Dwivedi. My name is Arg Jain, Roll No. 2500320140031. Today, I am proud to present Project P-01: 'Disease Trend Analysis', an interactive public health surveillance intelligence platform developed as part of my MCA 2nd Year Data Analytics curriculum at ABES Engineering College."
+"Good morning, respected external examiner and faculty mentor Mr. Dinesh. My name is Arg Jain, Roll No. 2500320140031. Today, I am proud to present Project P100: 'Disease Trend Analysis', an interactive public health surveillance intelligence platform developed as part of my MCA 2nd Year Data Analytics curriculum at ABES Engineering College."
 
 
 ### SLIDE 2: Business Problem & Top 2 HMW Statements
@@ -176,13 +176,13 @@ VERBATIM SPEAKER SCRIPT (~30 Seconds):
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Presenter / Student | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Project Mentor | Ms. Kalpana Dwivedi |
+| Faculty Project Mentor | Mr. Dinesh |
 | Deck Structure | 11 Formal Slides (Conforming to ABES PPT Template) |
 | Total Presentation Time | 5 Minutes (30 Seconds Allocation per Slide) |
 | Release Date | November 2026 |
@@ -193,7 +193,7 @@ VERBATIM SPEAKER SCRIPT (~30 Seconds):
 
 | Slide # | Slide Title | Target Time Budget | Elapsed Time | Core Focus of Spoken Remarks |
 | --- | --- | --- | --- | --- |
-| Slide 1 | Title & Project Attribution | 0:20 min | 0:20 | Greet evaluators, introduce project ID P-01, student credentials, and faculty mentor. |
+| Slide 1 | Title & Project Attribution | 0:20 min | 0:20 | Greet evaluators, introduce project ID P100, student credentials, and faculty mentor. |
 | Slide 2 | Problem Statement & Top 2 HMWs | 0:30 min | 0:50 | State public health surveillance latency problem and introduce HMW-01 and HMW-03. |
 | Slide 3 | Key Stakeholders & Influence | 0:25 min | 1:15 | Highlight Public Health Officer, Hospital Admin, and Policy Maker decision rights. |
 | Slide 4 | Requirements Traceability (RTM) | 0:30 min | 1:45 | Demonstrate seamless end-to-end trace from HMW to BR, User Story, Code, and Test. |

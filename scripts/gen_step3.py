@@ -118,14 +118,14 @@ run_sub.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
 doc.add_paragraph()
 
 meta_info = [
-    ('Project ID', 'P-01'),
+    ('Project ID', 'P100'),
     ('Project Title', 'Disease Trend Analysis'),
     ('Domain', 'Healthcare Data Analytics'),
     ('Student Name', 'Arg Jain'),
     ('Roll Number', '2500320140031'),
     ('Academic Program', 'MCA 2nd Year (Data Analytics Specialization)'),
     ('Institution', 'ABES Engineering College, Ghaziabad'),
-    ('Faculty Mentor', 'Ms. Kalpana Dwivedi'),
+    ('Faculty Mentor', 'Mr. Dinesh'),
     ('Document Version', 'v1.0'),
     ('Date', 'November 2026'),
 ]

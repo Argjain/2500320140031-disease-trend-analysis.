@@ -39,9 +39,9 @@ def fix_sources(cells_list):
 md("""
     # 🏥 EDA Lesson Notebook — Disease Trend Analysis Intelligence Cockpit
     
-    **Project ID:** P-01 | **Student:** Arg Jain (Roll No. 2500320140031)  
+    **Project ID:** P100 | **Student:** Arg Jain (Roll No. 2500320140031)  
     **Course:** MCA 2nd Year — Data Analytics | **Institute:** ABES Engineering College, Ghaziabad  
-    **Mentor:** Ms. Kalpana Dwivedi | **Date:** November 2026
+    **Mentor:** Mr. Dinesh | **Date:** November 2026
     
     ---
     
@@ -1590,8 +1590,8 @@ md("""
     
     **Student:** Arg Jain (Roll No. 2500320140031)  
     **Course:** MCA 2nd Year — Data Analytics | ABES Engineering College  
-    **Mentor:** Ms. Kalpana Dwivedi  
-    **Project:** P-01 Disease Trend Analysis Intelligence Cockpit
+    **Mentor:** Mr. Dinesh  
+    **Project:** P100 Disease Trend Analysis Intelligence Cockpit
 """)
 
 # ============================================================

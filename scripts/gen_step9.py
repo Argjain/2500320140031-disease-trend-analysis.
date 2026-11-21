@@ -141,7 +141,7 @@ draw.line([(380, 810), (950, 810), (950, 530), (990, 530)], fill=C_LINE, width=3
 draw.text((700, 790), "1 : N (classifies)", fill=C_LINE)
 
 # Footer note on image
-draw.text((img_w // 2, img_h - 30), "Generated for ABES MCA Data Analytics Project P-01 | Arg Jain (2500320140031)", fill='#64748B', anchor='mm')
+draw.text((img_w // 2, img_h - 30), "Generated for ABES MCA Data Analytics Project P100 | Arg Jain (2500320140031)", fill='#64748B', anchor='mm')
 
 png_path = r'c:\Users\Hp\Downloads\hcl\docs\09_ER_Diagram.png'
 img.save(png_path, dpi=(150, 150))
@@ -256,12 +256,12 @@ run_sub.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
 doc.add_paragraph()
 
 meta_data = [
-    ('Project ID & Title', 'P-01 | Disease Trend Analysis'),
+    ('Project ID & Title', 'P100 | Disease Trend Analysis'),
     ('Domain', 'Healthcare Data Analytics'),
     ('Student Architect', 'Arg Jain (Roll No. 2500320140031)'),
     ('Academic Program', 'MCA 2nd Year (Data Analytics Specialization)'),
     ('Institution', 'ABES Engineering College, Ghaziabad'),
-    ('Faculty Mentor', 'Ms. Kalpana Dwivedi'),
+    ('Faculty Mentor', 'Mr. Dinesh'),
     ('Document Version', 'v1.0'),
     ('Schema Model', 'Extended Star / Snowstorm Relational Model (3NF)'),
     ('Diagram Assets', 'Mermaid DDL + Embedded High-Resolution PNG Graphic'),

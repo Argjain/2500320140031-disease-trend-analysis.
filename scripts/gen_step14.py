@@ -14,9 +14,9 @@ os.makedirs(r'c:\Users\Hp\Downloads\hcl\docs', exist_ok=True)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 build_plan_md = """# Disease Trend Analysis — Master Engineering Build Plan (BUILD_PLAN.md)
 
-**Project:** P-01 | Disease Trend Analysis | **Domain:** Healthcare Data Analytics  
+**Project:** P100 | Disease Trend Analysis | **Domain:** Healthcare Data Analytics  
 **Author:** Arg Jain (Roll No. 2500320140031) | MCA 2nd Year DA, ABES Engineering College  
-**Mentor:** Ms. Kalpana Dwivedi | **Target Release:** December 2026  
+**Mentor:** Mr. Dinesh | **Target Release:** December 2026  
 
 ---
 
@@ -315,12 +315,12 @@ run_sub.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
 doc.add_paragraph()
 
 meta_data = [
-    ('Project ID & Title', 'P-01 | Disease Trend Analysis'),
+    ('Project ID & Title', 'P100 | Disease Trend Analysis'),
     ('Domain', 'Healthcare Data Analytics'),
     ('Engineering Lead / Student', 'Arg Jain (Roll No. 2500320140031)'),
     ('Academic Program', 'MCA 2nd Year (Data Analytics Specialization)'),
     ('Institution', 'ABES Engineering College, Ghaziabad'),
-    ('Faculty Mentor', 'Ms. Kalpana Dwivedi'),
+    ('Faculty Mentor', 'Mr. Dinesh'),
     ('Document Version', 'v1.0'),
     ('Actionable Build Tasks', '14 Engineering Tasks (BUILD-01 to BUILD-14)'),
     ('Target Environment', 'Python 3.12 / Streamlit 1.35 / SQLite / Streamlit Cloud'),

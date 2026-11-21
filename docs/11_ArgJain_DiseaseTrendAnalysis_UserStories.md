@@ -33,13 +33,13 @@ The 17 user stories are scheduled across an 8-day engineering sprint roadmap:
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Product Owner / Student | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | Epics Total | 5 Epics (Data, Dashboard, Trends, Demographics, Quality) |
 | User Stories Count | 17 Granular Stories (All <= 0.5 Day Velocity) |

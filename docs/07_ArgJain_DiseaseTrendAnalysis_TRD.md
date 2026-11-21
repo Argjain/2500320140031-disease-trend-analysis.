@@ -182,13 +182,13 @@ Identified technical risks and pre-engineered architectural mitigations:
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Student Architect | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 (Baseline Architecture) |
 | Technical Stack | Python 3.12 / Streamlit 1.35 / SQLite / Plotly 5.22 / pytest 8.2 |
 | Deployment Target | Streamlit Community Cloud (Free Tier) |

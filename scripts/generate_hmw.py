@@ -1,6 +1,6 @@
 """
 STEP 2 – How Might We (HMW) Statements Document Generator
-Project: Disease Trend Analysis | P-01
+Project: Disease Trend Analysis | P100
 Student: Arg Jain | Roll: 2500320140031
 """
 
@@ -183,12 +183,12 @@ def build_document():
 
     # meta table (2 col)
     meta = [
-        ("Project ID",    "P-01"),
+        ("Project ID",    "P100"),
         ("Student",       "Arg Jain"),
         ("Roll Number",   "2500320140031"),
         ("Course",        "MCA 2nd Year – Data Analytics"),
         ("Institute",     "ABES Engineering College"),
-        ("Mentor",        "Ms. Kalpana Dwivedi"),
+        ("Mentor",        "Mr. Dinesh"),
         ("Date",          "November 2026"),
     ]
     mt = doc.add_table(rows=len(meta), cols=2)

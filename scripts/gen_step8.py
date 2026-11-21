@@ -78,10 +78,10 @@ t_cell.alignment = align_center
 ws_over.row_dimensions[1].height = 35
 
 overview_meta = [
-    ('Project ID & Title', 'P-01 | Disease Trend Analysis'),
+    ('Project ID & Title', 'P100 | Disease Trend Analysis'),
     ('Domain', 'Healthcare Data Analytics / Public Health Surveillance'),
     ('Architect', 'Arg Jain (Roll No. 2500320140031), MCA 2nd Yr DA, ABES'),
-    ('Faculty Mentor', 'Ms. Kalpana Dwivedi'),
+    ('Faculty Mentor', 'Mr. Dinesh'),
     ('Database Engine', 'SQLite 3 (Serverless Relational Engine with Foreign Key Support)'),
     ('Normalization Standard', 'Third Normal Form (3NF) for Base Tables + Denormalized Analytical View'),
     ('Total Entity Tables', '5 Base Tables (3 Masters + 1 Main Fact + 1 Demographic Fact)'),

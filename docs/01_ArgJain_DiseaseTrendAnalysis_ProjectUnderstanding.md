@@ -27,8 +27,8 @@ Comprehensive stakeholder consultations and domain analysis reveal five critical
 | **DEF-04** | **Reactive Resource Misallocation**<br>Hospital ICU beds, oxygen cylinders, ventilators, and emergency medications are dispatched only after hospital wards overflow. | Severe regional supply shortages in surge districts, accompanied by medical stock idling in unaffected neighboring districts. | Critical |
 | **DEF-05** | **Absence of Clinical Quality Benchmarking**<br>Metrics such as Case Fatality Rate (CFR %) and Clinical Recovery Efficacy % are rarely normalized or benchmarked across states. | Inability to evaluate healthcare system efficiency or identify districts suffering from sub-standard clinical triage and delayed treatment. | Medium |
 
-### 1.4 Proposed Solution & Project Scope (P-01)
-Project P-01 ("Disease Trend Analysis Intelligence Cockpit") resolves these operational challenges by delivering a high-performance, interactive multi-page web application built using Python, Streamlit, SQLite 3NF relational data marts, and Plotly Express. The platform synthesizes 5 years of historical health surveillance records (60 continuous calendar months: January 2020 to December 2024), covering 3,000 monthly state-disease observations across 5 critical diseases and 10 representative Indian states. By providing instant multi-faceted sidebar filtering, real-time KPI card tracking, 12-month cyclic seasonality heatmaps, demographic pyramid breakdowns, urban density regression modeling, and automated concurrent surge alerting, the system empowers public health officials with data-driven decision superiority.
+### 1.4 Proposed Solution & Project Scope (P100)
+Project P100 ("Disease Trend Analysis Intelligence Cockpit") resolves these operational challenges by delivering a high-performance, interactive multi-page web application built using Python, Streamlit, SQLite 3NF relational data marts, and Plotly Express. The platform synthesizes 5 years of historical health surveillance records (60 continuous calendar months: January 2020 to December 2024), covering 3,000 monthly state-disease observations across 5 critical diseases and 10 representative Indian states. By providing instant multi-faceted sidebar filtering, real-time KPI card tracking, 12-month cyclic seasonality heatmaps, demographic pyramid breakdowns, urban density regression modeling, and automated concurrent surge alerting, the system empowers public health officials with data-driven decision superiority.
 
 
 ## 2. Intended Audience / Users
@@ -94,7 +94,7 @@ File: 01_ArgJain_DiseaseTrendAnalysis_ProjectUnderstanding.docx  |  v1.0  |  Nov
 
 #### Table 1
 
-| Project ID | P-01 |
+| Project ID | P100 |
 | --- | --- |
 | Project Title | Disease Trend Analysis |
 | Domain | Healthcare Data Analytics |
@@ -102,7 +102,7 @@ File: 01_ArgJain_DiseaseTrendAnalysis_ProjectUnderstanding.docx  |  v1.0  |  Nov
 | Roll Number | 2500320140031 |
 | Course | MCA 2nd Year — Data Analytics |
 | Institute | ABES Engineering College, Ghaziabad |
-| Mentor | Ms. Kalpana Dwivedi |
+| Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | Date | November 2026 |
 
@@ -129,7 +129,7 @@ File: 01_ArgJain_DiseaseTrendAnalysis_ProjectUnderstanding.docx  |  v1.0  |  Nov
 | SH-03 | Policy Maker / Health Ministry | Decision Maker | Assess severity; justify budget allocation | H | Approve emergency health budgets; enforce containment measures |
 | SH-04 | Epidemiologist / Researcher | Analyst | Understand disease dynamics and risk factors | M | Design targeted intervention studies; publish research findings |
 | SH-05 | Arg Jain (Student Developer) | Developer & User | Demonstrate data analytics competency | M | Academic submission and project evaluation decisions |
-| SH-06 | Ms. Kalpana Dwivedi (Mentor) | Evaluator | Ensure academic quality and correctness | L | Grade the project; approve for final submission |
+| SH-06 | Mr. Dinesh (Mentor) | Evaluator | Ensure academic quality and correctness | L | Grade the project; approve for final submission |
 
 
 

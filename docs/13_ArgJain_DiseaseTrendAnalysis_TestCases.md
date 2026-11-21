@@ -28,13 +28,13 @@ Comprehensive mapping guaranteeing that every Business Requirement is verified b
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | QA Lead / Student | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | Functional Test Cases | 20 Comprehensive User Acceptance Tests (TC-F-01..20) |
 | Technical Test Cases | 18 Automated pytest Unit & Integration Tests (TC-T-01..18) |

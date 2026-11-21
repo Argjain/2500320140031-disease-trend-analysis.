@@ -94,7 +94,7 @@ def build_github_report():
     title.runs[0].font.bold = True
     title.runs[0].font.color.rgb = RGBColor(15, 43, 72)
     
-    sub = doc.add_paragraph("Project P-01: Disease Trend Analysis Intelligence Cockpit | Healthcare Data Analytics")
+    sub = doc.add_paragraph("Project P100: Disease Trend Analysis Intelligence Cockpit | Healthcare Data Analytics")
     sub.runs[0].font.name = "Segoe UI"
     sub.runs[0].font.size = Pt(11)
     sub.runs[0].font.color.rgb = RGBColor(26, 83, 118)
@@ -106,7 +106,7 @@ def build_github_report():
         "Candidate Name: Arg Jain  |  University Roll Number: 2500320140031\n"
         "Academic Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU College Code 032)\n"
-        "Faculty Project Mentor: Ms. Kalpana Dwivedi | Target Release: November 2026\n"
+        "Faculty Project Mentor: Mr. Dinesh | Target Release: November 2026\n"
         "Repository Identifier: 2500320140031-disease-trend-analysis.",
         title="🎓 Academic Attribution & Project Identity",
         border_color="0284C7",
@@ -268,7 +268,7 @@ def build_complete_code_doc():
     title.runs[0].font.bold = True
     title.runs[0].font.color.rgb = RGBColor(15, 43, 72)
     
-    sub = doc.add_paragraph("Project P-01: Disease Trend Analysis Intelligence Cockpit | Complete Executable Codebase")
+    sub = doc.add_paragraph("Project P100: Disease Trend Analysis Intelligence Cockpit | Complete Executable Codebase")
     sub.runs[0].font.name = "Segoe UI"
     sub.runs[0].font.size = Pt(11)
     sub.runs[0].font.color.rgb = RGBColor(26, 83, 118)
@@ -279,7 +279,7 @@ def build_complete_code_doc():
         "Candidate Name: Arg Jain  |  University Roll Number: 2500320140031\n"
         "Academic Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU College Code 032)\n"
-        "Faculty Project Mentor: Ms. Kalpana Dwivedi | Technology Stack: Python, Streamlit, SQLite, Plotly\n"
+        "Faculty Project Mentor: Mr. Dinesh | Technology Stack: Python, Streamlit, SQLite, Plotly\n"
         "Verification Status: All files syntactically valid and 100% covered by automated test suite",
         title="🎓 Codebase Attribution & Certification",
         border_color="1A5376",

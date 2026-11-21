@@ -11,6 +11,7 @@ import docx2pdf
 import win32com.client
 import pypdfium2 as pdfium
 import zipfile
+import shutil
 
 BASE_DIR = Path(r"c:\Users\Hp\Downloads\hcl")
 DOCS_DIR = BASE_DIR / "docs"
@@ -109,11 +110,11 @@ def build_step10_report():
 
     add_callout_box(
         doc,
-        "Project ID: P-01  |  Domain: Healthcare Data Analytics / Disease Surveillance\n"
+        "Project ID: P100  |  Domain: Healthcare Data Analytics / Disease Surveillance\n"
         "Candidate Name: Arg Jain  |  University Roll Number: 2500320140031\n"
         "Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU Code 032)\n"
-        "Faculty Project Mentor: Ms. Kalpana Dwivedi  |  Submission Target: November 2026\n"
+        "Faculty Project Mentor: Mr. Dinesh  |  Submission Target: November 2026\n"
         "Document Version: v1.0  |  Status: CERTIFIED & AUDITED",
         title="🎓 Academic Attribution & Document Control",
         border_color="0284C7",
@@ -123,7 +124,7 @@ def build_step10_report():
     doc.add_heading("1. Executive Summary & Validation Scope", level=1)
     doc.add_paragraph(
         "This Data Validation Report documents the comprehensive quality assurance, schema verification, and clinical "
-        "constraint validation executed on the 5-year longitudinal disease surveillance dataset for Project P-01. "
+        "constraint validation executed on the 5-year longitudinal disease surveillance dataset for Project P100. "
         "The objective is to certify that all 3,000 temporal observation records spanning 10 Indian states and 5 major "
         "infectious diseases (Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid) satisfy strict clinical logic, "
         "referential integrity, and data governance standards prior to analytical modeling."
@@ -276,7 +277,7 @@ def build_github_streamlit_details():
     title.runs[0].font.bold = True
     title.runs[0].font.color.rgb = RGBColor(15, 43, 72)
 
-    sub = doc.add_paragraph("Project P-01: Disease Trend Analysis Intelligence Cockpit | Deployment & Source Control Audit")
+    sub = doc.add_paragraph("Project P100: Disease Trend Analysis Intelligence Cockpit | Deployment & Source Control Audit")
     sub.runs[0].font.name = "Segoe UI"
     sub.runs[0].font.size = Pt(10.5)
     sub.runs[0].font.bold = True
@@ -287,7 +288,7 @@ def build_github_streamlit_details():
         "Candidate Name: Arg Jain  |  University Roll Number: 2500320140031\n"
         "Academic Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU College Code 032)\n"
-        "Faculty Project Mentor: Ms. Kalpana Dwivedi  |  Target Release: November 2026\n"
+        "Faculty Project Mentor: Mr. Dinesh  |  Target Release: November 2026\n"
         "Live Production Deployment: Streamlit Community Cloud (Public HTTPS)",
         title="🎓 Academic Attribution & Project Identity",
         border_color="0284C7",

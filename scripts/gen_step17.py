@@ -98,52 +98,118 @@ def add_code_block(code_text):
     run.font.color.rgb = RGBColor(0x2C, 0x3E, 0x50)
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# FORMAL COVER SHEET (ABES TEMPLATE ORDER)
+# FORMAL COVER SHEET (OFFICIAL ABES TEMPLATE ORDER)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+logo_path = os.path.join(r'c:\Users\Hp\Downloads\hcl\docs', 'abes_logo.jpg')
+if os.path.exists(logo_path):
+    p_logo = doc.add_paragraph()
+    p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run_logo = p_logo.add_run()
+    run_logo.add_picture(logo_path, width=Inches(3.2))
+    p_logo.paragraph_format.space_after = Pt(2)
+
+p_code = doc.add_paragraph('College Code: 032')
+p_code.alignment = WD_ALIGN_PARAGRAPH.CENTER
+r_code = p_code.runs[0]
+r_code.font.name = 'Times New Roman'
+r_code.font.size = Pt(10)
+r_code.font.bold = True
+p_code.paragraph_format.space_after = Pt(10)
+
 p_inst = doc.add_paragraph()
 p_inst.alignment = WD_ALIGN_PARAGRAPH.CENTER
-r_inst = p_inst.add_run('ABES ENGINEERING COLLEGE, GHAZIABAD')
-r_inst.font.size = Pt(16)
+r_inst = p_inst.add_run('ABES ENGINEERING COLLEGE')
+r_inst.font.name = 'Times New Roman'
+r_inst.font.size = Pt(20)
 r_inst.font.bold = True
-r_inst.font.color.rgb = PRIMARY_COLOR
+r_inst.font.color.rgb = RGBColor(20, 20, 20)
+p_inst.paragraph_format.space_after = Pt(2)
 
-p_dept = doc.add_paragraph()
-p_dept.alignment = WD_ALIGN_PARAGRAPH.CENTER
-r_dept = p_dept.add_run('Department of Master of Computer Applications (MCA)\nData Analytics Specialization')
-r_dept.font.size = Pt(12)
-r_dept.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
+p_loc = doc.add_paragraph('Ghaziabad, Uttar Pradesh')
+p_loc.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_loc.runs[0].font.name = 'Times New Roman'
+p_loc.runs[0].font.size = Pt(13)
+p_loc.runs[0].font.bold = True
+p_loc.paragraph_format.space_after = Pt(2)
 
-doc.add_paragraph()
+p_aff = doc.add_paragraph('Affiliated to Dr. A.P.J. Abdul Kalam Technical University (AKTU), Uttar Pradesh')
+p_aff.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_aff.runs[0].font.name = 'Times New Roman'
+p_aff.runs[0].font.size = Pt(11)
+p_aff.paragraph_format.space_after = Pt(20)
 
-p_title = doc.add_paragraph()
+p_syn = doc.add_paragraph('PROJECT SYNOPSIS & FINAL DOCUMENT')
+p_syn.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_syn.runs[0].font.name = 'Times New Roman'
+p_syn.runs[0].font.size = Pt(16)
+p_syn.runs[0].font.bold = True
+p_syn.paragraph_format.space_after = Pt(4)
+
+p_on = doc.add_paragraph('on')
+p_on.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_on.runs[0].font.name = 'Times New Roman'
+p_on.runs[0].font.size = Pt(13)
+p_on.runs[0].font.italic = True
+p_on.paragraph_format.space_after = Pt(6)
+
+p_title = doc.add_paragraph('Disease Trend Analysis Intelligence Cockpit')
 p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-run_t = p_title.add_run('DISEASE TREND ANALYSIS')
-run_t.font.size = Pt(24)
-run_t.font.bold = True
-run_t.font.color.rgb = PRIMARY_COLOR
+p_title.runs[0].font.name = 'Times New Roman'
+p_title.runs[0].font.size = Pt(18)
+p_title.runs[0].font.bold = True
+p_title.paragraph_format.space_after = Pt(4)
 
-p_sub = doc.add_paragraph()
+p_sub = doc.add_paragraph('A Multi-Disease Surveillance & Epidemiological Analytics System\n(Project ID: P100)')
 p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-run_sub = p_sub.add_run('FINAL COMPREHENSIVE PROJECT DOCUMENT')
-run_sub.font.size = Pt(14)
-run_sub.font.bold = True
-run_sub.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
+p_sub.runs[0].font.name = 'Times New Roman'
+p_sub.runs[0].font.size = Pt(12)
+p_sub.runs[0].font.bold = True
+p_sub.runs[0].font.italic = True
+p_sub.paragraph_format.space_after = Pt(20)
 
-doc.add_paragraph()
+p_subm = doc.add_paragraph('Submitted in partial fulfilment of the requirements for the degree of')
+p_subm.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_subm.runs[0].font.name = 'Times New Roman'
+p_subm.runs[0].font.size = Pt(11)
+p_subm.paragraph_format.space_after = Pt(4)
+
+p_deg = doc.add_paragraph('Master of Computer Applications')
+p_deg.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_deg.runs[0].font.name = 'Times New Roman'
+p_deg.runs[0].font.size = Pt(15)
+p_deg.runs[0].font.bold = True
+p_deg.paragraph_format.space_after = Pt(2)
+
+p_in = doc.add_paragraph('in')
+p_in.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_in.runs[0].font.name = 'Times New Roman'
+p_in.runs[0].font.size = Pt(11)
+p_in.runs[0].font.italic = True
+p_in.paragraph_format.space_after = Pt(2)
+
+p_spec = doc.add_paragraph('Data Analytics')
+p_spec.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_spec.runs[0].font.name = 'Times New Roman'
+p_spec.runs[0].font.size = Pt(13)
+p_spec.runs[0].font.bold = True
+p_spec.paragraph_format.space_after = Pt(16)
+
+p_prog = doc.add_paragraph('Training Programme: HCLTech Career Shaper Programme')
+p_prog.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_prog.runs[0].font.name = 'Times New Roman'
+p_prog.runs[0].font.size = Pt(12)
+p_prog.runs[0].font.bold = True
+p_prog.paragraph_format.space_after = Pt(22)
 
 cover_table_data = [
-    ('Project ID', 'P-01'),
-    ('Project Title', 'Disease Trend Analysis'),
-    ('Domain', 'Healthcare Data Analytics / Public Health Surveillance'),
-    ('Student Name', 'Arg Jain'),
-    ('University Roll No.', '2500320140031'),
-    ('Course & Year', 'MCA 2nd Year (Semester III/IV)'),
-    ('Faculty Project Mentor', 'Ms. Kalpana Dwivedi'),
-    ('Institutional Body', 'ABES Engineering College, Ghaziabad (AKTU Code 032)'),
-    ('Academic Year', '2026 – 2027'),
-    ('GitHub Repository', 'https://github.com/Argjain/2500320140031-disease-trend-analysis.'),
-    ('Live Cloud Application', 'https://2500320140031-dta.streamlit.app'),
-    ('Submission Date', 'November 2026'),
+    ('Submitted by:', 'Arg Jain'),
+    ('University Roll Number:', '2500320140031'),
+    ('Project ID:', 'P100'),
+    ('Project Guide / Mentor:', 'Mr. Dinesh'),
+    ('Academic Session:', '2026–2027'),
+    ('GitHub Repository:', 'https://github.com/Argjain/2500320140031-disease-trend-analysis.'),
+    ('Live Cloud Application:', 'https://diseasetrends.streamlit.app'),
+    ('Submission Date:', '21 November 2026'),
 ]
 
 t_cov = doc.add_table(rows=len(cover_table_data), cols=2)
@@ -153,15 +219,23 @@ for idx, (k, v) in enumerate(cover_table_data):
     r = t_cov.rows[idx]
     shade_cell(r.cells[0], 'D6EAF8')
     p0 = r.cells[0].paragraphs[0]
+    p0.paragraph_format.space_before = Pt(2)
+    p0.paragraph_format.space_after = Pt(2)
     rn0 = p0.add_run(k)
     rn0.font.bold = True
-    rn0.font.size = Pt(9.5)
+    rn0.font.name = 'Times New Roman'
+    rn0.font.size = Pt(10)
+    
     p1 = r.cells[1].paragraphs[0]
+    p1.paragraph_format.space_before = Pt(2)
+    p1.paragraph_format.space_after = Pt(2)
     rn1 = p1.add_run(v)
-    rn1.font.size = Pt(9.5)
+    rn1.font.name = 'Times New Roman'
+    rn1.font.size = Pt(10)
+
 for r in t_cov.rows:
-    r.cells[0].width = Cm(5.0)
-    r.cells[1].width = Cm(11.0)
+    r.cells[0].width = Cm(5.5)
+    r.cells[1].width = Cm(10.5)
 
 doc.add_paragraph()
 doc.add_page_break()
@@ -270,9 +344,9 @@ for r_idx, item in enumerate(def_items):
         if c_idx == 0:
             p.runs[0].font.bold = True
 
-add_heading_2('1.4 Proposed Solution Scope: Disease Trend Analysis Intelligence Cockpit (P-01)')
+add_heading_2('1.4 Proposed Solution Scope: Disease Trend Analysis Intelligence Cockpit (P100)')
 p_desc_body = doc.add_paragraph(
-    'The Disease Trend Analysis platform (P-01) addresses this crisis by consolidating 5 years of epidemiological '
+    'The Disease Trend Analysis platform (P100) addresses this crisis by consolidating 5 years of epidemiological '
     'time-series intelligence (60 continuous months: 2020–2024) spanning 10 key Indian states (Uttar Pradesh, Maharashtra, Delhi, Rajasthan, '
     'Bihar, West Bengal, Tamil Nadu, Karnataka, Gujarat, and Madhya Pradesh) for 5 high-burden contagious diseases '
     '(Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid). Built with Streamlit, SQLite 3NF relational data marts, and Plotly Express, '
@@ -310,7 +384,7 @@ sh_summary_data = [
     ['SH-03', 'Policy Maker / Ministry', 'Decision Maker', 'High', 'Authorize emergency disease control funding and enforce statutory lockdowns'],
     ['SH-04', 'Epidemiologist / Researcher', 'Expert Analyst', 'Medium', 'Formulate localized transmission models and publish peer-reviewed studies'],
     ['SH-05', 'Arg Jain (Student Lead)', 'Lead Developer', 'Medium', 'Architects relational models, writes pipeline code, and authors documents'],
-    ['SH-06', 'Ms. Kalpana Dwivedi', 'Faculty Mentor', 'Low', 'Conducts milestone reviews, grades viva defense, and authorizes submission'],
+    ['SH-06', 'Mr. Dinesh', 'Faculty Mentor', 'Low', 'Conducts milestone reviews, grades viva defense, and authorizes submission'],
 ]
 t_sh_s = doc.add_table(rows=len(sh_summary_data) + 1, cols=5)
 format_table(t_sh_s, [Cm(1.5), Cm(3.5), Cm(2.5), Cm(1.5), Cm(7.0)], ['SH ID', 'Stakeholder', 'Role', 'Influence', 'Primary Decision Supported by Application'], sh_summary_data)

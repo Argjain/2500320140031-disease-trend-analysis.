@@ -7,10 +7,10 @@
 
 PROJECT_CTX = """
 PROJECT CONTEXT (carry this into every step):
-- Project ID: P-01 | Title: Disease Trend Analysis
+- Project ID: P100 | Title: Disease Trend Analysis
 - Domain: Healthcare Data Analytics
 - Student: Arg Jain | Roll: 2500320140031 | MCA 2nd Yr DA, ABES Engineering College
-- Mentor: Ms. Kalpana Dwivedi
+- Mentor: Mr. Dinesh
 - Stack: Python 3.12, Streamlit, SQLite, Plotly, pytest, Tailwind CDN
 - Diseases (5): Dengue, Malaria, Tuberculosis (TB), COVID-19, Typhoid
 - Regions (10 Indian states): Uttar Pradesh, Maharashtra, Delhi, Rajasthan,
@@ -23,7 +23,7 @@ PROJECT CONTEXT (carry this into every step):
     SH-03 Policy Maker/Ministry (Influence H)
     SH-04 Epidemiologist/Researcher (Influence M)
     SH-05 Arg Jain Student Developer (Influence M)
-    SH-06 Ms. Kalpana Dwivedi Mentor (Influence L)
+    SH-06 Mr. Dinesh Mentor (Influence L)
 - OQs:
     OQ-01 Which diseases have shown highest increase in cases over 5 years?
     OQ-02 Which regions are most affected by each disease?
@@ -104,9 +104,9 @@ DOCUMENT CONTENT:
 COVER BLOCK (meta table):
 Title: DISEASE TREND ANALYSIS
 Subtitle: STEP 2 — How Might We (HMW) Statements
-Meta: Project ID P-01 | Student Arg Jain | Roll 2500320140031 |
+Meta: Project ID P100 | Student Arg Jain | Roll 2500320140031 |
       Course MCA 2nd Year Data Analytics | Institute ABES Engineering College |
-      Mentor Ms. Kalpana Dwivedi | Date November 2026 | Version v1.0
+      Mentor Mr. Dinesh | Date November 2026 | Version v1.0
 
 SECTION 1: Stakeholder Pain Points
 Table: SH ID | Stakeholder | Pain Point 1 | Pain Point 2 | Pain Point 3
@@ -185,8 +185,8 @@ then run it. Output file:
 DOCUMENT CONTENT:
 
 COVER BLOCK: Title DISEASE TREND ANALYSIS | Subtitle STEP 3 — Needs Analysis and Business Requirements
-Meta: Project ID P-01 | Student Arg Jain | Roll 2500320140031 | Course MCA 2nd Year Data Analytics
-      Institute ABES Engineering College | Mentor Ms. Kalpana Dwivedi | Date November 2026 | Version v1.0
+Meta: Project ID P100 | Student Arg Jain | Roll 2500320140031 | Course MCA 2nd Year Data Analytics
+      Institute ABES Engineering College | Mentor Mr. Dinesh | Date November 2026 | Version v1.0
 
 SECTION 1: Introduction
 Two paragraphs explaining needs analysis: maps HMW statements to business requirements,
@@ -331,8 +331,8 @@ then run it. Output file:
 DOCUMENT CONTENT (13 sections):
 
 COVER BLOCK: Title DISEASE TREND ANALYSIS | Subtitle STEP 5 — Business Requirements Document (BRD)
-Meta: Project ID P-01 | Version v1.0 | Author Arg Jain | Roll 2500320140031 |
-      Date November 2026 | Mentor Ms. Kalpana Dwivedi | Status Draft | Institute ABES
+Meta: Project ID P100 | Version v1.0 | Author Arg Jain | Roll 2500320140031 |
+      Date November 2026 | Mentor Mr. Dinesh | Status Draft | Institute ABES
 
 1. DOCUMENT CONTROL
 Version history table: Version | Date | Author | Changes | Approved By
@@ -363,7 +363,7 @@ SH-02 | Hospital Administrator | Primary User | R | - | C | I
 SH-03 | Policy Maker | Decision Maker | - | A | C | I
 SH-04 | Epidemiologist | Analyst | R | - | C | I
 SH-05 | Arg Jain (Developer) | Developer | R | A | - | -
-SH-06 | Ms. Kalpana Dwivedi | Evaluator/Mentor | - | - | C | I
+SH-06 | Mr. Dinesh | Evaluator/Mentor | - | - | C | I
 
 6. SCOPE (In Scope / Out of Scope — same as Step 1 document)
 
@@ -415,7 +415,7 @@ Streamlit | An open-source Python framework for building interactive data web ap
 13. SIGN-OFF TABLE
 Columns: Role | Name | Signature | Date
 Student Developer | Arg Jain | _____________ | ___________
-Mentor | Ms. Kalpana Dwivedi | _____________ | ___________
+Mentor | Mr. Dinesh | _____________ | ___________
 HOD | (Name) | _____________ | ___________
 
 STYLING: Same as previous docs. Page breaks before sections 3, 5, 7, 11.
@@ -450,8 +450,8 @@ pytest 8.2.0 + pytest-cov 5.0.0 | GitHub | Streamlit Community Cloud
 DOCUMENT CONTENT (10 sections):
 
 COVER BLOCK: Title DISEASE TREND ANALYSIS | Subtitle STEP 7 — Technical Requirements Document (TRD)
-Meta: Project ID P-01 | Version v1.0 | Author Arg Jain | Roll 2500320140031 | Date November 2026
-      Mentor Ms. Kalpana Dwivedi | Institute ABES Engineering College
+Meta: Project ID P100 | Version v1.0 | Author Arg Jain | Roll 2500320140031 | Date November 2026
+      Mentor Mr. Dinesh | Institute ABES Engineering College
 
 1. SYSTEM ARCHITECTURE (text-based diagram + description)
    Data Flow (ASCII):
@@ -1555,7 +1555,7 @@ WORD DOCUMENT CONTENT:
 COVER BLOCK: same meta, subtitle STEP 14 — Build Plan
 
 SECTION 1: Project Summary (10 sentences)
-The Disease Trend Analysis project (P-01) builds an interactive healthcare analytics app.
+The Disease Trend Analysis project (P100) builds an interactive healthcare analytics app.
 It analyses synthetic disease incidence data for 5 diseases across 10 Indian states from 2020 to 2024.
 The tech stack is Python 3.12, Streamlit 1.35.0, SQLite, Plotly, and pytest.
 Stakeholders include public health officers, hospital administrators, and policy makers.
@@ -1595,7 +1595,7 @@ What is session_state used for? How is test coverage measured?
 
 BUILD_PLAN.md content (save to C:\\Users\\Hp\\Downloads\\hcl\\BUILD_PLAN.md):
 # Disease Trend Analysis - Build Plan
-## Project: P-01 | Student: Arg Jain | Roll: 2500320140031 | Mentor: Ms. Kalpana Dwivedi
+## Project: P100 | Student: Arg Jain | Roll: 2500320140031 | Mentor: Mr. Dinesh
 
 ## Setup Commands
 ```
@@ -1833,7 +1833,7 @@ SECTION 2: GitHub Repository Setup (numbered steps)
 3. In your project folder (terminal):
    git init
    git add .
-   git commit -m "Initial commit: Disease Trend Analysis - Arg Jain P-01"
+   git commit -m "Initial commit: Disease Trend Analysis - Arg Jain P100"
    git remote add origin https://github.com/YOUR_USERNAME/2500320140031-disease-trend-analysis.git
    git push -u origin main
 4. Go to your GitHub repo URL and verify all files are visible
@@ -1923,7 +1923,7 @@ then run it. Output file:
 
 {"CONTENT FOR STEP 17:" if step_num == 17 else "CONTENT FOR STEP 18:"}
 
-{"COVER PAGE TABLE: Project Title Disease Trend Analysis | Project ID P-01 | Student Arg Jain | Roll No 2500320140031 | Course MCA 2nd Year Data Analytics | Institute ABES Engineering College Ghaziabad | Mentor Ms. Kalpana Dwivedi | Academic Year 2026-27 | GitHub URL [TO BE ADDED AFTER DEPLOYMENT] | Streamlit Cloud URL [TO BE ADDED AFTER DEPLOYMENT] | Submission Date November 2026 | Version v1.0" if step_num == 17 else ""}
+{"COVER PAGE TABLE: Project Title Disease Trend Analysis | Project ID P100 | Student Arg Jain | Roll No 2500320140031 | Course MCA 2nd Year Data Analytics | Institute ABES Engineering College Ghaziabad | Mentor Mr. Dinesh | Academic Year 2026-27 | GitHub URL [TO BE ADDED AFTER DEPLOYMENT] | Streamlit Cloud URL [TO BE ADDED AFTER DEPLOYMENT] | Submission Date November 2026 | Version v1.0" if step_num == 17 else ""}
 
 {"Then one section per step with heading and 1-page content summary:" if step_num == 17 else ""}
 {"Section 1 Project Understanding: Problem statement one-sentence | Intended audience table | Stakeholders SH-01..SH-06 | 10 OQs | 5 SMART objectives | Scope in/out | Assumptions A-01..A-07 | Constraints C-01..C-05 | 6 success criteria" if step_num == 17 else ""}
@@ -1948,7 +1948,7 @@ then run it. Output file:
 {"CONTENT FOR STEP 18 — PRESENTATION SCRIPT:" if step_num == 18 else ""}
 {"For each of 11 slides provide: Slide number and title | Content (max 6 bullet points what appears on screen) | Speaker notes (what to say aloud ~30 seconds)" if step_num == 18 else ""}
 
-{"SLIDE 1 TITLE: Disease Trend Analysis | P-01 | Arg Jain | Roll 2500320140031 | Ms. Kalpana Dwivedi | ABES Engineering College | November 2026" if step_num == 18 else ""}
+{"SLIDE 1 TITLE: Disease Trend Analysis | P100 | Arg Jain | Roll 2500320140031 | Mr. Dinesh | ABES Engineering College | November 2026" if step_num == 18 else ""}
 {"SLIDE 2 PROBLEM AND HMW: Problem = Lack of unified platform to monitor disease trends. Leads to delayed outbreak response. Missed budget targeting opportunities. HMW-01: How might we help public health officers spot which disease is spiking in a region vs last year? HMW-03: How might we help policy makers compare CFR across regions to justify budget allocations?" if step_num == 18 else ""}
 {"SLIDE 3 STAKEHOLDERS: SH-01 Public Health Officer Influence H Decision: Deploy response teams. SH-02 Hospital Administrator Influence H Decision: Allocate beds and medicines. SH-03 Policy Maker Influence H Decision: Approve health budgets." if step_num == 18 else ""}
 {"SLIDE 4 TRACEABILITY: Show 4 RTM rows: OQ-01 | HMW-01 | BR-01 | US-04 | TC-F-01 | UI-01 and OQ-05 | HMW-03 | BR-03 | US-07 | TC-F-09 | UI-03 and OQ-08 | HMW-05 | BR-05 | US-15 | TC-F-13 | UI-05 and OQ-04 | HMW-04 | BR-04 | US-13 | TC-F-10 | UI-04" if step_num == 18 else ""}

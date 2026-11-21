@@ -113,13 +113,13 @@ To guarantee design consistency across all six pages, common UI widgets are enca
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | UI/UX Architect | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | UI Tech Stack | Streamlit 1.35 Multi-Page + Tailwind CSS (CDN in iframe) + Plotly 5.22 |
 | Total Application Screens | 6 Dedicated Analytical Screens (UI-01 to UI-06) |

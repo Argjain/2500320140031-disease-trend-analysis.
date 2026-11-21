@@ -120,12 +120,12 @@ run_sub.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
 doc.add_paragraph()
 
 meta_data = [
-    ('Project ID & Title', 'P-01 | Disease Trend Analysis'),
+    ('Project ID & Title', 'P100 | Disease Trend Analysis'),
     ('Domain', 'Healthcare Data Analytics'),
     ('Student Author', 'Arg Jain (Roll No. 2500320140031)'),
     ('Academic Program', 'MCA 2nd Year (Data Analytics)'),
     ('Institution', 'ABES Engineering College, Ghaziabad'),
-    ('Faculty Mentor', 'Ms. Kalpana Dwivedi'),
+    ('Faculty Mentor', 'Mr. Dinesh'),
     ('Document Version', 'v1.0 (Baseline Release)'),
     ('Release Date', 'November 2026'),
     ('Target Environment', 'Python 3.12 / Streamlit Community Cloud'),
@@ -162,7 +162,7 @@ p_dc.runs[0].font.size = Pt(10)
 doc_ctrl_data = [
     ['v0.1', '14-Nov-2026', 'Arg Jain', 'Initial requirements gathering from Step 1-3 deliverables', 'Self-Review'],
     ['v0.9', '16-Nov-2026', 'Arg Jain', 'Integrated RACI, Business Rules, and Data Requirements', 'Mentor Review'],
-    ['v1.0', '18-Nov-2026', 'Arg Jain', 'Formal baseline document for academic submission and build plan', 'Ms. Kalpana Dwivedi'],
+    ['v1.0', '18-Nov-2026', 'Arg Jain', 'Formal baseline document for academic submission and build plan', 'Mr. Dinesh'],
 ]
 t_dc = doc.add_table(rows=len(doc_ctrl_data) + 1, cols=5)
 format_table(t_dc, [Cm(1.8), Cm(2.5), Cm(2.5), Cm(6.2), Cm(3.0)], ['Version', 'Date', 'Author', 'Summary of Changes', 'Reviewer'], doc_ctrl_data)
@@ -182,7 +182,7 @@ p_es1 = doc.add_paragraph(
 p_es1.runs[0].font.size = Pt(10)
 
 p_es2 = doc.add_paragraph(
-    'The Disease Trend Analysis platform (Project P-01) delivers a unified, interactive analytical cockpit '
+    'The Disease Trend Analysis platform (Project P100) delivers a unified, interactive analytical cockpit '
     'engineered specifically for public health officers, hospital administrators, epidemiologists, and ministerial policy makers. '
     'By integrating historical epidemiological time series across 10 major Indian states over a 5-year observation period (2020–2024), '
     'the application surfaces critical trajectory indicators: Case Fatality Rates (CFR), regional burden benchmarks, '
@@ -269,7 +269,7 @@ raci_data = [
     ['SH-03', 'Policy Maker / Ministry', 'Executive User', 'I', 'A', 'I', 'A', 'Approves strategic metrics & budget views'],
     ['SH-04', 'Epidemiologist / Researcher', 'Expert Analyst', 'C', 'I', 'R', 'I', 'Reviews statistical correlations & CFR formulas'],
     ['SH-05', 'Arg Jain', 'Lead Developer (Student)', 'R', 'A', 'R', 'R', 'Owns end-to-end design, code, and deployment'],
-    ['SH-06', 'Ms. Kalpana Dwivedi', 'Faculty Evaluator (Mentor)', 'A', 'A', 'A', 'A', 'Evaluates academic rigor and signs off release'],
+    ['SH-06', 'Mr. Dinesh', 'Faculty Evaluator (Mentor)', 'A', 'A', 'A', 'A', 'Evaluates academic rigor and signs off release'],
 ]
 t_raci = doc.add_table(rows=len(raci_data) + 1, cols=8)
 format_table(t_raci, [Cm(1.5), Cm(3.0), Cm(2.2), Cm(1.0), Cm(1.0), Cm(1.0), Cm(1.0), Cm(5.3)], ['SH ID', 'Stakeholder Name', 'Role', 'Req', 'Des', 'Bld', 'Dep', 'Key Responsibilities'], raci_data)
@@ -491,7 +491,7 @@ doc.add_paragraph()
 
 sign_data = [
     ['Lead Developer / Student', 'Arg Jain (Roll No. 2500320140031)', 'Submitted for Review', '18-Nov-2026'],
-    ['Faculty Mentor / Evaluator', 'Ms. Kalpana Dwivedi (Assistant Professor)', 'Recommended for Build', '18-Nov-2026'],
+    ['Faculty Mentor / Evaluator', 'Mr. Dinesh (Assistant Professor)', 'Recommended for Build', '18-Nov-2026'],
     ['Head of Department (MCA)', 'Prof. (Dr.) Expert Academician', 'Approved for Submission', 'Pending'],
 ]
 t_sign = doc.add_table(rows=len(sign_data) + 1, cols=4)

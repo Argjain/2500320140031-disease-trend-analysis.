@@ -14,7 +14,7 @@ This document is maintained under formal configuration management guidelines:
 
 In contemporary public health administration across India, epidemiological data often resides in disparate, siloed departmental systems and static PDF bulletins. This structural fragmentation creates severe latency in detecting seasonal and localized outbreaks of endemic diseases such as Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid. Decision-makers frequently face a multi-week lag between field transmission spikes and executive intervention, resulting in avoidable hospital bed crises and delayed therapeutic provisioning.
 
-The Disease Trend Analysis platform (Project P-01) delivers a unified, interactive analytical cockpit engineered specifically for public health officers, hospital administrators, epidemiologists, and ministerial policy makers. By integrating historical epidemiological time series across 10 major Indian states over a 5-year observation period (2020–2024), the application surfaces critical trajectory indicators: Case Fatality Rates (CFR), regional burden benchmarks, demographic risk vectors, seasonal transmission waves, and co-occurring outbreak warnings.
+The Disease Trend Analysis platform (Project P100) delivers a unified, interactive analytical cockpit engineered specifically for public health officers, hospital administrators, epidemiologists, and ministerial policy makers. By integrating historical epidemiological time series across 10 major Indian states over a 5-year observation period (2020–2024), the application surfaces critical trajectory indicators: Case Fatality Rates (CFR), regional burden benchmarks, demographic risk vectors, seasonal transmission waves, and co-occurring outbreak warnings.
 
 Built entirely on an open-source data analytics stack (Python, SQLite, Streamlit, Plotly, pytest) and deployed on cloud infrastructure, the solution satisfies all 10 Operational Questions (OQ-01 through OQ-10) with sub-second visual response times. This document formally establishes the business baseline, stakeholder alignment, and functional boundary for downstream engineering execution.
 
@@ -146,13 +146,13 @@ By signing below, the stakeholders confirm that the Business Requirements Docume
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Student Author | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 (Baseline Release) |
 | Release Date | November 2026 |
 | Target Environment | Python 3.12 / Streamlit Community Cloud |
@@ -166,7 +166,7 @@ By signing below, the stakeholders confirm that the Business Requirements Docume
 | --- | --- | --- | --- | --- |
 | v0.1 | 14-Nov-2026 | Arg Jain | Initial requirements gathering from Step 1-3 deliverables | Self-Review |
 | v0.9 | 16-Nov-2026 | Arg Jain | Integrated RACI, Business Rules, and Data Requirements | Mentor Review |
-| v1.0 | 18-Nov-2026 | Arg Jain | Formal baseline document for academic submission and build plan | Ms. Kalpana Dwivedi |
+| v1.0 | 18-Nov-2026 | Arg Jain | Formal baseline document for academic submission and build plan | Mr. Dinesh |
 
 
 
@@ -191,7 +191,7 @@ By signing below, the stakeholders confirm that the Business Requirements Docume
 | SH-03 | Policy Maker / Ministry | Executive User | I | A | I | A | Approves strategic metrics & budget views |
 | SH-04 | Epidemiologist / Researcher | Expert Analyst | C | I | R | I | Reviews statistical correlations & CFR formulas |
 | SH-05 | Arg Jain | Lead Developer (Student) | R | A | R | R | Owns end-to-end design, code, and deployment |
-| SH-06 | Ms. Kalpana Dwivedi | Faculty Evaluator (Mentor) | A | A | A | A | Evaluates academic rigor and signs off release |
+| SH-06 | Mr. Dinesh | Faculty Evaluator (Mentor) | A | A | A | A | Evaluates academic rigor and signs off release |
 
 
 
@@ -429,6 +429,6 @@ By signing below, the stakeholders confirm that the Business Requirements Docume
 | Signatory Role | Full Name & Designation | Approval Status / Signature | Date |
 | --- | --- | --- | --- |
 | Lead Developer / Student | Arg Jain (Roll No. 2500320140031) | Submitted for Review | 18-Nov-2026 |
-| Faculty Mentor / Evaluator | Ms. Kalpana Dwivedi (Assistant Professor) | Recommended for Build | 18-Nov-2026 |
+| Faculty Mentor / Evaluator | Mr. Dinesh (Assistant Professor) | Recommended for Build | 18-Nov-2026 |
 | Head of Department (MCA) | Prof. (Dr.) Expert Academician | Approved for Submission | Pending |
 

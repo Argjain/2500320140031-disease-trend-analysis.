@@ -21,7 +21,7 @@ git init
 git add .
 
 # 3. Create initial formal commit
-git commit -m "Release v1.0: Complete Disease Trend Analysis Platform - Arg Jain P-01"
+git commit -m "Release v1.0: Complete Disease Trend Analysis Platform - Arg Jain P100"
 
 # 4. Set default branch to main
 git branch -M main
@@ -72,13 +72,13 @@ Upon live deployment, execute this post-flight verification protocol:
 
 #### Table 1
 
-| Project ID & Title | P-01 / Disease Trend Analysis |
+| Project ID & Title | P100 / Disease Trend Analysis |
 | --- | --- |
 | Domain | Healthcare Data Analytics |
 | Release Engineer / Student | Arg Jain (Roll No. 2500320140031) |
 | Academic Program | MCA 2nd Year (Data Analytics Specialization) |
 | Institution | ABES Engineering College, Ghaziabad |
-| Faculty Mentor | Ms. Kalpana Dwivedi |
+| Faculty Mentor | Mr. Dinesh |
 | Document Version | v1.0 |
 | Deployment Platform | Streamlit Community Cloud (Public HTTPS) |
 | Repository Host | GitHub (git version 2.x) |

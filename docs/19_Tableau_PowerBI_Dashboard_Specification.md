@@ -1,8 +1,8 @@
 # 📊 BI Dashboard Specification — Tableau & Power BI Architecture
-## Project ID: P-01 | Disease Trend Analysis Intelligence Cockpit
+## Project ID: P100 | Disease Trend Analysis Intelligence Cockpit
 **Student:** Arg Jain (Roll No. 2500320140031)  
 **Program:** MCA 2nd Year — Data Analytics Specialization | **ABES Engineering College, Ghaziabad**  
-**Faculty Mentor:** Ms. Kalpana Dwivedi | **Target Release:** December 2026
+**Faculty Mentor:** Mr. Dinesh | **Target Release:** December 2026
 
 ---
 

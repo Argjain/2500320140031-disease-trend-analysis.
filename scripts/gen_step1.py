@@ -93,14 +93,14 @@ run2.font.color.rgb = RGBColor(0x21,0x8E,0xBE)
 doc.add_paragraph()
 
 meta_data = [
-    ('Project ID',       'P-01'),
+    ('Project ID',       'P100'),
     ('Project Title',    'Disease Trend Analysis'),
     ('Domain',           'Healthcare Data Analytics'),
     ('Student Name',     'Arg Jain'),
     ('Roll Number',      '2500320140031'),
     ('Course',           'MCA 2nd Year — Data Analytics'),
     ('Institute',        'ABES Engineering College, Ghaziabad'),
-    ('Mentor',           'Ms. Kalpana Dwivedi'),
+    ('Mentor',           'Mr. Dinesh'),
     ('Document Version', 'v1.0'),
     ('Date',             'November 2026'),
 ]
@@ -196,9 +196,9 @@ prob_rows = [
 add_table(doc, prob_headers, prob_rows, [Cm(2.2), Cm(6.5), Cm(5.8), Cm(2.0)])
 
 # 1.4 Proposed Solution & Project Value Proposition
-add_heading(doc, '1.4 Proposed Solution & Project Scope (P-01)', 2)
+add_heading(doc, '1.4 Proposed Solution & Project Scope (P100)', 2)
 p_sol = doc.add_paragraph(
-    'Project P-01 ("Disease Trend Analysis Intelligence Cockpit") resolves these operational challenges by delivering '
+    'Project P100 ("Disease Trend Analysis Intelligence Cockpit") resolves these operational challenges by delivering '
     'a high-performance, interactive multi-page web application built using Python, Streamlit, SQLite 3NF relational data marts, '
     'and Plotly Express. The platform synthesizes 5 years of historical health surveillance records (60 continuous calendar '
     'months: January 2020 to December 2024), covering 3,000 monthly state-disease observations across 5 critical diseases '
@@ -264,7 +264,7 @@ sh_rows = [
     ('SH-05', 'Arg Jain (Student Developer)', 'Developer & User',
      'Demonstrate data analytics competency', 'M',
      'Academic submission and project evaluation decisions'),
-    ('SH-06', 'Ms. Kalpana Dwivedi (Mentor)', 'Evaluator',
+    ('SH-06', 'Mr. Dinesh (Mentor)', 'Evaluator',
      'Ensure academic quality and correctness', 'L',
      'Grade the project; approve for final submission'),
 ]

@@ -17,7 +17,7 @@ FINAL COMPREHENSIVE PROJECT DOCUMENT
 
 Healthcare authorities and public health analysts in India lack a unified, interactive visual platform to monitor disease occurrence trends across regions, time periods, and demographic groups, resulting in delayed outbreak detection, inefficient resource allocation, and missed opportunities for preventive intervention.
 
-The Disease Trend Analysis platform (P-01) addresses this crisis by consolidating 5 years of epidemiological time-series intelligence (2020–2024) spanning 10 key Indian states (Uttar Pradesh, Maharashtra, Delhi, Rajasthan, Bihar, West Bengal, Tamil Nadu, Karnataka, Gujarat, and Madhya Pradesh) for 5 high-burden contagious diseases (Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid). The platform enables public health officers, epidemiologists, hospital executives, and policy makers to resolve 10 core Operational Questions (OQ-01..10) within sub-second latencies.
+The Disease Trend Analysis platform (P100) addresses this crisis by consolidating 5 years of epidemiological time-series intelligence (2020–2024) spanning 10 key Indian states (Uttar Pradesh, Maharashtra, Delhi, Rajasthan, Bihar, West Bengal, Tamil Nadu, Karnataka, Gujarat, and Madhya Pradesh) for 5 high-burden contagious diseases (Dengue, Malaria, Tuberculosis, COVID-19, and Typhoid). The platform enables public health officers, epidemiologists, hospital executives, and policy makers to resolve 10 core Operational Questions (OQ-01..10) within sub-second latencies.
 
 
 ## 2. Design Thinking: How Might We (HMW) Statements
@@ -95,14 +95,14 @@ In accordance with academic integrity guidelines of ABES Engineering College, th
 
 #### Table 1
 
-| Project ID | P-01 |
+| Project ID | P100 |
 | --- | --- |
 | Project Title | Disease Trend Analysis |
 | Domain | Healthcare Data Analytics / Public Health Surveillance |
 | Student Name | Arg Jain |
 | University Roll No. | 2500320140031 |
 | Course & Year | MCA 2nd Year (Semester III/IV) |
-| Faculty Project Mentor | Ms. Kalpana Dwivedi |
+| Faculty Project Mentor | Mr. Dinesh |
 | Institutional Body | ABES Engineering College, Ghaziabad (AKTU Code 032) |
 | Academic Year | 2026 – 2027 |
 | GitHub Repository | https://github.com/Argjain/2500320140031-disease-trend-analysis. |
@@ -150,7 +150,7 @@ In accordance with academic integrity guidelines of ABES Engineering College, th
 | SH-03 | Policy Maker / Ministry | Decision Maker | High | Authorize emergency disease control funding and enforce statutory lockdowns |
 | SH-04 | Epidemiologist / Researcher | Expert Analyst | Medium | Formulate localized transmission models and publish peer-reviewed studies |
 | SH-05 | Arg Jain (Student Lead) | Lead Developer | Medium | Architects relational models, writes pipeline code, and authors documents |
-| SH-06 | Ms. Kalpana Dwivedi | Faculty Mentor | Low | Conducts milestone reviews, grades viva defense, and authorizes submission |
+| SH-06 | Mr. Dinesh | Faculty Mentor | Low | Conducts milestone reviews, grades viva defense, and authorizes submission |
 
 
 
