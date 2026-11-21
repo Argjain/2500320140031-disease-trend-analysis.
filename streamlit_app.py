@@ -129,17 +129,31 @@ st.markdown("---")
 # Quick Navigation and Mission Statement
 st.subheader("📌 System Navigation & Module Directory")
 st.write(
-    "Welcome to the **Disease Trend Analysis** platform. Use the left sidebar to navigate across dedicated analytical modules, "
-    "or explore key takeaways below:"
+    "Welcome to the **Disease Trend Analysis** platform. Click on any analytical module below to open it directly, "
+    "or use the left sidebar menu to navigate across the platform:"
 )
 
 c_m1, c_m2, c_m3 = st.columns(3)
 with c_m1:
-    st.info("**📈 01_Overview & 02_Trends**\n\nExecutive KPI summaries, regional morbidity rankings, 60-month time-series lines, and 12-month cyclical transmission heatmaps.")
+    with st.container(border=True):
+        st.markdown("#### 📊 Overview & Trends")
+        st.caption("Executive KPI summaries, state rankings, 60-month time series, and cyclical transmission heatmaps.")
+        st.page_link("pages/01_Overview.py", label="Open 01: Executive Overview", icon="📈", use_container_width=True)
+        st.page_link("pages/02_Trends.py", label="Open 02: Longitudinal Trends", icon="📅", use_container_width=True)
+
 with c_m2:
-    st.info("**🗺️ 03_Regional & 04_Demographics**\n\nCross-state Case Fatality Rate benchmarking, clinical recovery ratios, and 5-cohort demographic age/gender distribution.")
+    with st.container(border=True):
+        st.markdown("#### 🗺️ Regional & Demographics")
+        st.caption("State-level Case Fatality Rate (CFR %) matrices, clinical recovery efficacy, and demographic cohorts.")
+        st.page_link("pages/03_Regional_Analysis.py", label="Open 03: Regional Burden", icon="🗺️", use_container_width=True)
+        st.page_link("pages/04_Demographics.py", label="Open 04: Demographics Drilldown", icon="👥", use_container_width=True)
+
 with c_m3:
-    st.info("**🔬 05_EDA & 06_Data_Quality**\n\nUrban crowding scatter regression (Pearson r), concurrent multi-disease outbreak alerts, cleaning ledgers, and CSV export.")
+    with st.container(border=True):
+        st.markdown("#### 🔬 Surveillance & Governance")
+        st.caption("Urban crowding regressions (Pearson r), automated outbreak alerts, cleaning audits, and CSV export.")
+        st.page_link("pages/05_EDA_Statistics.py", label="Open 05: EDA & Outbreak Alerts", icon="🔬", use_container_width=True)
+        st.page_link("pages/06_Data_Quality.py", label="Open 06: Data Quality & Export", icon="🧹", use_container_width=True)
 
 # Summary Insight
 render_insight_box(
