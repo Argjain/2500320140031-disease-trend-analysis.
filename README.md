@@ -2,7 +2,7 @@
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Argjain/2500320140031-disease-trend-analysis.&branch=main&main_file_path=app.py)
 
-**Project ID:** P100 | **Domain:** Healthcare Data Analytics / Public Health Surveillance  
+**Project ID:** P100 | **Batch ID:** ABES_OND26_MCA2ndYear_Data Analytics_Batch01 | **Domain:** Healthcare Data Analytics / Public Health Surveillance  
 **Author:** Arg Jain (Roll No. 2500320140031) | MCA 2nd Year Data Analytics, ABES Engineering College  
 **Faculty Mentor:** Mr. Dinesh | **Target Release:** December 2026  
 **Application Deployment:** [Streamlit Community Cloud](https://share.streamlit.io/deploy?repository=Argjain/2500320140031-disease-trend-analysis.&branch=main&main_file_path=app.py)  

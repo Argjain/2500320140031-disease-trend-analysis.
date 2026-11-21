@@ -197,9 +197,9 @@ p_dept.font.color.rgb = SLATE_DARK
 p_dept.space_before = Pt(4)
 
 p_ment = ctf1.add_paragraph()
-p_ment.text = "Faculty Project Mentor: Mr. Dinesh | Department of Master of Computer Applications"
+p_ment.text = "Faculty Project Mentor: Mr. Dinesh | Batch ID: ABES_OND26_MCA2ndYear_Data Analytics_Batch01"
 p_ment.font.name = "Segoe UI"
-p_ment.font.size = Pt(12)
+p_ment.font.size = Pt(11.5)
 p_ment.font.bold = True
 p_ment.font.color.rgb = TEAL
 p_ment.space_before = Pt(4)

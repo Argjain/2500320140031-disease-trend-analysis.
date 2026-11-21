@@ -1,6 +1,6 @@
 # Disease Trend Analysis — Master Engineering Build Plan (BUILD_PLAN.md)
 
-**Project:** P100 | Disease Trend Analysis | **Domain:** Healthcare Data Analytics  
+**Project:** P100 | **Batch ID:** ABES_OND26_MCA2ndYear_Data Analytics_Batch01 | Disease Trend Analysis | **Domain:** Healthcare Data Analytics  
 **Author:** Arg Jain (Roll No. 2500320140031) | MCA 2nd Year DA, ABES Engineering College  
 **Mentor:** Mr. Dinesh | **Target Release:** December 2026  
 

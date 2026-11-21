@@ -205,6 +205,7 @@ cover_table_data = [
     ('Submitted by:', 'Arg Jain'),
     ('University Roll Number:', '2500320140031'),
     ('Project ID:', 'P100'),
+    ('Batch ID:', 'ABES_OND26_MCA2ndYear_Data Analytics_Batch01'),
     ('Project Guide / Mentor:', 'Mr. Dinesh'),
     ('Academic Session:', '2026–2027'),
     ('GitHub Repository:', 'https://github.com/Argjain/2500320140031-disease-trend-analysis.'),

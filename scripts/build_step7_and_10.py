@@ -110,7 +110,7 @@ def build_step10_report():
 
     add_callout_box(
         doc,
-        "Project ID: P100  |  Domain: Healthcare Data Analytics / Disease Surveillance\n"
+        "Project ID: P100  |  Batch ID: ABES_OND26_MCA2ndYear_Data Analytics_Batch01\n"
         "Candidate Name: Arg Jain  |  University Roll Number: 2500320140031\n"
         "Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU Code 032)\n"
@@ -286,6 +286,7 @@ def build_github_streamlit_details():
     add_callout_box(
         doc,
         "Candidate Name: Arg Jain  |  University Roll Number: 2500320140031\n"
+        "Project ID: P100  |  Batch ID: ABES_OND26_MCA2ndYear_Data Analytics_Batch01\n"
         "Academic Degree: Master of Computer Applications (MCA 2nd Year, Data Analytics)\n"
         "Institution: ABES Engineering College, Ghaziabad (AKTU College Code 032)\n"
         "Faculty Project Mentor: Mr. Dinesh  |  Target Release: November 2026\n"
