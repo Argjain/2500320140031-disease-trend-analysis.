@@ -15,7 +15,9 @@ import pypdfium2 as pdfium
 
 BASE_DIR = Path(r"c:\Users\Hp\Downloads\hcl")
 DOCS_DIR = BASE_DIR / "docs"
-ALL_PDFS_DIR = DOCS_DIR / "all_step_pdfs"
+LMS_DIR = BASE_DIR / "lms"
+LMS_DIR.mkdir(parents=True, exist_ok=True)
+ALL_PDFS_DIR = LMS_DIR / "05_All_Step_Documents"
 ALL_PDFS_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------------------
@@ -238,12 +240,12 @@ def build_github_report():
         bg_color="F0FDF4"
     )
 
-    docx_out = DOCS_DIR / "03_GitHub_Repository_Report.docx"
+    docx_out = LMS_DIR / "03_GitHub_Report.docx"
     doc.save(str(docx_out))
     print(f"  -> Generated DOCX: {docx_out.name}")
     
     # Convert to PDF
-    pdf_out = DOCS_DIR / "03_GitHub_Repository_Report.pdf"
+    pdf_out = LMS_DIR / "03_GitHub_Report.pdf"
     docx2pdf.convert(str(docx_out), str(pdf_out))
     print(f"  -> Generated PDF: {pdf_out.name} ({pdf_out.stat().st_size // 1024} KB)")
 
@@ -351,12 +353,12 @@ def build_complete_code_doc():
         
         print(f"  -> Embedded code: {rel_path} ({line_count} lines)")
 
-    docx_out = DOCS_DIR / "04_Complete_Source_Code.docx"
+    docx_out = LMS_DIR / "04_Complete_Source_Code.docx"
     doc.save(str(docx_out))
     print(f"  -> Generated DOCX: {docx_out.name}")
     
     # Convert to PDF
-    pdf_out = DOCS_DIR / "04_Complete_Source_Code.pdf"
+    pdf_out = LMS_DIR / "04_Complete_Source_Code.pdf"
     docx2pdf.convert(str(docx_out), str(pdf_out))
     print(f"  -> Generated PDF: {pdf_out.name} ({pdf_out.stat().st_size // 1024} KB)")
 
@@ -368,21 +370,25 @@ def convert_primary_docs():
     
     # Item 1: Project Document PDF
     pdoc_docx = DOCS_DIR / "17_ArgJain_DiseaseTrendAnalysis_ProjectDocument.docx"
-    pdoc_pdf = DOCS_DIR / "17_ArgJain_DiseaseTrendAnalysis_ProjectDocument.pdf"
+    pdoc_pdf = LMS_DIR / "01_Project_Document.pdf"
     if pdoc_docx.exists():
         docx2pdf.convert(str(pdoc_docx), str(pdoc_pdf))
         print(f"  -> Generated Item 1: {pdoc_pdf.name} ({pdoc_pdf.stat().st_size // 1024} KB)")
 
-    # Item 2: Project Presentation PDF
+    # Item 2: Project Presentation PDF & Copy PPTX
     pptx_path = DOCS_DIR / "18_ArgJain_DiseaseTrendAnalysis_Presentation.pptx"
-    pptx_pdf = DOCS_DIR / "18_ArgJain_DiseaseTrendAnalysis_Presentation.pdf"
+    pptx_dest = LMS_DIR / "02_Project_Presentation.pptx"
+    pptx_pdf = LMS_DIR / "02_Project_Presentation.pdf"
     if pptx_path.exists():
+        import shutil
+        shutil.copy2(str(pptx_path), str(pptx_dest))
+        print(f"  -> Generated Item 2 PPTX: {pptx_dest.name}")
         ppt_app = win32com.client.Dispatch('PowerPoint.Application')
         pres = ppt_app.Presentations.Open(str(pptx_path.resolve()), WithWindow=False)
         pres.SaveAs(str(pptx_pdf.resolve()), 32)
         pres.Close()
         ppt_app.Quit()
-        print(f"  -> Generated Item 2: {pptx_pdf.name} ({pptx_pdf.stat().st_size // 1024} KB)")
+        print(f"  -> Generated Item 2 PDF: {pptx_pdf.name} ({pptx_pdf.stat().st_size // 1024} KB)")
 
 # ---------------------------------------------------------------------------
 # 4. Convert All Step Documents for Item 5 (in all_step_pdfs/)
@@ -452,8 +458,8 @@ def build_all_step_pdfs():
 # 5. Build Project ZIP File (Item 6)
 # ---------------------------------------------------------------------------
 def build_project_zip():
-    print("\n[ITEM 6] Compressing Complete Project into ZIP Archive...")
-    zip_path = BASE_DIR / "Disease_Trend_Analysis_P01_ArgJain.zip"
+    print("\n[ITEM 6] Compressing Complete Project into ZIP Archive in lms/...")
+    zip_path = LMS_DIR / "06_Project_Archive.zip"
     
     exclude_dirs = {".git", ".pytest_cache", "__pycache__", "browser_evidence", ".system_generated"}
     exclude_exts = {".pyc", ".tmp"}
@@ -466,6 +472,7 @@ def build_project_zip():
             
             for file in files:
                 f_path = Path(root) / file
+                # Do not zip the archive itself if inside BASE_DIR
                 if f_path == zip_path or f_path.suffix in exclude_exts:
                     continue
                     

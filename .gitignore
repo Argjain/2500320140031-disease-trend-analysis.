@@ -11,6 +11,9 @@ build/
 # Operating System
 .DS_Store
 Thumbs.db
+.~lock.*
+*.tmp
+~$*
 
 # IDE & Editor caches
 .vscode/
